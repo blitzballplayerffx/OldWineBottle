@@ -1,0 +1,342 @@
+{
+  "home": {
+    "tag": "Welcome",
+    "title": "Welcome Adventurer",
+    "description": "Welcome to the core database. Select any article from the index list on the left to navigate directly to world locations, game systems, character classes, or magic schools."
+  },
+  "classes": {
+    "warrior": {
+      "name": "Warrior",
+      "description": "Frontline fighter who protects allies and overwhelms enemies with powerful weapon techniques.",
+      "features": [ "Heavy armor", "Taunt abilities", "Weapon mastery", "High health" ]
+    },
+    "knight": {
+      "name": "Knight",
+      "description": "Disciplined defender clad in heavy plate, trained to absorb massive damage.",
+      "features": [ "Heavy plate armor", "Shield blocks", "Enemy taunts", "High defense" ]
+    },
+    "paladin": {
+      "name": "Paladin",
+      "description": "Holy warrior combining martial combat with sacred light magic.",
+      "features": [ "Holy damage", "Self & party heals", "Auras of protection", "Undead counter" ]
+    },
+    "dark-knight": {
+      "name": "Dark Knight",
+      "description": "Knight who sacrifices vitality to channel dark magic and inflict heavy damage.",
+      "features": [ "Two-handed scythes/swords", "Life-drain attacks", "Dark magic", "High risk, high reward" ]
+    },
+    "barbarian": {
+      "name": "Barbarian",
+      "description": "Fierce berserker who enters chaotic rages to increase strength and speed.",
+      "features": [ "Berserker rage", "Dual-wielding heavy weapons", "Intimidating roars", "High health pool" ]
+    },
+    "monk": {
+      "name": "Monk",
+      "description": "Martial artist using internal energy and rapid hand-to-hand combat.",
+      "features": [ "Unarmed mastery", "Chakra self-healing", "High attack speed", "Counter-attacks" ]
+    },
+    "blademaster": {
+      "name": "Blademaster",
+      "description": "Master of swordcraft delivering high-burst damage through rapid strikes.",
+      "features": [ "Katana & Greatsword mastery", "Counter-strike stances", "Precision critical strikes", "High burst damage" ]
+    },
+    "ranger": {
+      "name": "Ranger",
+      "description": "Long-range hunter skilled in wilderness survival and animal companions.",
+      "features": [ "Long-range attacks", "Animal companions", "Tracking skills", "Poison arrows" ]
+    },
+    "rogue": {
+      "name": "Rogue",
+      "description": "Fast assassin using stealth, traps, poisons, and precise attacks.",
+      "features": [ "Stealth movement", "Critical strikes", "Lockpicking", "Deadly poisons" ]
+    },
+    "thief": {
+      "name": "Thief",
+      "description": "Quick-witted rogue excelling at stealing loot and dodging attacks.",
+      "features": [ "Treasure hunting", "High evasion", "Pickpocketing", "Agile strikes" ]
+    },
+    "assassin": {
+      "name": "Assassin",
+      "description": "Shadow master who eliminates high-value targets instantly.",
+      "features": [ "Stealth mastery", "Critical backstabs", "Deadly poisons", "Smoke bombs" ]
+    },
+    "beastmaster": {
+      "name": "Beastmaster",
+      "description": "Tamer of wild beasts who commands animals in battle.",
+      "features": [ "Wild beast taming", "Pet combat commands", "Companion buffs", "Dual axe strikes" ]
+    },
+    "mage": {
+      "name": "Mage",
+      "description": "Elemental spellcaster unleashing destructive fire, ice, and lightning.",
+      "features": [ "High burst damage", "AoE spells", "Mana shields", "Teleportation" ]
+    },
+    "cleric": {
+      "name": "Cleric",
+      "description": "Holy caster who heals allies and protects them with sacred shields.",
+      "features": [ "Healing magic", "Protective blessings", "Undead banishment", "Party revival" ]
+    },
+    "druid": {
+      "name": "Druid",
+      "description": "Nature guardian commanding plants, animals, storms, and shapeshifting.",
+      "features": [ "Animal transformation", "Nature magic", "Healing over time", "Weather control" ]
+    },
+    "shaman": {
+      "name": "Shaman",
+      "description": "Spiritual guide calling upon elemental totems and ancestral spirits.",
+      "features": [ "Elemental totems", "Spirit warding", "Chain lightning", "Status cleanses" ]
+    },
+    "enchanter": {
+      "name": "Enchanter",
+      "description": "Tactical spellcaster specializing in crowd control and illusions.",
+      "features": [ "Area crowd control", "Mana regeneration buffs", "Enemy illusions", "Haste enchantments" ]
+    },
+    "bard": {
+      "name": "Bard",
+      "description": "Musical performer inspiring allies and weakening enemies.",
+      "features": [ "Party buffs", "Enemy debuffs", "Charm abilities", "Bonus dialogue options" ]
+    },
+    "necromancer": {
+      "name": "Necromancer",
+      "description": "Forbidden caster commanding undead minions and curses.",
+      "features": [ "Summon undead", "Life-drain spells", "Curse abilities", "Minion customization" ]
+    },
+    "summoner": {
+      "name": "Summoner",
+      "description": "Caster forming pacts with avatars and elemental spirits.",
+      "features": [ "Elemental avatars", "Pet spellcasting", "Pact abilities", "Ranged magic support" ]
+    },
+    "alchemist": {
+      "name": "Alchemist",
+      "description": "Experimenter creating explosives, elixirs, and chemical mixtures.",
+      "features": [ "Explosive potions", "Healing & mana elixirs", "Acid & poison debuffs", "Transmutation utilities" ]
+    }
+  },
+  "schools": {
+    "arcane": {
+      "name": "Arcane Magic",
+      "description": "General magic manipulating raw aetheric forces for utility, barrier creation, rapid repositioning, and targeted force missiles.",
+      "modifiers": "+15% Casting Speed, +10% Spell Accuracy",
+      "abilities": [ "Spell Reflection", "Mana Conversion", "Instant Blink" ],
+      "spells": {
+        "aether-light": {
+          "name": "Aether Light",
+          "level": 1,
+          "castTime": "Instant",
+          "manaCost": "5 MP",
+          "description": "Illuminates dark dungeons and reveals invisible traps within a 15 meter radius."
+        },
+        "force-push": {
+          "name": "Force Push",
+          "level": 1,
+          "castTime": "0.5s",
+          "manaCost": "12 MP",
+          "description": "Emits a wave of kinetic force knocking enemies backward and interrupting spell casts."
+        },
+        "magic-missile": {
+          "name": "Magic Missile",
+          "level": 1,
+          "castTime": "1.0s",
+          "manaCost": "15 MP",
+          "description": "Fires 3 homing force projectiles that bypass physical defense and track targets."
+        },
+        "mana-spark": {
+          "name": "Mana Spark",
+          "level": 1,
+          "castTime": "Instant",
+          "manaCost": "0 MP",
+          "description": "Instantly restores 10 Mana points to an ally or the caster."
+        },
+        "arcane-shield": {
+          "name": "Arcane Shield",
+          "level": 15,
+          "castTime": "Instant",
+          "manaCost": "50 MP",
+          "description": "Creates a protective barrier absorbing oncoming damage via Mana points instead of Health."
+        },
+        "blink-step": {
+          "name": "Blink Step",
+          "level": 15,
+          "castTime": "Instant",
+          "manaCost": "40 MP",
+          "description": "Short distance teleportation leaving behind an decoy illusion that draws threat."
+        },
+        "teleport": {
+          "name": "Teleport",
+          "level": 30,
+          "castTime": "Instant",
+          "manaCost": "80 MP",
+          "description": "Instantly blinks the caster up to 20 meters forward in their camera direction."
+        }
+      }
+    },
+    "fire": {
+      "name": "Fire Magic",
+      "description": "Volatile pyromantic incantations that deliver explosive area-of-effect damage and leave targets burning over time.",
+      "modifiers": "+20% Critical Spell Damage, +15% Fire Resistance, -10% Cast Speed",
+      "abilities": [ "Ignited Burn Stacking", "Armor Melting", "Blast Radius Expansion" ],
+      "spells": {
+        "cinder": {
+          "name": "Cinder",
+          "level": 8,
+          "castTime": "Instant",
+          "manaCost": "10 MP",
+          "description": "Sparks a minor flame on the target, dealing minor damage over 6 seconds."
+        },
+        "flame-burst": {
+          "name": "Flame Burst",
+          "level": 8,
+          "castTime": "Instant",
+          "manaCost": "30 MP",
+          "description": "Releases a sudden ring of heat around the caster, knocking back nearby attackers."
+        },
+        "ignite": {
+          "name": "Ignite",
+          "level": 8,
+          "castTime": "1.0s",
+          "manaCost": "20 MP",
+          "description": "Sets enemy armor alight, reducing fire resistance by 15%."
+        },
+        "fireball": {
+          "name": "Fireball",
+          "level": 20,
+          "castTime": "2.5s",
+          "manaCost": "85 MP",
+          "description": "Hurls an explosive sphere of fire that detonates on impact dealing heavy AoE damage."
+        },
+        "combustion": {
+          "name": "Combustion",
+          "level": 35,
+          "castTime": "Instant",
+          "manaCost": "95 MP",
+          "description": "Instantly ignites all active burn effects on surrounding targets for burst damage."
+        }
+      }
+    }
+  },
+  "realms": {
+    "ironpeak": {
+      "name": "Ironpeak Mountains",
+      "description": "A towering mountain range filled with sky temples, ancient mines, and clans of battle-hardened guardians.",
+      "features": [ "Mining expeditions", "Mountain fortresses", "Lightning storms", "Giant eagle mounts" ]
+    },
+    "sunscorch": {
+      "name": "Sunscorch Desert",
+      "description": "A vast golden desert hiding buried cities, colossal sandworms, and merchant kingdoms.",
+      "features": [ "Sandworm hunts", "Buried ruins", "Caravan trading", "Desert survival events" ]
+    },
+    "frostveil": {
+      "name": "Frostveil Tundra",
+      "description": "A frozen wasteland where ancient ice dragons sleep beneath glaciers and wandering spirits guide travelers.",
+      "features": [ "Ice dragon lairs", "Blizzard conditions", "Frozen dungeons", "Winter crafting materials" ]
+    },
+    "whispering-mire": {
+      "name": "Whispering Mire",
+      "description": "A poisonous swamp filled with ancient trees, hidden villages, witch covens, and creatures that mimic lost travelers.",
+      "features": [ "Poisonous wetlands", "Witch covens", "Hidden pathways", "Rare alchemy plants" ]
+    },
+    "azure-expanse": {
+      "name": "Azure Expanse",
+      "description": "A massive ocean region containing pirate kingdoms, underwater temples, sea monsters, and eclipse islands.",
+      "features": [ "Ship battles", "Underwater cities", "Treasure islands", "Sea monster raids" ]
+    },
+    "emberfall": {
+      "name": "Emberfall Caldera",
+      "description": "A volcanic wasteland ruled by fire giants and molten war machines.",
+      "features": [ "Volcanic eruptions", "Fire giant strongholds", "Molten weapons", "Dynamic terrain" ]
+    },
+    "cloudspire": {
+      "name": "Cloudspire Isles",
+      "description": "Floating islands connected by magical bridges and guarded by storm spirits and sky pirates.",
+      "features": [ "Airship travel", "Floating islands", "Sky pirate factions", "Wind-based puzzles" ]
+    },
+    "umbral-hollow": {
+      "name": "Umbral Hollow",
+      "description": "A realm trapped in permanent darkness where shadows take physical form.",
+      "features": [ "Stealth missions", "Shadow creatures", "Memory puzzles", "Cursed treasures" ]
+    }
+  },
+  "races": {
+    "star-elves": {
+      "name": "Star Elves",
+      "description": "Elegant descendants of celestial beings who draw power from starlight and possess a deep connection to ancient magic.",
+      "features": [ "Night vision", "Arcane resistance", "Starborn magic", "Bonus in ancient ruins" ]
+    },
+    "dwarves": {
+      "name": "Stoneforged Dwarves",
+      "description": "Proud underground builders and master engineers known for their legendary armor, resilient bodies, and powerful clan traditions.",
+      "features": [ "High armor endurance", "Mining bonuses", "Mechanical crafting", "Resistance to knockback" ]
+    },
+    "storm-orcs": {
+      "name": "Storm Orcs",
+      "description": "Nomadic warriors who live beneath thunderous skies and channel the fury of storms through ritual combat.",
+      "features": [ "Increased melee damage", "Storm battle cries", "Improved intimidation", "Bonus during storms" ]
+    },
+    "drakari": {
+      "name": "Drakari",
+      "description": "Dragon-blooded people who inherit elemental breath, powerful scales, and memories passed down from their ancient ancestors.",
+      "features": [ "Elemental breath", "Natural armor", "Dragon language", "Bonus against dragons" ]
+    },
+    "feykin": {
+      "name": "Feykin",
+      "description": "Playful and unpredictable beings from enchanted forests who use illusion, charm, and nature magic to confuse their enemies.",
+      "features": [ "Short-range teleportation", "Illusion abilities", "Nature affinity", "Reduced fall damage" ]
+    },
+    "goblins": {
+      "name": "Glimmer Goblins",
+      "description": "Clever scavengers and inventive tinkerers who turn discarded objects into dangerous tools, traps, and unpredictable weapons.",
+      "features": [ "Trap construction", "Improvised weapons", "Stealth bonuses", "Fast item gathering" ]
+    },
+    "hollowborn": {
+      "name": "Hollowborn",
+      "description": "Undead souls who have regained their free will and now seek a purpose in a world that fears and hunts them.",
+      "features": [ "Poison immunity", "Fear resistance", "Life-draining abilities", "Can survive without food" ]
+    },
+    "humans": {
+      "name": "Aetherian Humans",
+      "description": "Adaptable explorers who have settled nearly every region of Aetheria and learned to combine many different forms of magic.",
+      "features": [ "Flexible skill bonuses", "Extra equipment slot", "Fast reputation gains", "Access to every faction" ]
+    }
+  },
+  "gameFeatures": {
+    "customization": {
+      "name": "Character Customization",
+      "description": "Create a character with unique appearance, equipment, and identity.",
+      "details": [ "Appearance customization", "Armor styles", "Weapons & accessories", "Personal identity options" ]
+    },
+    "leveling": {
+      "name": "Leveling",
+      "description": "Progress through combat, quests, exploration, and achievements.",
+      "details": [ "Character progression", "Ability unlocks", "Powerful equipment", "Multiple progression paths" ]
+    },
+    "dual-classing": {
+      "name": "Dual Classing",
+      "description": "Combine two job paths to create unique synergies.",
+      "details": [ "Sub-job combinations", "Shared ability pools", "Flexible builds", "Custom synergies" ]
+    },
+    "mounts": {
+      "name": "Mounts",
+      "description": "Travel across Aetheria with land and flying mounts.",
+      "details": [ "Land mounts", "Flying mounts", "Rare creatures", "Mount collection" ]
+    },
+    "pvp": {
+      "name": "PvP",
+      "description": "Test your skills against other players.",
+      "details": [ "Faction warfare", "Arenas", "Battlegrounds", "Competitive rewards" ]
+    },
+    "housing": {
+      "name": "Player Housing",
+      "description": "Claim and customize your own home.",
+      "details": [ "Personal homes", "Furniture", "Trophy displays", "Gathering spaces" ]
+    },
+    "crafting": {
+      "name": "Crafting",
+      "description": "Gather resources and create valuable items.",
+      "details": [ "Weapons & armor", "Potions", "Consumables", "Rare recipes" ]
+    },
+    "exploration": {
+      "name": "Exploration",
+      "description": "Discover hidden locations, ruins, treasures, and mysteries.",
+      "details": [ "Hidden locations", "Ancient ruins", "Secret treasures", "Exploration discoveries" ]
+    }
+  }
+}
