@@ -1,0 +1,179 @@
+﻿:root {
+    --bg-color: #f4ecd8;
+    --card-bg: #eadeca;
+    --sidebar-bg: #e3d5bd;
+    --text-color: #000000;
+    --border-color: #c4b093;
+    --hover-bg: #d8c6aa;
+    --font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    display: flex;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* Sidebar Navigation */
+.sidebar {
+    width: 280px;
+    background-color: var(--sidebar-bg);
+    border-right: 2px solid var(--border-color);
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+    .sidebar h2 {
+        font-size: 1.4rem;
+        color: #000000;
+        margin-bottom: 15px;
+        border-bottom: 2px solid var(--border-color);
+        padding-bottom: 5px;
+    }
+
+.nav-list {
+    list-style: none;
+}
+
+    .nav-list a {
+        color: #000000;
+        text-decoration: none;
+        display: block;
+        padding: 6px 10px;
+        border-radius: 4px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+        .nav-list a:hover {
+            background-color: var(--hover-bg);
+            font-weight: bold;
+        }
+
+/* Main Layout */
+.main-content {
+    flex-grow: 1;
+    padding: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.wiki-header {
+    border-bottom: 2px dashed var(--border-color);
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+
+    .wiki-header h1 {
+        font-size: 2.4rem;
+    }
+
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 24px;
+    margin-bottom: 25px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
+}
+
+    .card h2 {
+        font-size: 1.6rem;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 6px;
+        margin-bottom: 12px;
+    }
+
+    .card h3 {
+        margin: 14px 0 6px 0;
+        font-size: 1.2rem;
+    }
+
+    .card p {
+        margin-bottom: 12px;
+    }
+
+    .card ul {
+        margin-left: 20px;
+        margin-bottom: 12px;
+    }
+
+/* Level Containers & Spells */
+.spell-level-card {
+    margin-top: 15px;
+    padding: 16px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+}
+
+    .spell-level-card h4 {
+        font-size: 1.1rem;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 4px;
+        margin-bottom: 10px;
+    }
+
+.spell-inline-list {
+    line-height: 1.8;
+}
+
+.spell-dot-separator {
+    margin: 0 8px;
+    color: #8b0000;
+    font-weight: bold;
+}
+
+/* Links & Buttons */
+a.wiki-link {
+    color: #8b0000;
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 1px dotted #8b0000;
+    cursor: pointer;
+}
+
+    a.wiki-link:hover {
+        text-decoration: underline;
+        background-color: var(--hover-bg);
+    }
+
+.btn-back {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 6px 12px;
+    background-color: var(--hover-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+    .btn-back:hover {
+        background-color: var(--sidebar-bg);
+    }
+
+.section-tag {
+    display: inline-block;
+    background-color: var(--hover-bg);
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
