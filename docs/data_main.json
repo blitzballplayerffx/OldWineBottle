@@ -676,68 +676,133 @@
   ],
   "crafting": [
     {
-      "emoji": "⛏️",
-      "label": "Gathering",
-      "title": "Resource Gathering",
-      "description": "Collect raw materials from the world, including ores, herbs, wood, monster parts, and rare elemental essences.",
+      "emoji": "🗡️",
+      "label": "Weapons",
+      "title": "Weapons",
+      "description": "Forge blades, bows, staves, and enchanted armaments used by warriors, rogues, and mages.",
       "features": [
-        "Mining",
-        "Herbalism",
-        "Lumber harvesting",
-        "Essence collecting",
-        "Rare material nodes"
-      ]
-    },
-    {
-      "emoji": "⚒️",
-      "label": "Forging",
-      "title": "Blacksmithing & Armorsmithing",
-      "description": "Forge powerful weapons and armor using refined metals, monster cores, and enchanted alloys.",
-      "features": [
-        "Weapon forging",
-        "Armor crafting",
-        "Material refinement",
-        "Enchanted alloys",
+        "Melee weapons",
+        "Ranged weapons",
+        "Magical weapons",
+        "Enchantment slots",
         "Quality tiers"
       ]
     },
     {
+      "emoji": "🛡️",
+      "label": "Armor",
+      "title": "Armor",
+      "description": "Craft protective gear ranging from light clothing to heavy plate infused with magical properties.",
+      "features": [
+        "Light armor",
+        "Medium armor",
+        "Heavy armor",
+        "Magical reinforcement",
+        "Set bonuses"
+      ]
+    },
+    {
       "emoji": "🧪",
-      "label": "Alchemy",
-      "title": "Alchemy & Potioncraft",
-      "description": "Brew potions, elixirs, poisons, and volatile mixtures using herbs, essences, and magical catalysts.",
+      "label": "Potions",
+      "title": "Potions & Elixirs",
+      "description": "Brew healing potions, mana elixirs, poisons, and powerful temporary buffs.",
       "features": [
         "Healing potions",
         "Mana elixirs",
         "Buff mixtures",
         "Poisons",
-        "Catalyst reactions"
+        "Rare catalyst reactions"
       ]
     },
     {
-      "emoji": "🎨",
-      "label": "Artisan",
-      "title": "Artisan Crafting",
-      "description": "Create decorations, furnishings, cosmetic items, and unique collectibles for housing and trade.",
+      "emoji": "👗",
+      "label": "Clothing",
+      "title": "Clothing",
+      "description": "Create everyday outfits, cosmetic gear, robes, cloaks, and faction‑themed attire.",
       "features": [
-        "Furniture crafting",
-        "Cosmetic dyes",
-        "Decorations",
-        "Trophy creation",
-        "Trade goods"
+        "Cosmetic outfits",
+        "Robes & cloaks",
+        "Faction clothing",
+        "Dye customization",
+        "Tailored bonuses"
       ]
     },
     {
-      "emoji": "📜",
-      "label": "Scribing",
-      "title": "Scrolls & Enchantments",
-      "description": "Craft magical scrolls, enchantments, and spell‑enhancing inscriptions.",
+      "emoji": "💍",
+      "label": "Jewelry",
+      "title": "Jewelry",
+      "description": "Craft rings, necklaces, charms, and magical accessories that enhance character stats.",
       "features": [
-        "Spell scrolls",
-        "Gear enchantments",
-        "Rune inscription",
-        "Temporary buffs",
-        "Rare enchant recipes"
+        "Rings",
+        "Necklaces",
+        "Charms",
+        "Gem socketing",
+        "Magical infusions"
+      ]
+    },
+    {
+      "emoji": "🗺️",
+      "label": "Maps",
+      "title": "Maps",
+      "description": "Create detailed maps revealing hidden paths, treasure locations, and secret world routes.",
+      "features": [
+        "Treasure maps",
+        "Dungeon maps",
+        "Exploration charts",
+        "Hidden route markers",
+        "Cartography skill bonuses"
+      ]
+    },
+    {
+      "emoji": "📚",
+      "label": "Books",
+      "title": "Books & Tomes",
+      "description": "Write spell tomes, lore books, crafting manuals, and collectible codices.",
+      "features": [
+        "Spell tomes",
+        "Lore books",
+        "Crafting manuals",
+        "Collectible codices",
+        "Skill‑granting texts"
+      ]
+    },
+    {
+      "emoji": "🍲",
+      "label": "Food",
+      "title": "Food & Cooking",
+      "description": "Prepare meals that grant buffs, restore health, or provide long‑term stat bonuses.",
+      "features": [
+        "Healing meals",
+        "Buff foods",
+        "Rare recipes",
+        "Feasts",
+        "Seasonal ingredients"
+      ]
+    },
+    {
+      "emoji": "🛠️",
+      "label": "Tools",
+      "title": "Tools",
+      "description": "Craft utility tools used for gathering, exploration, construction, and survival.",
+      "features": [
+        "Gathering tools",
+        "Construction tools",
+        "Exploration gear",
+        "Repair kits",
+        "Utility devices"
+      ]
+    },
+    {
+      "emoji": "🥅",
+      "label": "Traps",
+      "title": "Traps",
+      "description": "Build mechanical and magical traps for hunting, defense, or tactical combat.",
+      "features": [
+        "Hunting traps",
+        "Explosive traps",
+        "Magical snares",
+        "Poison traps",
+        "Remote‑trigger devices"
       ]
     }
   ]
