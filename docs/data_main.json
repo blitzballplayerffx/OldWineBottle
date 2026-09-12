@@ -676,16 +676,68 @@
   ],
   "crafting": [
     {
-      "emoji": "🔨",
-      "label": "Crafting",
-      "title": "Crafting",
-      "description": "Gather resources throughout Aetheria and forge powerful gear, potions, decorations, and rare artifacts.",
+      "emoji": "⛏️",
+      "label": "Gathering",
+      "title": "Resource Gathering",
+      "description": "Collect raw materials from the world, including ores, herbs, wood, monster parts, and rare elemental essences.",
       "features": [
-        "Resource gathering",
-        "Weapons & armor forging",
-        "Potion brewing",
-        "Rare recipe discovery",
-        "Profession specialization"
+        "Mining",
+        "Herbalism",
+        "Lumber harvesting",
+        "Essence collecting",
+        "Rare material nodes"
+      ]
+    },
+    {
+      "emoji": "⚒️",
+      "label": "Forging",
+      "title": "Blacksmithing & Armorsmithing",
+      "description": "Forge powerful weapons and armor using refined metals, monster cores, and enchanted alloys.",
+      "features": [
+        "Weapon forging",
+        "Armor crafting",
+        "Material refinement",
+        "Enchanted alloys",
+        "Quality tiers"
+      ]
+    },
+    {
+      "emoji": "🧪",
+      "label": "Alchemy",
+      "title": "Alchemy & Potioncraft",
+      "description": "Brew potions, elixirs, poisons, and volatile mixtures using herbs, essences, and magical catalysts.",
+      "features": [
+        "Healing potions",
+        "Mana elixirs",
+        "Buff mixtures",
+        "Poisons",
+        "Catalyst reactions"
+      ]
+    },
+    {
+      "emoji": "🎨",
+      "label": "Artisan",
+      "title": "Artisan Crafting",
+      "description": "Create decorations, furnishings, cosmetic items, and unique collectibles for housing and trade.",
+      "features": [
+        "Furniture crafting",
+        "Cosmetic dyes",
+        "Decorations",
+        "Trophy creation",
+        "Trade goods"
+      ]
+    },
+    {
+      "emoji": "📜",
+      "label": "Scribing",
+      "title": "Scrolls & Enchantments",
+      "description": "Craft magical scrolls, enchantments, and spell‑enhancing inscriptions.",
+      "features": [
+        "Spell scrolls",
+        "Gear enchantments",
+        "Rune inscription",
+        "Temporary buffs",
+        "Rare enchant recipes"
       ]
     }
   ]
