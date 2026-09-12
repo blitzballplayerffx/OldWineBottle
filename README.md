@@ -14,3 +14,9 @@ Programming: blitzballplayerffx<br>
 Music: Vacant<br>
 Sound: Vacant<br>
 Writing: Vacant<br>
+
+## Social
+Youtube:
+Discord:
+x / Twitter:
+Reddit:
