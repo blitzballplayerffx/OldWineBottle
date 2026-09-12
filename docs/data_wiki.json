@@ -7,7 +7,7 @@
   "classes": {
     "warrior": {
       "name": "Warrior",
-      "description": "Frontline fighter who protects allies and overwhelms enemies with powerful weapon techniques.",
+      "description": "Frontline fighter protects allies and overwhelms enemies with powerful weapons.",
       "features": [ "Heavy armor", "Taunt abilities", "Weapon mastery", "High health" ]
     },
     "knight": {
