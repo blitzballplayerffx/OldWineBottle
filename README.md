@@ -16,7 +16,7 @@ Sound: Vacant<br>
 Writing: Vacant<br>
 
 ## Social
-Youtube:
-Discord:
-x / Twitter:
-Reddit:
+Youtube:<br>
+Discord:<br>
+x / Twitter:<br>
+Reddit:<br>
