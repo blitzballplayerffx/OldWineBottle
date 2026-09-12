@@ -1,12 +1,12 @@
 {
   "topNavLinks": [
     {
-      "label": "📰 News",
-      "href": "#news"
+      "label": "🏠 Home",
+      "href": "#home"
     },
     {
-      "label": "💬 Social",
-      "href": "#social"
+      "label": "📰 News",
+      "href": "#news"
     },
     {
       "label": "🎧 Support",

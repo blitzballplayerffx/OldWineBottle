@@ -6,7 +6,7 @@ SLIDER STATE
 ========================================
 */
 const sliderState = {
-    home: 0,
+    news: 0,
     features: 0,
     realms: 0,
     races: 0,
@@ -37,11 +37,11 @@ function renderApp() {
         ).join('');
     }
 
-    // 3. Home Slider
-    const homeSlider = document.getElementById("homeSlider");
-    const homeDots = document.getElementById("homeDots");
-    if (homeSlider) {
-        homeSlider.innerHTML = aetheriaData.homeSlides.map(slide => {
+    // 3. News Slider (formerly Home Slider)
+    const newsSlider = document.getElementById("newsSlider");
+    const newsDots = document.getElementById("newsDots");
+    if (newsSlider) {
+        newsSlider.innerHTML = aetheriaData.homeSlides.map(slide => {
             if (slide.type === "social") {
                 const btns = slide.buttons.map(b => `<a href="${b.href}" class="social-btn">${b.label}</a>`).join('');
                 return `<div class="slide">
@@ -65,9 +65,9 @@ function renderApp() {
             }
         }).join('');
 
-        if (homeDots) {
-            homeDots.innerHTML = aetheriaData.homeSlides.map((_, i) => 
-                `<div class="dot ${i === 0 ? 'active' : ''}" onclick="userSelectHomeSlide(${i})"></div>`
+        if (newsDots) {
+            newsDots.innerHTML = aetheriaData.homeSlides.map((_, i) => 
+                `<div class="dot ${i === 0 ? 'active' : ''}" onclick="userSelectNewsSlide(${i})"></div>`
             ).join('');
         }
     }
@@ -160,29 +160,29 @@ function swapSlide(sectionName, index) {
 AUTO-CYCLE FOR HOME SECTION
 ========================================
 */
-let homeAutoCycleTimer = null;
+let newsAutoCycleTimer = null;
 
-function startHomeAutoCycle() {
-    stopHomeAutoCycle();
-    homeAutoCycleTimer = setInterval(() => {
-        const slider = document.getElementById("homeSlider");
+function startNewsAutoCycle() {
+    stopNewsAutoCycle();
+    newsAutoCycleTimer = setInterval(() => {
+        const slider = document.getElementById("newsSlider");
         if (!slider) return;
 
         const totalSlides = slider.querySelectorAll(".slide").length;
-        let nextIndex = (sliderState.home + 1) % totalSlides;
-        swapSlide("home", nextIndex);
+        let nextIndex = (sliderState.news + 1) % totalSlides;
+        swapSlide("news", nextIndex);
     }, 4000);
 }
 
-function stopHomeAutoCycle() {
-    if (homeAutoCycleTimer) {
-        clearInterval(homeAutoCycleTimer);
+function stopNewsAutoCycle() {
+    if (newsAutoCycleTimer) {
+        clearInterval(newsAutoCycleTimer);
     }
 }
 
-function userSelectHomeSlide(index) {
-    swapSlide("home", index);
-    startHomeAutoCycle();
+function userSelectNewsSlide(index) {
+    swapSlide("news", index);
+    startNewsAutoCycle();
 }
 
 /*
@@ -202,6 +202,91 @@ function updateSliderPositions() {
 
 /*
 ========================================
+SECTION SHOW / HIDE NAVIGATION
+========================================
+*/
+const sectionGroups = {
+    home: ['home','story','features','realms','races','classes','crafting'],
+    news: ['news'],
+    support: ['support'],
+    about: ['about'],
+    media: ['media'],
+    account: ['account']
+};
+
+function hideAllSections() {
+    document.querySelectorAll('section.card, section').forEach(s => {
+        s.classList.add('hidden');
+    });
+}
+
+function showGroup(name) {
+    const ids = sectionGroups[name] || [name];
+    hideAllSections();
+    ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove('hidden');
+    });
+
+    // Update top nav active state
+    const topNavBtns = document.querySelectorAll('.top-nav-bar .top-nav-btn');
+    topNavBtns.forEach(btn => {
+        const href = btn.getAttribute('href') || '';
+        const targetId = href.startsWith('#') ? href.slice(1) : '';
+        btn.classList.toggle('active', targetId === name);
+    });
+
+    // Refresh sliders layout if needed
+    updateSliderPositions();
+}
+
+function setupNavBehavior() {
+    const topNav = document.getElementById('top-nav-bar');
+    if (!topNav) return;
+
+    topNav.querySelectorAll('a.top-nav-btn').forEach(a => {
+        const href = a.getAttribute('href') || '';
+        const isExternal = a.hasAttribute('target');
+        if (isExternal) return; // let external links behave normally
+        if (!href.startsWith('#')) return;
+
+        a.addEventListener('click', (e) => {
+            e.preventDefault();
+            const id = href.slice(1);
+            if (id === 'home') {
+                showGroup('home');
+            } else {
+                showGroup(id);
+            }
+
+            // Manage news auto-cycle
+            if (id === 'news') startNewsAutoCycle();
+            else stopNewsAutoCycle();
+        });
+    });
+
+    const quickLinks = document.getElementById('quick-links-bar');
+    if (quickLinks) {
+        quickLinks.querySelectorAll('a.quick-link').forEach(a => {
+            const href = a.getAttribute('href') || '';
+            if (!href.startsWith('#')) return;
+            a.addEventListener('click', (e) => {
+                e.preventDefault();
+                const id = href.slice(1);
+                if (sectionGroups.home.includes(id)) {
+                    showGroup('home');
+                    const target = document.getElementById(id);
+                    if (target) target.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    showGroup(id);
+                }
+            });
+        });
+    }
+}
+
+/*
+========================================
 EVENTS & INIT
 ========================================
 */
@@ -215,22 +300,26 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     renderApp();
+    setupNavBehavior();
 
-    const homeSliderElement = document.getElementById("homeSlider");
-    if (homeSliderElement) {
-        homeSliderElement.addEventListener("mouseenter", stopHomeAutoCycle);
-        homeSliderElement.addEventListener("mouseleave", startHomeAutoCycle);
+    // Default to home view on load
+    showGroup('home');
+
+    const newsSliderElement = document.getElementById("newsSlider");
+    if (newsSliderElement) {
+        newsSliderElement.addEventListener("mouseenter", stopNewsAutoCycle);
+        newsSliderElement.addEventListener("mouseleave", startNewsAutoCycle);
     }
 
     window.addEventListener("resize", updateSliderPositions);
 
     updateSliderPositions();
 
-    swapSlide("home", 0);
+    swapSlide("news", 0);
     swapSlide("features", 0);
     swapSlide("realms", 0);
     swapSlide("races", 0);
     swapSlide("classes", 0);
 
-    startHomeAutoCycle();
+    startNewsAutoCycle();
 });

@@ -91,14 +91,40 @@ HOME SECTION & TOP NAVIGATION
 .home {
     background: linear-gradient(135deg, #0f172a, #1e1b4b);
     justify-content: flex-start;
-    padding-top: 20px;
+    padding-top: 0;
 }
 
-#homeSlider {
+/* Section color variations (compatible with palette) */
+.news {
+    background: linear-gradient(135deg, #0e1330, #2b1f62);
+}
+
+.support {
+    background: linear-gradient(135deg, #2a1b10, #b86b18);
+}
+
+.about {
+    background: linear-gradient(135deg, #0a2a23, #1f6f57);
+}
+
+.media {
+    background: linear-gradient(135deg, #221233, #5b2d9b);
+}
+
+.account {
+    background: linear-gradient(135deg, #071827, #163a52);
+}
+
+/* Utility hidden class for show/hide behavior */
+.hidden {
+    display: none !important;
+}
+
+#newsSlider {
     min-height: 260px;
 }
 
-    #homeSlider .slide {
+    #newsSlider .slide {
         min-height: 260px;
         padding: 20px 30px;
     }
@@ -133,14 +159,19 @@ HOME SECTION & TOP NAVIGATION
     }
 
 .top-nav-bar {
-    width: min(1100px, 100%);
+    /* full-width background that matches the home/banner gradient */
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 15px;
-    margin-bottom: 20px;
+    margin: 0 auto 0;
+    padding: 12px 12px;
+    background: linear-gradient(135deg, #0f172a, #1e1b4b);
+    border-radius: 0;
     z-index: 10;
     flex-wrap: wrap;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
 }
 
 .top-nav-btn {
@@ -154,13 +185,21 @@ HOME SECTION & TOP NAVIGATION
     cursor: pointer;
     text-decoration: none;
     transition: all 0.3s ease;
+    display: inline-block;
 }
 
     .top-nav-btn:hover {
+        /* subtle hover: lighten the button slightly */
+        filter: brightness(1.12);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    }
+
+    .top-nav-btn.active {
         background: #ffd166;
         color: #0d0d0d;
+        box-shadow: 0 6px 18px rgba(255, 209, 102, 0.35);
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(255, 209, 102, 0.3);
     }
 
 .video-container {
@@ -413,7 +452,7 @@ RESPONSIVE MEDIA QUERIES
         margin-top: 15px;
     }
 
-    #homeSlider, #homeSlider .slide {
+    #newsSlider, #newsSlider .slide {
         min-height: 280px;
     }
 
