@@ -245,13 +245,39 @@ function loadFeature(featureKey) {
     }
 
     const html = `
-        <button class="btn-back" onclick="loadMainPage()">← Back to Main Page</button>
+        <button class="btn-back" onclick="loadMainPage()">← Back to Home</button>
         <div class="card">
             <span class="section-tag">Game Feature</span>
             <h2>${feature.name}</h2>
             <p>${feature.description}</p>
             <h3>Details</h3>
-            <ul>` + feature.details.map(d => `<li>${d}</li>`).join('') + `</ul>
+            <ul>` + feature.details.map((detail, index) => `<li><a class="wiki-link" onclick="loadFeatureDetail('${featureKey}', ${index})">${detail}</a></li>`).join('') + `</ul>
+        </div>
+    `;
+
+    renderContent(html);
+}
+
+function loadFeatureDetail(featureKey, detailIndex) {
+    const feature = wikiData.gameFeatures[featureKey];
+    const detail = feature && feature.details[detailIndex];
+    if (!feature || !detail) {
+        renderContent(`<div class="card"><h2>Article Not Found</h2><p>No information available for this entry.</p></div>`);
+        return;
+    }
+
+    const html = `
+        <button class="btn-back" onclick="loadFeature('${featureKey}')">← Back to ${feature.name}</button>
+        <div class="card">
+            <span class="section-tag">${feature.name} Guide</span>
+            <h2>${detail}</h2>
+            <p>This starter article covers ${detail.toLowerCase()} as part of ${feature.name.toLowerCase()} in Aetheria. Expand this page later with recipes, requirements, locations, rewards, and gameplay notes.</p>
+            <h3>Template Details</h3>
+            <ul>
+                <li><strong>Category:</strong> ${feature.name}</li>
+                <li><strong>Common uses:</strong> Progression, exploration, trade, and adventure preparation</li>
+                <li><strong>Availability:</strong> Found through normal play and related activities</li>
+            </ul>
         </div>
     `;
 

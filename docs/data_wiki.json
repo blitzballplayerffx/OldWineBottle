@@ -298,6 +298,11 @@
     }
   },
   "gameFeatures": {
+    "combat": {
+      "name": "Combat",
+      "description": "Master tactical battles through weapon attacks, class abilities, positioning, and coordinated group play.",
+      "details": [ "Action-based encounters", "Class abilities and combos", "Tactical enemy strategies", "Group and solo combat" ]
+    },
     "customization": {
       "name": "Character Customization",
       "description": "Create a character with unique appearance, equipment, and identity.",
@@ -331,7 +336,62 @@
     "crafting": {
       "name": "Crafting",
       "description": "Gather resources and create valuable items.",
-      "details": [ "Weapons & armor", "Potions", "Consumables", "Rare recipes" ]
+      "details": [ "Weapons", "Armor", "Potions", "Clothing", "Jewelry", "Maps", "Books", "Food", "Tools", "Traps" ]
+    },
+    "gathering": {
+      "name": "Gathering",
+      "description": "Collect raw materials throughout Aetheria to support crafting, trade, exploration, and survival.",
+      "details": [ "Ores and metals", "Stone and crystals", "Woods and fibers", "Herbs and medicinal plants", "Cooking ingredients", "Monster parts", "Animal hides and leather", "Fishing catches", "Gems and rare minerals" ]
+    },
+    "weapons": {
+      "name": "Weapons",
+      "description": "Forge blades, bows, staves, and enchanted armaments for every combat style.",
+      "details": [ "Melee weapons", "Ranged weapons", "Magical weapons", "Enchantment slots", "Quality tiers" ]
+    },
+    "armor": {
+      "name": "Armor",
+      "description": "Craft protective gear ranging from light clothing to heavy plate.",
+      "details": [ "Light armor", "Medium armor", "Heavy armor", "Magical reinforcement", "Set bonuses" ]
+    },
+    "clothing": {
+      "name": "Clothing",
+      "description": "Create everyday outfits, cosmetic gear, robes, cloaks, and faction-themed attire.",
+      "details": [ "Cosmetic outfits", "Robes and cloaks", "Faction clothing", "Dye customization", "Tailored bonuses" ]
+    },
+    "potions": {
+      "name": "Potions",
+      "description": "Brew healing potions, mana elixirs, poisons, and temporary combat buffs.",
+      "details": [ "Healing potions", "Mana elixirs", "Buff mixtures", "Poisons", "Rare catalyst reactions" ]
+    },
+    "books": {
+      "name": "Books",
+      "description": "Write spell tomes, lore books, crafting manuals, and collectible codices.",
+      "details": [ "Spell tomes", "Lore books", "Crafting manuals", "Collectible codices", "Skill-granting texts" ]
+    },
+    "food": {
+      "name": "Food",
+      "description": "Prepare meals that restore health, grant temporary buffs, and support long adventures.",
+      "details": [ "Healing meals", "Buff foods", "Rare recipes", "Feasts", "Seasonal ingredients" ]
+    },
+    "jewelry": {
+      "name": "Jewelry",
+      "description": "Craft rings, necklaces, charms, and magical accessories that enhance character stats.",
+      "details": [ "Rings", "Necklaces", "Charms", "Gem socketing", "Magical infusions" ]
+    },
+    "maps": {
+      "name": "Maps",
+      "description": "Create detailed maps that reveal hidden paths, treasure locations, and secret routes.",
+      "details": [ "Treasure maps", "Dungeon maps", "Exploration charts", "Hidden route markers", "Cartography skill bonuses" ]
+    },
+    "tools": {
+      "name": "Tools",
+      "description": "Craft utility tools for gathering, exploration, construction, repairs, and survival.",
+      "details": [ "Gathering tools", "Construction tools", "Exploration gear", "Repair kits", "Utility devices" ]
+    },
+    "traps": {
+      "name": "Traps",
+      "description": "Build mechanical and magical traps for hunting, defense, and tactical combat.",
+      "details": [ "Hunting traps", "Explosive traps", "Magical snares", "Poison traps", "Remote-trigger devices" ]
     },
     "exploration": {
       "name": "Exploration",
