@@ -132,56 +132,96 @@
       "label": "Customization",
       "title": "Character Customization",
       "description": "Create a character that feels uniquely yours with a wide range of appearance, equipment, and personalization options.",
-      "features": [ "Appearance customization", "Armor and outfit styles", "Weapons and accessories", "Personal character identity" ]
+      "features": [
+        "Appearance customization",
+        "Armor and outfit styles",
+        "Weapons and accessories",
+        "Personal character identity"
+      ]
     },
     {
       "emoji": "⬆️",
       "label": "Leveling",
       "title": "Leveling",
       "description": "Progress your character through combat, quests, exploration, and achievements while unlocking new abilities and equipment.",
-      "features": [ "Character progression", "Ability unlocks", "Powerful equipment", "Multiple progression paths" ]
+      "features": [
+        "Character progression",
+        "Ability unlocks",
+        "Powerful equipment",
+        "Multiple progression paths"
+      ]
     },
     {
       "emoji": "🎭",
       "label": "Dual Classing",
       "title": "Dual Classing",
       "description": "Combine two distinct job paths to create unique synergies, tailoring your abilities and playstyle to suit any challenge.",
-      "features": [ "Sub-job combinations", "Shared ability pools", "Flexible builds", "Custom synergies" ]
+      "features": [
+        "Sub-job combinations",
+        "Shared ability pools",
+        "Flexible builds",
+        "Custom synergies"
+      ]
     },
     {
       "emoji": "🐎",
       "label": "Mounts",
       "title": "Mounts",
       "description": "Travel across the vast world of Aetheria with mounts ranging from dependable steeds to fantastic creatures of legend.",
-      "features": [ "Land mounts", "Flying mounts", "Rare creatures", "Mount collection" ]
+      "features": [
+        "Land mounts",
+        "Flying mounts",
+        "Rare creatures",
+        "Mount collection"
+      ]
     },
     {
       "emoji": "⚔️",
       "label": "PvP",
       "title": "PvP",
       "description": "Test your skills against other players through faction warfare, competitive battles, and dangerous conflicts across Aetheria.",
-      "features": [ "Player versus player combat", "Faction warfare", "Arenas and battlegrounds", "Competitive rewards" ]
+      "features": [
+        "Player versus player combat",
+        "Faction warfare",
+        "Arenas and battlegrounds",
+        "Competitive rewards"
+      ]
     },
     {
       "emoji": "🏠",
       "label": "Housing",
       "title": "Player Housing",
       "description": "Claim your own place in Aetheria and turn it into a personal home, gathering space, trophy room, or headquarters for your adventures.",
-      "features": [ "Personal homes", "Furniture and decoration", "Trophy displays", "Player gathering spaces" ]
+      "features": [
+        "Personal homes",
+        "Furniture and decoration",
+        "Trophy displays",
+        "Player gathering spaces"
+      ]
     },
     {
       "emoji": "🔨",
       "label": "Crafting",
       "title": "Crafting",
       "description": "Gather resources throughout the world and transform them into useful gear, consumables, decorations, and valuable items.",
-      "features": [ "Resource gathering", "Weapons and armor", "Potions and consumables", "Rare crafting recipes" ]
+      "features": [
+        "Resource gathering",
+        "Weapons and armor",
+        "Potions and consumables",
+        "Rare crafting recipes"
+      ]
     },
     {
       "emoji": "🗺️",
       "label": "Exploration",
       "title": "Exploration",
       "description": "Venture beyond the beaten path to discover hidden locations, ancient ruins, secret treasures, dangerous creatures, and forgotten mysteries.",
-      "features": [ "Hidden locations", "Ancient ruins", "Secret treasures", "Exploration discoveries" ]
+      "features": [
+        "Hidden locations",
+        "Ancient ruins",
+        "Secret treasures",
+        "Exploration discoveries"
+      ]
     }
   ],
   "realms": [
@@ -190,56 +230,96 @@
       "label": "Ironpeak",
       "title": "Ironpeak Mountains",
       "description": "A towering mountain range filled with sky temples, ancient mines, and clans of battle-hardened guardians. Storms constantly circle the highest peaks.",
-      "features": [ "Mining expeditions", "Mountain fortresses", "Lightning storms", "Giant eagle mounts" ]
+      "features": [
+        "Mining expeditions",
+        "Mountain fortresses",
+        "Lightning storms",
+        "Giant eagle mounts"
+      ]
     },
     {
       "emoji": "🏜️",
       "label": "Sunscorch",
       "title": "Sunscorch Desert",
       "description": "A vast golden desert hiding buried cities, colossal sandworms, and merchant kingdoms that control the world's rarest resources.",
-      "features": [ "Sandworm hunts", "Buried ruins", "Caravan trading", "Desert survival events" ]
+      "features": [
+        "Sandworm hunts",
+        "Buried ruins",
+        "Caravan trading",
+        "Desert survival events"
+      ]
     },
     {
       "emoji": "❄️",
       "label": "Frostveil",
       "title": "Frostveil Tundra",
       "description": "A frozen wasteland where ancient ice dragons sleep beneath the glaciers and wandering spirits guide travelers through endless snow.",
-      "features": [ "Ice dragon lairs", "Blizzard conditions", "Frozen dungeons", "Winter crafting materials" ]
+      "features": [
+        "Ice dragon lairs",
+        "Blizzard conditions",
+        "Frozen dungeons",
+        "Winter crafting materials"
+      ]
     },
     {
       "emoji": "🐊",
       "label": "Whispering Mire",
       "title": "Whispering Mire",
       "description": "A poisonous swamp filled with ancient trees, hidden villages, witch covens, and creatures that mimic the voices of lost travelers.",
-      "features": [ "Poisonous wetlands", "Witch covens", "Hidden pathways", "Rare alchemy plants" ]
+      "features": [
+        "Poisonous wetlands",
+        "Witch covens",
+        "Hidden pathways",
+        "Rare alchemy plants"
+      ]
     },
     {
       "emoji": "🌊",
       "label": "Azure Expanse",
       "title": "Azure Expanse",
       "description": "A massive ocean region containing pirate kingdoms, underwater temples, sea monsters, and islands that appear only during eclipses.",
-      "features": [ "Ship battles", "Underwater cities", "Treasure islands", "Sea monster raids" ]
+      "features": [
+        "Ship battles",
+        "Underwater cities",
+        "Treasure islands",
+        "Sea monster raids"
+      ]
     },
     {
       "emoji": "🌋",
       "label": "Emberfall",
       "title": "Emberfall Caldera",
       "description": "A volcanic wasteland ruled by fire giants and molten war machines. The land changes whenever the central volcano erupts.",
-      "features": [ "Volcanic eruptions", "Fire giant strongholds", "Molten weapons", "Dynamic terrain" ]
+      "features": [
+        "Volcanic eruptions",
+        "Fire giant strongholds",
+        "Molten weapons",
+        "Dynamic terrain"
+      ]
     },
     {
       "emoji": "☁️",
       "label": "Cloudspire",
       "title": "Cloudspire Isles",
       "description": "Floating islands suspended above the clouds, connected by magical bridges and guarded by storm spirits and ancient sky pirates.",
-      "features": [ "Airship travel", "Floating islands", "Sky pirate factions", "Wind-based puzzles" ]
+      "features": [
+        "Airship travel",
+        "Floating islands",
+        "Sky pirate factions",
+        "Wind-based puzzles"
+      ]
     },
     {
       "emoji": "🌑",
       "label": "Umbral Hollow",
       "title": "Umbral Hollow",
       "description": "A realm trapped in permanent darkness where shadows take physical form and forgotten memories become dangerous enemies.",
-      "features": [ "Stealth missions", "Shadow creatures", "Memory puzzles", "Cursed treasures" ]
+      "features": [
+        "Stealth missions",
+        "Shadow creatures",
+        "Memory puzzles",
+        "Cursed treasures"
+      ]
     }
   ],
   "races": [
@@ -248,56 +328,96 @@
       "label": "Star Elves",
       "title": "Star Elves",
       "description": "Elegant descendants of celestial beings who draw power from starlight and possess a deep connection to ancient magic.",
-      "features": [ "Night vision", "Arcane resistance", "Starborn magic", "Bonus in ancient ruins" ]
+      "features": [
+        "Night vision",
+        "Arcane resistance",
+        "Starborn magic",
+        "Bonus in ancient ruins"
+      ]
     },
     {
       "emoji": "⛏️",
       "label": "Dwarves",
       "title": "Stoneforged Dwarves",
       "description": "Proud underground builders and master engineers known for their legendary armor, resilient bodies, and powerful clan traditions.",
-      "features": [ "High armor endurance", "Mining bonuses", "Mechanical crafting", "Resistance to knockback" ]
+      "features": [
+        "High armor endurance",
+        "Mining bonuses",
+        "Mechanical crafting",
+        "Resistance to knockback"
+      ]
     },
     {
       "emoji": "👹",
       "label": "Storm Orcs",
       "title": "Storm Orcs",
       "description": "Nomadic warriors who live beneath thunderous skies and channel the fury of storms through ritual combat.",
-      "features": [ "Increased melee damage", "Storm battle cries", "Improved intimidation", "Bonus during storms" ]
+      "features": [
+        "Increased melee damage",
+        "Storm battle cries",
+        "Improved intimidation",
+        "Bonus during storms"
+      ]
     },
     {
       "emoji": "🐉",
       "label": "Drakari",
       "title": "Drakari",
       "description": "Dragon-blooded people who inherit elemental breath, powerful scales, and memories passed down from their ancient ancestors.",
-      "features": [ "Elemental breath", "Natural armor", "Dragon language", "Bonus against dragons" ]
+      "features": [
+        "Elemental breath",
+        "Natural armor",
+        "Dragon language",
+        "Bonus against dragons"
+      ]
     },
     {
       "emoji": "🧚",
       "label": "Feykin",
       "title": "Feykin",
       "description": "Playful and unpredictable beings from the enchanted forests who use illusion, charm, and nature magic to confuse their enemies.",
-      "features": [ "Short-range teleportation", "Illusion abilities", "Nature affinity", "Reduced fall damage" ]
+      "features": [
+        "Short-range teleportation",
+        "Illusion abilities",
+        "Nature affinity",
+        "Reduced fall damage"
+      ]
     },
     {
       "emoji": "👺",
       "label": "Goblins",
       "title": "Glimmer Goblins",
       "description": "Clever scavengers and inventive tinkerers who turn discarded objects into dangerous tools, traps, and unpredictable weapons.",
-      "features": [ "Trap construction", "Improvised weapons", "Stealth bonuses", "Fast item gathering" ]
+      "features": [
+        "Trap construction",
+        "Improvised weapons",
+        "Stealth bonuses",
+        "Fast item gathering"
+      ]
     },
     {
       "emoji": "🧟",
       "label": "Hollowborn",
       "title": "Hollowborn",
       "description": "Undead souls who have regained their free will and now seek a purpose in a world that fears and hunts them.",
-      "features": [ "Poison immunity", "Fear resistance", "Life-draining abilities", "Can survive without food" ]
+      "features": [
+        "Poison immunity",
+        "Fear resistance",
+        "Life-draining abilities",
+        "Can survive without food"
+      ]
     },
     {
       "emoji": "🧑",
       "label": "Humans",
       "title": "Aetherian Humans",
       "description": "Adaptable explorers who have settled nearly every region of Aetheria and learned to combine many different forms of magic.",
-      "features": [ "Flexible skill bonuses", "Extra equipment slot", "Fast reputation gains", "Access to every faction" ]
+      "features": [
+        "Flexible skill bonuses",
+        "Extra equipment slot",
+        "Fast reputation gains",
+        "Access to every faction"
+      ]
     }
   ],
   "classes": [
@@ -306,147 +426,267 @@
       "label": "Warrior",
       "title": "Warrior",
       "description": "A heavily trained frontline fighter who protects allies and overwhelms enemies with powerful weapon techniques.",
-      "features": [ "Heavy armor", "Taunt abilities", "Weapon mastery", "High health" ]
+      "features": [
+        "Heavy armor",
+        "Taunt abilities",
+        "Weapon mastery",
+        "High health"
+      ]
     },
     {
       "emoji": "🛡️",
       "label": "Knight",
       "title": "Knight",
       "description": "A disciplined defender clad in heavy plate, trained to absorb massive damage and hold the frontline for their allies.",
-      "features": [ "Heavy plate armor", "Shield blocks", "Enemy taunts", "High defense" ]
+      "features": [
+        "Heavy plate armor",
+        "Shield blocks",
+        "Enemy taunts",
+        "High defense"
+      ]
     },
     {
       "emoji": "⚜️",
       "label": "Paladin",
       "title": "Paladin",
       "description": "A holy warrior who combines heavy martial combat with sacred light magic to heal allies and smite evil forces.",
-      "features": [ "Holy damage", "Self & party heals", "Auras of protection", "Undead counter" ]
+      "features": [
+        "Holy damage",
+        "Self & party heals",
+        "Auras of protection",
+        "Undead counter"
+      ]
     },
     {
       "emoji": "🦇",
       "label": "Dark Knight",
       "title": "Dark Knight",
       "description": "A formidable knight who sacrifices their own vitality to channel dark magic and inflict heavy physical damage.",
-      "features": [ "Two-handed scythes/swords", "Life-drain attacks", "Dark elemental magic", "High risk, high reward" ]
+      "features": [
+        "Two-handed scythes/swords",
+        "Life-drain attacks",
+        "Dark elemental magic",
+        "High risk, high reward"
+      ]
     },
     {
       "emoji": "🪓",
       "label": "Barbarian",
       "title": "Barbarian",
       "description": "A fierce berserker who enters chaotic rages to increase raw strength, movement speed, and resistance to crowd control.",
-      "features": [ "Berserker rage", "Dual-wielding heavy weapons", "Intimidating roars", "High health pool" ]
+      "features": [
+        "Berserker rage",
+        "Dual-wielding heavy weapons",
+        "Intimidating roars",
+        "High health pool"
+      ]
     },
     {
       "emoji": "🥋",
       "label": "Monk",
       "title": "Monk",
       "description": "A martial artist who harnesses internal energy and rapid hand-to-hand combat techniques to overpower foes.",
-      "features": [ "Unarmed mastery", "Chakra self-healing", "High attack speed", "Counter-attacks" ]
+      "features": [
+        "Unarmed mastery",
+        "Chakra self-healing",
+        "High attack speed",
+        "Counter-attacks"
+      ]
     },
     {
       "emoji": "🗡️",
       "label": "Blademaster",
       "title": "Blademaster",
       "description": "A disciplined master of swordcraft who delivers high-burst physical damage through rapid strikes, counter-stances, and precise critical hits.",
-      "features": [ "Katana & Greatsword mastery", "Counter-strike stances", "Precision critical strikes", "High melee burst damage" ]
+      "features": [
+        "Katana & Greatsword mastery",
+        "Counter-strike stances",
+        "Precision critical strikes",
+        "High melee burst damage"
+      ]
     },
     {
       "emoji": "🏹",
       "label": "Ranger",
       "title": "Ranger",
       "description": "A skilled hunter who excels at long-range combat, wilderness survival, tracking, and fighting alongside animal companions.",
-      "features": [ "Long-range attacks", "Animal companions", "Tracking skills", "Poison arrows" ]
+      "features": [
+        "Long-range attacks",
+        "Animal companions",
+        "Tracking skills",
+        "Poison arrows"
+      ]
     },
     {
       "emoji": "🗡️",
       "label": "Rogue",
       "title": "Rogue",
       "description": "A fast and deceptive assassin who uses stealth, traps, poisons, and precise attacks to eliminate enemies before they can respond.",
-      "features": [ "Stealth movement", "Critical strikes", "Lockpicking", "Deadly poisons" ]
+      "features": [
+        "Stealth movement",
+        "Critical strikes",
+        "Lockpicking",
+        "Deadly poisons"
+      ]
     },
     {
       "emoji": "💰",
       "label": "Thief",
       "title": "Thief",
       "description": "A quick-witted rogue who excels at stealing valuable loot, dodging incoming attacks, and exploiting critical weaknesses.",
-      "features": [ "Treasure hunting", "High evasion", "Pickpocketing", "Agile strikes" ]
+      "features": [
+        "Treasure hunting",
+        "High evasion",
+        "Pickpocketing",
+        "Agile strikes"
+      ]
     },
     {
       "emoji": "👤",
       "label": "Assassin",
       "title": "Assassin",
       "description": "A master of shadow techniques and lethal surprise attacks who strikes from behind to eliminate high-value targets instantly.",
-      "features": [ "Stealth mastery", "Critical backstabs", "Deadly poisons", "Smoke bombs" ]
+      "features": [
+        "Stealth mastery",
+        "Critical backstabs",
+        "Deadly poisons",
+        "Smoke bombs"
+      ]
     },
     {
       "emoji": "🐾",
       "label": "Beastmaster",
       "title": "Beastmaster",
       "description": "A wilderness specialist who tames wild beasts, commanding powerful animals in battle to fight alongside them.",
-      "features": [ "Wild beast taming", "Pet combat commands", "Companion buffs", "Dual axe strikes" ]
+      "features": [
+        "Wild beast taming",
+        "Pet combat commands",
+        "Companion buffs",
+        "Dual axe strikes"
+      ]
     },
     {
       "emoji": "🔮",
       "label": "Mage",
       "title": "Mage",
       "description": "A scholar of raw elemental magic who unleashes destructive fire, ice, and lightning spells upon groups of enemies.",
-      "features": [ "High burst damage", "Area of effect spells", "Mana shields", "Teleportation" ]
+      "features": [
+        "High burst damage",
+        "Area of effect spells",
+        "Mana shields",
+        "Teleportation"
+      ]
     },
     {
       "emoji": "✝️",
       "label": "Cleric",
       "title": "Cleric",
       "description": "A divine servant who protects allies with healing magic, sacred shields, and powerful blessings against dark forces.",
-      "features": [ "Healing magic", "Protective blessings", "Undead banishment", "Party revival skills" ]
+      "features": [
+        "Healing magic",
+        "Protective blessings",
+        "Undead banishment",
+        "Party revival skills"
+      ]
     },
     {
       "emoji": "🌿",
       "label": "Druid",
       "title": "Druid",
       "description": "A guardian of nature who commands plants, animals, storms, and shapeshifting abilities to adapt to any situation.",
-      "features": [ "Animal transformation", "Nature magic", "Healing over time", "Weather control" ]
+      "features": [
+        "Animal transformation",
+        "Nature magic",
+        "Healing over time",
+        "Weather control"
+      ]
     },
     {
       "emoji": "🗿",
       "label": "Shaman",
       "title": "Shaman",
       "description": "A spiritual guide who calls upon elemental totems and ancestral spirits to buff allies and weaken opponents.",
-      "features": [ "Elemental totems", "Spirit warding", "Chain lightning", "Status cleanses" ]
+      "features": [
+        "Elemental totems",
+        "Spirit warding",
+        "Chain lightning",
+        "Status cleanses"
+      ]
     },
     {
       "emoji": "✨",
       "label": "Enchanter",
       "title": "Enchanter",
       "description": "A tactical spellcaster specializing in battlefield crowd control, enemy mind control, and powerful support illusions.",
-      "features": [ "Area crowd control", "Mana regeneration buffs", "Enemy illusions", "Haste enchantments" ]
+      "features": [
+        "Area crowd control",
+        "Mana regeneration buffs",
+        "Enemy illusions",
+        "Haste enchantments"
+      ]
     },
     {
       "emoji": "🎵",
       "label": "Bard",
       "title": "Bard",
       "description": "A traveling performer whose music inspires allies, weakens enemies, and changes the mood of entire battlefields.",
-      "features": [ "Party buffs", "Enemy debuffs", "Charm abilities", "Bonus dialogue options" ]
+      "features": [
+        "Party buffs",
+        "Enemy debuffs",
+        "Charm abilities",
+        "Bonus dialogue options"
+      ]
     },
     {
       "emoji": "💀",
       "label": "Necromancer",
       "title": "Necromancer",
       "description": "A forbidden spellcaster who commands undead minions and converts life energy into destructive curses.",
-      "features": [ "Summon undead", "Life-drain spells", "Curse abilities", "Minion customization" ]
+      "features": [
+        "Summon undead",
+        "Life-drain spells",
+        "Curse abilities",
+        "Minion customization"
+      ]
     },
     {
       "emoji": "📜",
       "label": "Summoner",
       "title": "Summoner",
       "description": "A magical scholar who forms pacts with ancient avatars and elemental spirits to call them forth in battle.",
-      "features": [ "Elemental avatars", "Pet spellcasting", "Pact abilities", "Ranged magic support" ]
+      "features": [
+        "Elemental avatars",
+        "Pet spellcasting",
+        "Pact abilities",
+        "Ranged magic support"
+      ]
     },
     {
       "emoji": "🧪",
       "label": "Alchemist",
       "title": "Alchemist",
       "description": "A resourceful experimenter who concocts volatile explosives, restorative elixirs, and debilitating chemical mixtures to control the field.",
-      "features": [ "Explosive potions", "Healing & mana elixirs", "Acid & poison debuffs", "Transmutation utilities" ]
+      "features": [
+        "Explosive potions",
+        "Healing & mana elixirs",
+        "Acid & poison debuffs",
+        "Transmutation utilities"
+      ]
+    }
+  ],
+  "crafting": [
+    {
+      "emoji": "🔨",
+      "label": "Crafting",
+      "title": "Crafting",
+      "description": "Gather resources throughout Aetheria and forge powerful gear, potions, decorations, and rare artifacts.",
+      "features": [
+        "Resource gathering",
+        "Weapons & armor forging",
+        "Potion brewing",
+        "Rare recipe discovery",
+        "Profession specialization"
+      ]
     }
   ]
 }

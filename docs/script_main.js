@@ -90,6 +90,8 @@ function renderApp() {
     renderStandardSection("realms", aetheriaData.realms);
     renderStandardSection("races", aetheriaData.races);
     renderStandardSection("classes", aetheriaData.classes);
+    renderStandardSection("crafting", aetheriaData.crafting);
+
 }
 
 function renderStandardSection(sectionKey, dataArray) {
