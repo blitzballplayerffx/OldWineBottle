@@ -69,19 +69,85 @@ HOME HERO LAYOUT & HORIZONTAL QUICK LINKS
     color: #ffffff;
     font-size: 16px;
     font-weight: bold;
+    width: 160px;
+    height: 44px;
     padding: 10px 20px;
     border-radius: 30px;
     text-decoration: none;
     transition: all 0.3s ease;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
-    .quick-link:hover {
+    .quick-link:hover,
+    .top-nav-btn:hover {
         background: #ffd166;
         color: #0d0d0d;
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(255, 209, 102, 0.3);
     }
+
+.site-footer {
+    width: 100%;
+    margin-top: 0;
+    padding: 28px 20px 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(0, 0, 0, 0.28);
+    color: rgba(255, 255, 255, 0.72);
+    text-align: left;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 18px 30px;
+    width: min(1100px, 100%);
+    margin: 0 auto;
+}
+
+.footer-brand,
+.footer-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-brand {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.footer-brand strong {
+    color: #ffd166;
+}
+
+.footer-brand span,
+.footer-meta {
+    font-size: 14px;
+}
+
+.footer-links {
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: #ffd166;
+}
+
+.footer-meta {
+    grid-column: 1 / -1;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.52);
+}
 
 /*
 ========================================
@@ -110,6 +176,112 @@ HOME SECTION & TOP NAVIGATION
 
 .account {
     background: linear-gradient(135deg, #071827, #163a52);
+}
+
+.account-panel {
+    width: min(700px, 100%);
+}
+
+.account-notice {
+    padding: 16px 20px;
+    border: 1px solid rgba(255, 209, 102, 0.45);
+    border-radius: 8px;
+    background: rgba(255, 209, 102, 0.12);
+    color: #fff3c4;
+    line-height: 1.6;
+}
+
+.account-auth,
+.account-subpage,
+.account-overview {
+    padding: 30px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.account-subpage > p {
+    line-height: 1.6;
+}
+
+.account-actions,
+.sign-in-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.account-actions {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.account-button {
+    min-width: 150px;
+    padding: 11px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.account-button:hover {
+    background: #ffd166;
+    color: #0d0d0d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 209, 102, 0.3);
+}
+
+.sign-in-form {
+    max-width: 360px;
+    margin: 24px auto 0;
+}
+
+.sign-in-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.sign-in-form label {
+    align-self: stretch;
+    text-align: left;
+    font-weight: bold;
+}
+
+.sign-in-form input {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    font: inherit;
+}
+
+.sign-in-message {
+    min-height: 24px;
+    margin: 0;
+    color: #ffd166;
+}
+
+.account-overview-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 20px;
+    padding: 18px;
+    border-left: 3px solid #ffd166;
+    background: rgba(0, 0, 0, 0.2);
+    text-align: left;
 }
 
 /* Utility hidden class for show/hide behavior */
@@ -161,7 +333,6 @@ HOME SECTION & TOP NAVIGATION
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
     margin: 0 auto 0;
     padding: 12px 12px;
     background: linear-gradient(135deg, #0f172a, #1e1b4b);
@@ -171,26 +342,33 @@ HOME SECTION & TOP NAVIGATION
     box-shadow: 0 6px 18px rgba(0,0,0,0.12);
 }
 
+.top-nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    width: min(100%, 1000px);
+    flex-wrap: wrap;
+}
+
 .top-nav-btn {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: #ffffff;
+    width: 160px;
+    height: 44px;
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
+    font-family: inherit;
     border-radius: 30px;
     cursor: pointer;
     text-decoration: none;
     transition: all 0.3s ease;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
-
-    .top-nav-btn:hover {
-        /* subtle hover: lighten the button slightly */
-        filter: brightness(1.12);
-        transform: translateY(-2px);
-        box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-    }
 
     .top-nav-btn.active {
         background: #ffd166;
@@ -483,6 +661,15 @@ RESPONSIVE MEDIA QUERIES
 }
 
 @media (max-width: 500px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .footer-links {
+        justify-content: flex-start;
+    }
+
     .nav-item {
         min-width: 54px;
         font-size: 24px;

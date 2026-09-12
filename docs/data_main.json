@@ -33,7 +33,7 @@
     },
     {
       "label": "📦 Download",
-      "href": "#download"
+      "disabled": true
     }
   ],
   "quickLinks": [
@@ -56,6 +56,10 @@
     {
       "label": "⚔️ Classes",
       "href": "#classes"
+    },
+    {
+      "label": "🛠️ Crafting",
+      "href": "#crafting"
     }
   ],
   "homeSlides": [
@@ -146,6 +150,18 @@
         "Ability unlocks",
         "Powerful equipment",
         "Multiple progression paths"
+      ]
+    },
+    {
+      "emoji": "⚔️",
+      "label": "Combat",
+      "title": "Combat",
+      "description": "Master fast-paced battles with tactical abilities, class strengths, and deliberate choices that make every encounter matter.",
+      "features": [
+        "Action-based encounters",
+        "Class abilities and combos",
+        "Tactical enemy strategies",
+        "Group and solo combat"
       ]
     },
     {

@@ -24,9 +24,11 @@ function renderApp() {
     // 1. Top Navigation
     const topNav = document.getElementById("top-nav-bar");
     if (topNav) {
-        topNav.innerHTML = aetheriaData.topNavLinks.map(link => 
-            `<a href="${link.href}" class="top-nav-btn" ${link.target ? `target="${link.target}" rel="noopener noreferrer"` : ''}>${link.label}</a>`
-        ).join('');
+        topNav.innerHTML = `<div class="top-nav-links">${aetheriaData.topNavLinks.map(link => 
+            link.disabled
+                ? `<button type="button" class="top-nav-btn">${link.label}</button>`
+                : `<a href="${link.href}" class="top-nav-btn" ${link.target ? `target="${link.target}" rel="noopener noreferrer"` : ''}>${link.label}</a>`
+        ).join('')}</div>`;
     }
 
     // 2. Quick Links
@@ -282,6 +284,88 @@ function setupNavBehavior() {
             });
         });
     }
+
+    const footer = document.querySelector('.site-footer');
+    if (footer) {
+        footer.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', (e) => {
+                e.preventDefault();
+                const id = a.getAttribute('href').slice(1);
+                showGroup(id);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    }
+}
+
+function setupAccountBehavior() {
+    const signInButton = document.getElementById('show-sign-in-button');
+    const signInForm = document.getElementById('sign-in-form');
+    const accountAuth = document.getElementById('account-auth');
+    const registerPage = document.getElementById('register-page');
+    const signInPage = document.getElementById('sign-in-page');
+    const accountOverview = document.getElementById('account-overview');
+    const signInMessage = document.getElementById('sign-in-message');
+    const signOutButton = document.getElementById('sign-out-button');
+    const registerButton = document.getElementById('register-button');
+    const backFromRegisterButton = document.getElementById('back-from-register-button');
+    const backFromSignInButton = document.getElementById('back-from-sign-in-button');
+
+    if (!signInButton || !signInForm || !accountAuth || !registerPage || !signInPage || !accountOverview || !signInMessage || !signOutButton || !registerButton || !backFromRegisterButton || !backFromSignInButton) return;
+
+    const showAccountOverview = () => {
+        accountAuth.hidden = true;
+        registerPage.hidden = true;
+        signInPage.hidden = true;
+        accountOverview.hidden = false;
+    };
+
+    const showAccountLanding = () => {
+        accountAuth.hidden = false;
+        registerPage.hidden = true;
+        signInPage.hidden = true;
+        accountOverview.hidden = true;
+    };
+
+    if (sessionStorage.getItem('aetheriaSignedIn') === 'true') {
+        showAccountOverview();
+    }
+
+    registerButton.addEventListener('click', () => {
+        accountAuth.hidden = true;
+        registerPage.hidden = false;
+    });
+
+    signInButton.addEventListener('click', () => {
+        accountAuth.hidden = true;
+        signInPage.hidden = false;
+        signInMessage.textContent = '';
+        document.getElementById('account-username').focus();
+    });
+
+    backFromRegisterButton.addEventListener('click', showAccountLanding);
+    backFromSignInButton.addEventListener('click', showAccountLanding);
+
+    signInForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const username = document.getElementById('account-username').value;
+        const password = document.getElementById('account-password').value;
+        if (username === 'user' && password === 'password') {
+            sessionStorage.setItem('aetheriaSignedIn', 'true');
+            showAccountOverview();
+            return;
+        }
+
+        signInMessage.textContent = 'Use the demo username and password to continue.';
+    });
+
+    signOutButton.addEventListener('click', () => {
+        sessionStorage.removeItem('aetheriaSignedIn');
+        showAccountLanding();
+        signInForm.reset();
+        signInMessage.textContent = '';
+    });
 }
 
 /*
@@ -300,6 +384,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     renderApp();
     setupNavBehavior();
+    setupAccountBehavior();
 
     // Default to home view on load
     showGroup('home');
