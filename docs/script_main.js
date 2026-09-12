@@ -209,7 +209,6 @@ const sectionGroups = {
     home: ['home','story','features','realms','races','classes','crafting'],
     news: ['news'],
     support: ['support'],
-    about: ['about'],
     media: ['media'],
     account: ['account']
 };

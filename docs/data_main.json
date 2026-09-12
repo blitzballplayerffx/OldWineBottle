@@ -9,29 +9,26 @@
       "href": "#news"
     },
     {
+      "label": "👤 Account",
+      "href": "#account"
+    },
+    {
       "label": "🎧 Support",
       "href": "#support"
     },
-    {
-      "label": "ℹ️ About",
-      "href": "#about"
-    },
+
     {
       "label": "🎬 Media",
       "href": "#media"
     },
     {
-      "label": "💻 GitHub",
-      "href": "https://github.com/blitzballplayerffx/OldWineBottle",
+      "label": "📚 Wiki",
+      "href": "https://blitzballplayerffx.github.io/OldWineBottle/index_wiki.html",
       "target": "_blank"
     },
     {
-      "label": "👤 Account",
-      "href": "#account"
-    },
-    {
-      "label": "📚 Wiki",
-      "href": "https://blitzballplayerffx.github.io/OldWineBottle/index_wiki.html",
+      "label": "💻 GitHub",
+      "href": "https://github.com/blitzballplayerffx/OldWineBottle",
       "target": "_blank"
     },
     {
