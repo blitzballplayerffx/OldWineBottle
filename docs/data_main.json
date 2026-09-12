@@ -33,6 +33,10 @@
       "label": "📚 Wiki",
       "href": "https://blitzballplayerffx.github.io/OldWineBottle/index_wiki.html",
       "target": "_blank"
+    },
+    {
+      "label": "📦 Download",
+      "href": "#download"
     }
   ],
   "quickLinks": [
