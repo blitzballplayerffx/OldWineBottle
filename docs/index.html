@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Legends of Aetheria MMORPG</title>
-    <link rel="stylesheet" href="stylesheet_main.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -95,6 +95,50 @@
     </section>
 
     <!-- =========================
+         WIKI SECTION
+         ========================= -->
+    <section class="wiki-view hidden" id="wiki">
+        <nav class="wiki-sidebar">
+            <h2>Wiki Index</h2>
+            <ul class="wiki-nav-list">
+                <li><a onclick="loadMainPage()">Home</a></li>
+                <li class="category-start"><a onclick="loadFeature('armor')">Armor</a></li>
+                <li><a onclick="loadFeature('books')">Books</a></li>
+                <li><a onclick="loadFeature('customization')">Character Customization</a></li>
+                <li><a onclick="loadClassesIndex()">Classes</a></li>
+                <li><a onclick="loadFeature('clothing')">Clothing</a></li>
+                <li><a onclick="loadFeature('combat')">Combat</a></li>
+                <li><a onclick="loadFeature('crafting')">Crafting</a></li>
+                <li><a onclick="loadFeature('dual-classing')">Dual Classing</a></li>
+                <li><a onclick="loadFeature('exploration')">Exploration</a></li>
+                <li><a onclick="loadFeature('food')">Food</a></li>
+                <li><a onclick="loadFeature('gathering')">Gathering</a></li>
+                <li><a onclick="loadFeature('jewelry')">Jewelry</a></li>
+                <li><a onclick="loadFeature('leveling')">Leveling</a></li>
+                <li><a onclick="loadMagicIndex()">Magic</a></li>
+                <li><a onclick="loadFeature('maps')">Maps</a></li>
+                <li><a onclick="loadFeature('mounts')">Mounts</a></li>
+                <li><a onclick="loadFeature('pets')">Pets</a></li>
+                <li><a onclick="loadFeature('housing')">Player Housing</a></li>
+                <li><a onclick="loadFeature('potions')">Potions</a></li>
+                <li><a onclick="loadFeature('pvp')">PvP</a></li>
+                <li><a onclick="loadRacesIndex()">Races</a></li>
+                <li><a onclick="loadRealmsIndex()">Realms</a></li>
+                <li><a onclick="loadFeature('tools')">Tools</a></li>
+                <li><a onclick="loadFeature('traps')">Traps</a></li>
+                <li><a onclick="loadFeature('weapons')">Weapons</a></li>
+            </ul>
+        </nav>
+        <main class="wiki-main-content">
+            <header class="wiki-header">
+                <h1>Aetheria Explorer's Codex</h1>
+                <p>The official archive for game mechanics, job paths, and world lore.</p>
+            </header>
+            <div id="content-area"></div>
+        </main>
+    </section>
+
+    <!-- =========================
          SUPPORT SECTION
          ========================= -->
     <section class="card support" id="support">
@@ -176,14 +220,14 @@
             </div>
             <nav class="footer-links" aria-label="Footer navigation">
                 <a href="#support">Support</a>
-                <a href="index_wiki.html">Wiki</a>
+                <a href="#wiki">Wiki</a>
                 <a href="https://github.com/blitzballplayerffx/OldWineBottle" target="_blank" rel="noopener noreferrer">GitHub</a>
             </nav>
             <p class="footer-meta">© 2026 Legends of Aetheria. Worldbuilding, systems, and adventures are still taking shape.</p>
         </div>
     </footer>
 
-    <script src="script_main.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
