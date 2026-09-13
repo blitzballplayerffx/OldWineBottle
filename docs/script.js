@@ -19,6 +19,13 @@ const sliderState = {
 RENDER DATA INTO HTML
 ========================================
 */
+function renderIconLabel(label) {
+    const match = label.match(/^(\S+)\s+(.+)$/u);
+    if (!match) return label;
+
+    return `<span class="quick-link-icon">${match[1]}</span><div class="nav-label">${match[2]}</div>`;
+}
+
 function renderApp() {
     if (!aetheriaData) return;
 
@@ -27,9 +34,9 @@ function renderApp() {
     if (topNav) {
         topNav.innerHTML = `<div class="top-nav-links">${aetheriaData.topNavLinks.map(link => {
             const href = link.label.includes("Wiki") ? "#wiki" : link.href;
-            return link.disabled
-                ? `<button type="button" class="top-nav-btn">${link.label}</button>`
-                : `<a href="${href}" class="top-nav-btn" ${href === link.href && link.target ? `target="${link.target}" rel="noopener noreferrer"` : ''}>${link.label}</a>`;
+            if (link.disabled) return '';
+
+            return `<a href="${href}" class="top-nav-btn" ${href === link.href && link.target ? `target="${link.target}" rel="noopener noreferrer"` : ''}>${link.label}</a>`;
         }).join('')}</div>`;
     }
 
@@ -37,7 +44,7 @@ function renderApp() {
     const quickLinks = document.getElementById("quick-links-bar");
     if (quickLinks) {
         quickLinks.innerHTML = aetheriaData.quickLinks.map(link => 
-            `<a href="${link.href}" class="quick-link">${link.label}</a>`
+            `<a href="${link.href}" class="quick-link">${renderIconLabel(link.label)}</a>`
         ).join('');
     }
 

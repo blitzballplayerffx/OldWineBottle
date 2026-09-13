@@ -31,10 +31,6 @@
       "label": "💻 GitHub",
       "href": "https://github.com/blitzballplayerffx/OldWineBottle",
       "target": "_blank"
-    },
-    {
-      "label": "📦 Download",
-      "disabled": true
     }
   ],
   "quickLinks": [
@@ -358,102 +354,20 @@
     }
   ],
   "races": [
-    {
-      "emoji": "🧝",
-      "label": "Star Elves",
-      "title": "Star Elves",
-      "description": "Elegant descendants of celestial beings who draw power from starlight and possess a deep connection to ancient magic.",
-      "features": [
-        "Night vision",
-        "Arcane resistance",
-        "Starborn magic",
-        "Bonus in ancient ruins"
-      ]
-    },
-    {
-      "emoji": "⛏️",
-      "label": "Dwarves",
-      "title": "Stoneforged Dwarves",
-      "description": "Proud underground builders and master engineers known for their legendary armor, resilient bodies, and powerful clan traditions.",
-      "features": [
-        "High armor endurance",
-        "Mining bonuses",
-        "Mechanical crafting",
-        "Resistance to knockback"
-      ]
-    },
-    {
-      "emoji": "👹",
-      "label": "Storm Orcs",
-      "title": "Storm Orcs",
-      "description": "Nomadic warriors who live beneath thunderous skies and channel the fury of storms through ritual combat.",
-      "features": [
-        "Increased melee damage",
-        "Storm battle cries",
-        "Improved intimidation",
-        "Bonus during storms"
-      ]
-    },
-    {
-      "emoji": "🐉",
-      "label": "Drakari",
-      "title": "Drakari",
-      "description": "Dragon-blooded people who inherit elemental breath, powerful scales, and memories passed down from their ancient ancestors.",
-      "features": [
-        "Elemental breath",
-        "Natural armor",
-        "Dragon language",
-        "Bonus against dragons"
-      ]
-    },
-    {
-      "emoji": "🧚",
-      "label": "Feykin",
-      "title": "Feykin",
-      "description": "Playful and unpredictable beings from the enchanted forests who use illusion, charm, and nature magic to confuse their enemies.",
-      "features": [
-        "Short-range teleportation",
-        "Illusion abilities",
-        "Nature affinity",
-        "Reduced fall damage"
-      ]
-    },
-    {
-      "emoji": "👺",
-      "label": "Goblins",
-      "title": "Glimmer Goblins",
-      "description": "Clever scavengers and inventive tinkerers who turn discarded objects into dangerous tools, traps, and unpredictable weapons.",
-      "features": [
-        "Trap construction",
-        "Improvised weapons",
-        "Stealth bonuses",
-        "Fast item gathering"
-      ]
-    },
-    {
-      "emoji": "🧟",
-      "label": "Hollowborn",
-      "title": "Hollowborn",
-      "description": "Undead souls who have regained their free will and now seek a purpose in a world that fears and hunts them.",
-      "features": [
-        "Poison immunity",
-        "Fear resistance",
-        "Life-draining abilities",
-        "Can survive without food"
-      ]
-    },
-    {
-      "emoji": "🧑",
-      "label": "Humans",
-      "title": "Aetherian Humans",
-      "description": "Adaptable explorers who have settled nearly every region of Aetheria and learned to combine many different forms of magic.",
-      "features": [
-        "Flexible skill bonuses",
-        "Extra equipment slot",
-        "Fast reputation gains",
-        "Access to every faction"
-      ]
-    }
+    { "emoji": "🧑", "label": "Human", "title": "Human", "description": "Adaptable explorers who have settled nearly every region of Aetheria and learned to combine many forms of magic.", "features": [ "Flexible skills", "Extra equipment slot", "Fast reputation gains", "Access to every faction" ] },
+    { "emoji": "🧝", "label": "Elf", "title": "Elf", "description": "Elegant descendants of celestial beings who draw power from starlight and ancient magic.", "features": [ "Night vision", "Arcane resistance", "Starborn magic", "Ancient ruin bonuses" ] },
+    { "emoji": "👹", "label": "Orc", "title": "Orc", "description": "Nomadic warriors who channel the fury of storms through ritual combat and fearless strength.", "features": [ "Melee damage", "Storm battle cries", "Intimidation", "Storm bonuses" ] },
+    { "emoji": "👺", "label": "Goblin", "title": "Goblin", "description": "Clever scavengers and inventive tinkerers who turn discarded objects into dangerous tools and traps.", "features": [ "Trap construction", "Improvised weapons", "Stealth bonuses", "Fast gathering" ] },
+    { "emoji": "🐉", "label": "Drakari", "title": "Drakari", "description": "Dragon-blooded people who inherit elemental breath, powerful scales, and ancestral memories.", "features": [ "Elemental breath", "Natural armor", "Dragon language", "Dragon resistance" ] },
+    { "emoji": "🧚", "label": "Fey", "title": "Fey", "description": "Unpredictable beings from enchanted forests who use illusion, charm, and nature magic.", "features": [ "Teleportation", "Illusions", "Nature affinity", "Reduced fall damage" ] },
+    { "emoji": "🧛", "label": "Vampire", "title": "Vampire", "description": "Night-born survivors who wield blood magic, heightened senses, and ancient knowledge.", "features": [ "Blood magic", "Night vision", "Life draining", "Enhanced senses" ] },
+    { "emoji": "🐺", "label": "Lycan", "title": "Lycan", "description": "Cursed shapeshifters who balance keen instincts and physical strength with pack traditions.", "features": [ "Beast transformation", "Keen tracking", "Pack instincts", "Regeneration" ] },
+    { "emoji": "⛏️", "label": "Dwarf", "title": "Dwarf", "description": "Underground builders and master engineers known for legendary armor and resilient bodies.", "features": [ "Armor endurance", "Mining bonuses", "Mechanical crafting", "Knockback resistance" ] },
+    { "emoji": "🧜", "label": "Nerithai", "title": "Nerithai", "description": "Aquatic people who guard submerged ruins, command the currents, and move through oceans with ease.", "features": [ "Water breathing", "Swimming speed", "Tidal magic", "Underwater vision" ] },
+    { "emoji": "💪", "label": "Gravorn", "title": "Gravorn", "description": "Ancient mountain dwellers whose immense bodies carry the strength of stone and forgotten ages.", "features": [ "Great strength", "High health", "Mountain stride", "Earth resistance" ] },
+    { "emoji": "🦊", "label": "Vulpiri", "title": "Vulpiri", "description": "Clever fox spirits who use illusion, quick movement, and shimmering fire to outwit enemies.", "features": [ "Foxfire magic", "Illusions", "Quick movement", "Social versatility" ] },
+    { "emoji": "🗿", "label": "Runekith", "title": "Runekith", "description": "Constructed beings awakened by ancient cores who bring tireless focus and durable bodies.", "features": [ "Construct body", "Damage resistance", "Tireless endurance", "Rune affinity" ] },
+    { "emoji": "🧙", "label": "Brindlekin", "title": "Brindlekin", "description": "Small, fortunate travelers whose courage and resourcefulness help them thrive in a dangerous world.", "features": [ "Lucky escapes", "Stealth bonuses", "Camp cooking", "Quick hands" ] }
   ],
   "classes": [
     {
@@ -1100,46 +1014,20 @@
     }
   },
   "races": {
-    "star-elves": {
-      "name": "Star Elves",
-      "description": "Elegant descendants of celestial beings who draw power from starlight and possess a deep connection to ancient magic.",
-      "features": [ "Night vision", "Arcane resistance", "Starborn magic", "Bonus in ancient ruins" ]
-    },
-    "dwarves": {
-      "name": "Stoneforged Dwarves",
-      "description": "Proud underground builders and master engineers known for their legendary armor, resilient bodies, and powerful clan traditions.",
-      "features": [ "High armor endurance", "Mining bonuses", "Mechanical crafting", "Resistance to knockback" ]
-    },
-    "storm-orcs": {
-      "name": "Storm Orcs",
-      "description": "Nomadic warriors who live beneath thunderous skies and channel the fury of storms through ritual combat.",
-      "features": [ "Increased melee damage", "Storm battle cries", "Improved intimidation", "Bonus during storms" ]
-    },
-    "drakari": {
-      "name": "Drakari",
-      "description": "Dragon-blooded people who inherit elemental breath, powerful scales, and memories passed down from their ancient ancestors.",
-      "features": [ "Elemental breath", "Natural armor", "Dragon language", "Bonus against dragons" ]
-    },
-    "feykin": {
-      "name": "Feykin",
-      "description": "Playful and unpredictable beings from enchanted forests who use illusion, charm, and nature magic to confuse their enemies.",
-      "features": [ "Short-range teleportation", "Illusion abilities", "Nature affinity", "Reduced fall damage" ]
-    },
-    "goblins": {
-      "name": "Glimmer Goblins",
-      "description": "Clever scavengers and inventive tinkerers who turn discarded objects into dangerous tools, traps, and unpredictable weapons.",
-      "features": [ "Trap construction", "Improvised weapons", "Stealth bonuses", "Fast item gathering" ]
-    },
-    "hollowborn": {
-      "name": "Hollowborn",
-      "description": "Undead souls who have regained their free will and now seek a purpose in a world that fears and hunts them.",
-      "features": [ "Poison immunity", "Fear resistance", "Life-draining abilities", "Can survive without food" ]
-    },
-    "humans": {
-      "name": "Aetherian Humans",
-      "description": "Adaptable explorers who have settled nearly every region of Aetheria and learned to combine many different forms of magic.",
-      "features": [ "Flexible skill bonuses", "Extra equipment slot", "Fast reputation gains", "Access to every faction" ]
-    }
+    "humans": { "name": "Human", "description": "Adaptable explorers who have settled nearly every region of Aetheria and learned to combine many forms of magic.", "features": [ "Flexible skills", "Extra equipment slot", "Fast reputation gains", "Access to every faction" ] },
+    "elves": { "name": "Elf", "description": "Elegant descendants of celestial beings who draw power from starlight and ancient magic.", "features": [ "Night vision", "Arcane resistance", "Starborn magic", "Ancient ruin bonuses" ] },
+    "orcs": { "name": "Orc", "description": "Nomadic warriors who channel the fury of storms through ritual combat and fearless strength.", "features": [ "Melee damage", "Storm battle cries", "Intimidation", "Storm bonuses" ] },
+    "goblins": { "name": "Goblin", "description": "Clever scavengers and inventive tinkerers who turn discarded objects into dangerous tools and traps.", "features": [ "Trap construction", "Improvised weapons", "Stealth bonuses", "Fast gathering" ] },
+    "drakari": { "name": "Drakari", "description": "Dragon-blooded people who inherit elemental breath, powerful scales, and ancestral memories.", "features": [ "Elemental breath", "Natural armor", "Dragon language", "Dragon resistance" ] },
+    "fey": { "name": "Fey", "description": "Unpredictable beings from enchanted forests who use illusion, charm, and nature magic.", "features": [ "Teleportation", "Illusions", "Nature affinity", "Reduced fall damage" ] },
+    "vampires": { "name": "Vampire", "description": "Night-born survivors who wield blood magic, heightened senses, and ancient knowledge.", "features": [ "Blood magic", "Night vision", "Life draining", "Enhanced senses" ] },
+    "lycans": { "name": "Lycan", "description": "Cursed shapeshifters who balance keen instincts and physical strength with pack traditions.", "features": [ "Beast transformation", "Keen tracking", "Pack instincts", "Regeneration" ] },
+    "dwarves": { "name": "Dwarf", "description": "Underground builders and master engineers known for legendary armor and resilient bodies.", "features": [ "Armor endurance", "Mining bonuses", "Mechanical crafting", "Knockback resistance" ] },
+    "merfolk": { "name": "Nerithai", "description": "Aquatic people who guard submerged ruins, command the currents, and move through oceans with ease.", "features": [ "Water breathing", "Swimming speed", "Tidal magic", "Underwater vision" ] },
+    "giants": { "name": "Gravorn", "description": "Ancient mountain dwellers whose immense bodies carry the strength of stone and forgotten ages.", "features": [ "Great strength", "High health", "Mountain stride", "Earth resistance" ] },
+    "kitsune": { "name": "Vulpiri", "description": "Clever fox spirits who use illusion, quick movement, and shimmering fire to outwit enemies.", "features": [ "Foxfire magic", "Illusions", "Quick movement", "Social versatility" ] },
+    "golems": { "name": "Runekith", "description": "Constructed beings awakened by ancient cores who bring tireless focus and durable bodies.", "features": [ "Construct body", "Damage resistance", "Tireless endurance", "Rune affinity" ] },
+    "halflings": { "name": "Brindlekin", "description": "Small, fortunate travelers whose courage and resourcefulness help them thrive in a dangerous world.", "features": [ "Lucky escapes", "Stealth bonuses", "Camp cooking", "Quick hands" ] }
   },
   "gameFeatures": {
     "combat": {
