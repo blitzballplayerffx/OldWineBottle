@@ -1,0 +1,2 @@
+>remove abilities ui window since the skill bars are each their own ui window
+>fix ./docs path for github pages to find index.html for home page

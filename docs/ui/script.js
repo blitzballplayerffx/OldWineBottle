@@ -46,8 +46,18 @@ function renderPanels(data) {
             <div class="chat-log">${data.chat.map(line => `<p><span class="chat-channel ${line.channel.toLowerCase()}">${line.channel}</span>${line.name ? `<strong>${line.name}</strong>` : ""}<span>${line.message}</span></p>`).join("")}</div><div class="chat-input"><span>Send a message...</span><button type="button" aria-label="Send message">↵</button></div>
         </section>
         <section class="hud-panel hotbar-panel" data-panel="hotbar" aria-label="Ability hotbar">
-            <div class="hotbar-sets" role="tablist" aria-label="Ability sets">${[1, 2, 3, 4, 5].map(set => `<button class="hotbar-set ${set === 1 ? "active" : ""}" type="button" role="tab" aria-selected="${set === 1}" data-hotbar-set="${set}">${set}</button>`).join("")}</div>
-            <div class="ability-row">${Array.from({ length: 7 }, (_, index) => { const ability = data.abilities[index]; return ability ? `<button class="ability" type="button" aria-label="${ability.name}"><span class="ability-icon">${ability.icon}</span><small>${ability.key}</small>${ability.cooldown ? `<b>${ability.cooldown}</b>` : ""}</button>` : `<button class="ability empty" type="button" aria-label="Empty ability slot"><span class="ability-icon">+</span></button>`; }).join("")}</div>
+            <div class="hotbar-bars">
+                ${[1, 2, 3].map((barNumber) => `
+                    <div class="hotbar-bar ${barNumber === 1 ? "visible" : "hidden"}" data-hotbar-bar="${barNumber}">
+                        <div class="ability-row">
+                            ${Array.from({ length: 10 }, (_, index) => {
+                                const ability = data.abilities[(barNumber - 1) * 10 + index];
+                                return ability ? `<button class="ability" type="button" aria-label="${ability.name}"><span class="ability-icon">${ability.icon}</span>${ability.cooldown ? `<b>${ability.cooldown}</b>` : ""}</button>` : `<button class="ability empty" type="button" aria-label="Empty ability slot"><span class="ability-icon">+</span></button>`;
+                            }).join("")}
+                        </div>
+                    </div>
+                `).join("")}
+            </div>
         </section>
     `);
 }
@@ -139,15 +149,26 @@ function setupDragging() {
 }
 
 function setupHotbar() {
-    document.querySelectorAll("[data-hotbar-set]").forEach(button => {
-        button.addEventListener("click", () => {
-            document.querySelectorAll("[data-hotbar-set]").forEach(setButton => {
-                const active = setButton === button;
-                setButton.classList.toggle("active", active);
-                setButton.setAttribute("aria-selected", String(active));
-            });
+    const hotbarToggles = document.querySelectorAll("[data-hotbar-toggle]");
+    const applyHotbarVisibility = () => {
+        const visibleBarNumbers = Array.from(hotbarToggles)
+            .filter(toggle => toggle.checked)
+            .map(toggle => Number(toggle.dataset.hotbarToggle));
+
+        document.querySelectorAll(".hotbar-bar").forEach(bar => {
+            const barNumber = Number(bar.dataset.hotbarBar);
+            const visible = visibleBarNumbers.includes(barNumber);
+            bar.classList.toggle("visible", visible);
+            bar.classList.toggle("hidden", !visible);
         });
+    };
+
+    hotbarToggles.forEach(toggle => {
+        toggle.checked = toggle.dataset.hotbarToggle === "1";
+        toggle.addEventListener("change", applyHotbarVisibility);
     });
+
+    applyHotbarVisibility();
 }
 
 function saveLayout() {
