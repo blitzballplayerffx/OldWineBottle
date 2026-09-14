@@ -1,5 +1,4 @@
 const stage = document.getElementById("ui-stage");
-const settingsKey = "aetheria-ui-settings";
 const skillBarIds = ["hotbar-1", "hotbar-2", "hotbar-3"];
 let uiDataCache = null;
 let topWindowLayer = 10;
@@ -15,7 +14,7 @@ const defaultPositions = {
 };
 
 function getSettingsState() {
-    const defaults = {
+    return {
         opacity: 1.00,
         editMode: false,
         windows: {
@@ -30,32 +29,10 @@ function getSettingsState() {
             "hotbar-3": { orientation: "horizontal", slots: 10 }
         }
     };
-
-    try {
-        const saved = JSON.parse(localStorage.getItem(settingsKey) || "{}");
-        const normalizedSaved = {
-            ...saved,
-            opacity: Number(saved.opacity ?? defaults.opacity),
-            panelConfig: {
-                ...defaults.panelConfig,
-                ...(saved.panelConfig || {})
-            }
-        };
-        return {
-            ...defaults,
-            ...normalizedSaved,
-            panelConfig: {
-                ...defaults.panelConfig,
-                ...(normalizedSaved.panelConfig || {})
-            }
-        };
-    } catch (error) {
-        return { ...defaults };
-    }
 }
 
 function saveSettingsState(settings) {
-    localStorage.setItem(settingsKey, JSON.stringify(settings));
+    return;
 }
 
 async function loadUi() {
