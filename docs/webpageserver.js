@@ -54,7 +54,15 @@ const server = http.createServer((req, res) => {
   const parsed = url.parse(req.url || '/');
   let pathname = parsed.pathname || '/';
 
-  // Default to index.html for root or directory requests
+  // Redirect the root so the main page resolves its relative assets from /main/.
+  if (pathname === '/') {
+    res.statusCode = 302;
+    res.setHeader('Location', '/main/');
+    res.end();
+    return;
+  } else if (pathname === '/ui' || pathname === '/ui/') {
+    pathname = '/ui/ui.html';
+  }
   let filePath = safeJoin(ROOT, pathname);
 
   // Prevent escaping the root directory

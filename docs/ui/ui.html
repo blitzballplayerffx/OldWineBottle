@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPG UI Prototype</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main id="app" aria-label="MMORPG user interface prototype">
+        <div class="world-backdrop" aria-hidden="true">
+            <div class="sun"></div>
+            <div class="mountain mountain-back"></div>
+            <div class="mountain mountain-front"></div>
+            <div class="fog"></div>
+        </div>
+
+        <section id="ui-stage" class="ui-stage" aria-label="Game interface">
+            <div class="reticle" aria-hidden="true"><span></span></div>
+        </section>
+
+        <button id="settings-toggle" class="settings-toggle" type="button" aria-controls="settings-panel" aria-expanded="false" title="Open interface settings">
+            <span aria-hidden="true">⚙</span>
+            <span>Settings</span>
+        </button>
+
+        <aside id="settings-panel" class="settings-panel" aria-label="Interface settings" hidden>
+            <div class="panel-heading">
+                <div>
+                    <span class="eyebrow">HUD controls</span>
+                    <h2>Interface settings</h2>
+                </div>
+            </div>
+            <label class="toggle-row" for="edit-ui-mode">
+                <span><strong>Edit UI mode</strong><small>Hold Shift to move or Ctrl to resize</small></span>
+                <input id="edit-ui-mode" type="checkbox">
+            </label>
+            <fieldset class="window-visibility">
+                <legend>Windows</legend>
+                <label><input type="checkbox" data-window-toggle="character"> Character <button class="window-settings" type="button" aria-label="Character window settings">⚙</button></label>
+                <label><input type="checkbox" data-window-toggle="quest"> Quest log <button class="window-settings" type="button" aria-label="Quest window settings">⚙</button></label>
+                <label><input type="checkbox" data-window-toggle="party"> Party <button class="window-settings" type="button" aria-label="Party window settings">⚙</button></label>
+                <label><input type="checkbox" data-window-toggle="minimap"> Map <button class="window-settings" type="button" aria-label="Map window settings">⚙</button></label>
+                <label><input type="checkbox" data-window-toggle="chat"> Chat <button class="window-settings" type="button" aria-label="Chat window settings">⚙</button></label>
+                <label><input type="checkbox" data-window-toggle="hotbar"> Abilities <button class="window-settings" type="button" aria-label="Ability window settings">⚙</button></label>
+            </fieldset>
+            <label class="control-row" for="opacity-control">
+                <span><strong>Panel opacity</strong><small>Adjust the HUD transparency</small></span>
+                <output id="opacity-value" for="opacity-control">92%</output>
+            </label>
+            <input id="opacity-control" type="range" min="0.35" max="1" step="0.01" value="0.92">
+            <p class="settings-hint">Enable Edit UI mode, then hold Shift to move or Ctrl-drag diagonally to resize a window.</p>
+        </aside>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

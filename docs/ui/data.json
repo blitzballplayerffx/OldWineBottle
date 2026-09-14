@@ -1,0 +1,34 @@
+{
+	"player": {
+		"name": "Kael Veyra",
+		"level": 42,
+		"class": "Spellblade",
+		"health": 86,
+		"mana": 64,
+		"stamina": 73,
+		"location": "Whispering Vale"
+	},
+	"quest": {
+		"title": "The Rootbound Oath",
+		"description": "Find the ancient shrine beneath the elder tree.",
+		"progress": "2 / 5",
+		"reward": "420 XP  ·  18 silver"
+	},
+	"party": [
+		{ "name": "Kael", "role": "You", "health": 86, "color": "gold" },
+		{ "name": "Mira", "role": "Cleric", "health": 100, "color": "rose" },
+		{ "name": "Thorne", "role": "Warden", "health": 58, "color": "green" }
+	],
+	"chat": [
+		{ "channel": "LOCAL", "name": "Mira", "message": "The shrine should be close." },
+		{ "channel": "SYSTEM", "name": "", "message": "You discovered Whispering Vale." },
+		{ "channel": "PARTY", "name": "Thorne", "message": "I see movement by the ruins." }
+	],
+	"abilities": [
+		{ "key": "1", "name": "Arc Slash", "icon": "✦", "cooldown": "" },
+		{ "key": "2", "name": "Blink", "icon": "◈", "cooldown": "4" },
+		{ "key": "3", "name": "Ward", "icon": "◇", "cooldown": "" },
+		{ "key": "4", "name": "Emberfall", "icon": "✹", "cooldown": "12" },
+		{ "key": "5", "name": "Potion", "icon": "♢", "cooldown": "" }
+	]
+}
