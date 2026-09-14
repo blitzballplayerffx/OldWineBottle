@@ -43,8 +43,7 @@
         <aside id="settings-panel" class="settings-panel" aria-label="Interface settings" hidden>
             <div class="panel-heading">
                 <div>
-                    <span class="eyebrow">HUD controls</span>
-                    <h2>Interface settings</h2>
+                    <h2>UI Settings</h2>
                 </div>
             </div>
             <label class="toggle-row" for="edit-ui-mode">
@@ -53,23 +52,72 @@
             </label>
             <fieldset class="window-visibility">
                 <legend>Windows</legend>
-                <label><input type="checkbox" data-window-toggle="character"> Character <button class="window-settings" type="button" aria-label="Character window settings">⚙</button></label>
-                <label><input type="checkbox" data-window-toggle="quest"> Quest log <button class="window-settings" type="button" aria-label="Quest window settings">⚙</button></label>
-                <label><input type="checkbox" data-window-toggle="party"> Party <button class="window-settings" type="button" aria-label="Party window settings">⚙</button></label>
-                <label><input type="checkbox" data-window-toggle="minimap"> Map <button class="window-settings" type="button" aria-label="Map window settings">⚙</button></label>
-                <label><input type="checkbox" data-window-toggle="chat"> Chat <button class="window-settings" type="button" aria-label="Chat window settings">⚙</button></label>
-                <label><input type="checkbox" data-window-toggle="hotbar"> Abilities <button class="window-settings" type="button" aria-label="Ability window settings">⚙</button></label>
-                <label><input type="checkbox" data-hotbar-toggle="1" checked> Skill Bar 1 <button class="window-settings" type="button" aria-label="Skill Bar 1 settings">⚙</button></label>
-                <label><input type="checkbox" data-hotbar-toggle="2"> Skill Bar 2 <button class="window-settings" type="button" aria-label="Skill Bar 2 settings">⚙</button></label>
-                <label><input type="checkbox" data-hotbar-toggle="3"> Skill Bar 3 <button class="window-settings" type="button" aria-label="Skill Bar 3 settings">⚙</button></label>
+                <label class="window-toggle-item">
+                    <span class="toggle-input-wrap">
+                        <input type="checkbox" data-window-toggle="character">
+                        <button class="window-settings" type="button" data-window-settings="character" aria-label="Character window settings">⚙</button>
+                    </span>
+                    <span class="toggle-label">Character</span>
+                </label>
+                <label class="window-toggle-item">
+                    <span class="toggle-input-wrap">
+                        <input type="checkbox" data-window-toggle="quest">
+                        <button class="window-settings" type="button" data-window-settings="quest" aria-label="Quest window settings">⚙</button>
+                    </span>
+                    <span class="toggle-label">Quest log</span>
+                </label>
+                <label class="window-toggle-item">
+                    <span class="toggle-input-wrap">
+                        <input type="checkbox" data-window-toggle="party">
+                        <button class="window-settings" type="button" data-window-settings="party" aria-label="Party window settings">⚙</button>
+                    </span>
+                    <span class="toggle-label">Party</span>
+                </label>
+                <label class="window-toggle-item">
+                    <span class="toggle-input-wrap">
+                        <input type="checkbox" data-window-toggle="minimap">
+                        <button class="window-settings" type="button" data-window-settings="minimap" aria-label="Map window settings">⚙</button>
+                    </span>
+                    <span class="toggle-label">Map</span>
+                </label>
+                <label class="window-toggle-item">
+                    <span class="toggle-input-wrap">
+                        <input type="checkbox" data-window-toggle="chat">
+                        <button class="window-settings" type="button" data-window-settings="chat" aria-label="Chat window settings">⚙</button>
+                    </span>
+                    <span class="toggle-label">Chat</span>
+                </label>
+                <label class="window-toggle-item">
+                    <span class="toggle-input-wrap">
+                        <input type="checkbox" data-hotbar-toggle="1" checked>
+                        <button class="window-settings" type="button" data-window-settings="hotbar-1" aria-label="Skill Bar 1 settings">⚙</button>
+                    </span>
+                    <span class="toggle-label">Skill Bar 1</span>
+                </label>
+                <label class="window-toggle-item">
+                    <span class="toggle-input-wrap">
+                        <input type="checkbox" data-hotbar-toggle="2">
+                        <button class="window-settings" type="button" data-window-settings="hotbar-2" aria-label="Skill Bar 2 settings">⚙</button>
+                    </span>
+                    <span class="toggle-label">Skill Bar 2</span>
+                </label>
+                <label class="window-toggle-item">
+                    <span class="toggle-input-wrap">
+                        <input type="checkbox" data-hotbar-toggle="3">
+                        <button class="window-settings" type="button" data-window-settings="hotbar-3" aria-label="Skill Bar 3 settings">⚙</button>
+                    </span>
+                    <span class="toggle-label">Skill Bar 3</span>
+                </label>
             </fieldset>
             <label class="control-row" for="opacity-control">
                 <span><strong>Panel opacity</strong><small>Adjust the HUD transparency</small></span>
-                <output id="opacity-value" for="opacity-control">92%</output>
+                <output id="opacity-value" for="opacity-control">100%</output>
             </label>
-            <input id="opacity-control" type="range" min="0.35" max="1" step="0.01" value="0.92">
+            <input id="opacity-control" type="range" min="0.35" max="1" step="0.01" value="01.0">
             <p class="settings-hint">Enable Edit UI mode, then hold Shift to move or Ctrl-drag diagonally to resize a window.</p>
         </aside>
+
+        <div id="window-settings-popover" class="window-settings-popover" hidden></div>
     </main>
     <script src="script.js"></script>
 </body>
