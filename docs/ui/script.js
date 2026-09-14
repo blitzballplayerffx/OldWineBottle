@@ -33,12 +33,20 @@ function getSettingsState() {
 
     try {
         const saved = JSON.parse(localStorage.getItem(settingsKey) || "{}");
-        return {
-            ...defaults,
+        const normalizedSaved = {
             ...saved,
+            opacity: Number(saved.opacity ?? defaults.opacity),
             panelConfig: {
                 ...defaults.panelConfig,
                 ...(saved.panelConfig || {})
+            }
+        };
+        return {
+            ...defaults,
+            ...normalizedSaved,
+            panelConfig: {
+                ...defaults.panelConfig,
+                ...(normalizedSaved.panelConfig || {})
             }
         };
     } catch (error) {
@@ -51,7 +59,7 @@ function saveSettingsState(settings) {
 }
 
 async function loadUi() {
-    const response = await fetch("data.json");
+    const response = await fetch("./ui/data.json");
     const uiData = await response.json();
     uiDataCache = uiData;
     renderPanels(uiData);
@@ -115,7 +123,10 @@ function restoreSettings() {
     const settings = getSettingsState();
     const opacityValue = Number(settings.opacity ?? 1.0);
     setCssSetting("--panel-opacity", opacityValue);
-    document.getElementById("opacity-control").value = String(opacityValue);
+    const opacityControl = document.getElementById("opacity-control");
+    if (opacityControl) {
+        opacityControl.value = String(opacityValue);
+    }
     document.querySelectorAll(".hud-panel").forEach(panel => {
         panel.hidden = settings.windows?.[panel.dataset.panel] === false;
     });

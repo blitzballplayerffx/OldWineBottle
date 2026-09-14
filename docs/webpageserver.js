@@ -54,14 +54,15 @@ const server = http.createServer((req, res) => {
   const parsed = url.parse(req.url || '/');
   let pathname = parsed.pathname || '/';
 
-  // Redirect the root so the main page resolves its relative assets from /main/.
   if (pathname === '/') {
+    pathname = '/index.html';
+  } else if (pathname === '/main' || pathname === '/main/') {
     res.statusCode = 302;
-    res.setHeader('Location', '/main/');
+    res.setHeader('Location', '/');
     res.end();
     return;
   } else if (pathname === '/ui' || pathname === '/ui/') {
-    pathname = '/ui/ui.html';
+    pathname = '/ui.html';
   }
   let filePath = safeJoin(ROOT, pathname);
 
