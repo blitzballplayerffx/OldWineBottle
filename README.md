@@ -12,7 +12,9 @@ You can post in discussions or send an email to 2028GameDev@gmail.com. Looking f
 
 ## Developers
 Programming: blitzballplayerffx<br>
-3D: Vacant<br>
+3D Environment / Terrain: Vacant<br>
+3D Characters / Animations: Vacant<br>
+3D Effects: Vacant<br>
 2D: Vacant<br>
 Music: Vacant<br>
 Sound: Vacant<br>
