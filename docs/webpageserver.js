@@ -9,16 +9,8 @@ const url = require('url');
 
 const PORT = parseInt(process.argv[2], 10) || process.env.PORT || 3000;
 
-// Determine site root so the server works whether this script lives at the
-// repository root or inside the docs/ directory. If this file is inside a
-// directory named "docs", serve that directory. Otherwise serve the
-// "docs" subdirectory next to this script.
-let ROOT;
-if (path.basename(__dirname) === 'docs') {
-  ROOT = __dirname;
-} else {
-  ROOT = path.join(__dirname, 'docs');
-}
+// Serve files from the same directory as this script.
+const ROOT = __dirname;
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -54,53 +46,55 @@ const server = http.createServer((req, res) => {
   const parsed = url.parse(req.url || '/');
   let pathname = parsed.pathname || '/';
 
+  // Map clean URLs to HTML files
   if (pathname === '/') {
     pathname = '/index.html';
-  } else if (pathname === '/main' || pathname === '/main/') {
-    res.statusCode = 302;
-    res.setHeader('Location', '/');
-    res.end();
-    return;
+  } else if (pathname === '/wiki' || pathname === '/wiki/') {
+    pathname = '/wiki.html';
   } else if (pathname === '/ui' || pathname === '/ui/') {
     pathname = '/ui.html';
   }
+
   let filePath = safeJoin(ROOT, pathname);
 
   // Prevent escaping the root directory
   if (!filePath.startsWith(ROOT)) {
-	send404(res);
-	return;
+    send404(res);
+    return;
   }
 
   fs.stat(filePath, (err, stats) => {
-	if (err) {
-	  send404(res);
-	  return;
-	}
+    if (err) {
+      send404(res);
+      return;
+    }
 
-	if (stats.isDirectory()) {
-	  filePath = path.join(filePath, 'index.html');
-	}
+    if (stats.isDirectory()) {
+      filePath = path.join(filePath, 'index.html');
+    }
 
-	fs.stat(filePath, (err2, stats2) => {
-	  if (err2 || !stats2.isFile()) {
-		send404(res);
-		return;
-	  }
+    fs.stat(filePath, (err2, stats2) => {
+      if (err2 || !stats2.isFile()) {
+        send404(res);
+        return;
+      }
 
-	  const ext = path.extname(filePath).toLowerCase();
-	  const contentType = MIME[ext] || 'application/octet-stream';
-	  res.statusCode = 200;
-	  res.setHeader('Content-Type', contentType);
-	  res.setHeader('Cache-Control', 'no-cache');
+      const ext = path.extname(filePath).toLowerCase();
+      const contentType = MIME[ext] || 'application/octet-stream';
+      res.statusCode = 200;
+      res.setHeader('Content-Type', contentType);
+      res.setHeader('Cache-Control', 'no-cache');
 
-	  const stream = fs.createReadStream(filePath);
-	  stream.on('error', () => send404(res));
-	  stream.pipe(res);
-	});
+      const stream = fs.createReadStream(filePath);
+      stream.on('error', () => send404(res));
+      stream.pipe(res);
+    });
   });
 });
 
 server.listen(PORT, () => {
   console.log(`Serving ${ROOT} at http://localhost:${PORT}/`);
+  console.log(`- Main site:    http://localhost:${PORT}/`);
+  console.log(`- Wiki:         http://localhost:${PORT}/wiki`);
+  console.log(`- UI Prototype: http://localhost:${PORT}/ui`);
 });

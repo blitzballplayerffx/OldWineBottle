@@ -3,8 +3,415 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RPG UI Prototype</title>
-    <link rel="stylesheet" href="./ui/style.css">
+    <title>RPG UI Prototype · Fixed UI Size / Resolution</title>
+    <style>
+        :root {
+            --ui-scale: 1;
+            --panel-opacity: 1;
+            --panel-base: #171d1f;
+            --ink: #f2eee4;
+            --muted: #a4a79f;
+            --line: rgba(236, 227, 202, 0.18);
+            --gold: #d7ad60;
+            --gold-bright: #f1ca78;
+            --teal: #63c1b0;
+            --rose: #d87972;
+        }
+        * { box-sizing: border-box; }
+        html, body {
+            width: 100%;
+            height: 100%;
+            min-width: 100%;
+            min-height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        body {
+            color: var(--ink);
+            background: #253b38;
+            font-family: Arial Narrow, Arial, sans-serif;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        button, input, select { font: inherit; }
+        button { color: inherit; }
+        button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 3px; }
+        [hidden] { display: none !important; }
+
+        #app {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            min-width: 100vw;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        @supports (height: 100dvh) {
+            #app {
+                width: 100dvw;
+                height: 100dvh;
+                min-width: 100dvw;
+                min-height: 100dvh;
+            }
+        }
+
+        /* ===== WORLD BACKDROP ===== */
+        .world-backdrop { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+        .world-backdrop::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,.15), transparent 38%); }
+        .sun { position: absolute; width: 18vmin; aspect-ratio: 1; right: 16%; top: 12%; border-radius: 50%; background: rgba(255,255,255,.75); box-shadow: 0 0 80px rgba(255,255,255,.45); }
+        .mountain { position: absolute; bottom: 23%; width: 120%; height: 36%; clip-path: polygon(0 100%, 0 70%, 12% 48%, 24% 76%, 39% 26%, 54% 82%, 68% 32%, 83% 78%, 100% 52%, 100% 100%); }
+        .mountain-back { left: -8%; background: linear-gradient(180deg, #c4cbd0 0%, #8a939a 48%, #657078 100%); opacity: .9; }
+        .mountain-back::before { content: ''; position: absolute; inset: 0 0 50% 0; background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,0)); clip-path: polygon(0 100%, 18% 66%, 32% 76%, 56% 42%, 74% 76%, 100% 54%, 100% 100%); }
+        .mountain-mid { left: -10%; bottom: 20%; height: 30%; background: linear-gradient(180deg, #9aa3aa 0%, #707a82 44%, #505d65 100%); opacity: .8; }
+        .mountain-mid::before { content: ''; position: absolute; inset: 0 0 58% 0; background: linear-gradient(180deg, rgba(255,255,255,.8), rgba(255,255,255,0)); clip-path: polygon(0 100%, 18% 62%, 37% 72%, 54% 34%, 72% 74%, 100% 52%, 100% 100%); }
+        .mountain-front { left: -12%; bottom: 16%; height: 28%; background: linear-gradient(180deg, #7f8b94 0%, #58636d 40%, #3d4952 100%); opacity: .95; }
+        .mountain-front::before { content: ''; position: absolute; inset: 0 0 60% 0; background: linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,0)); clip-path: polygon(0 100%, 24% 62%, 40% 76%, 56% 38%, 70% 70%, 100% 50%, 100% 100%); }
+        .ground { position: absolute; left: 0; right: 0; bottom: 0; height: 24%; z-index: 2; background: linear-gradient(180deg, #6db66d 0%, #4a8d4f 38%, #2f6d3f 100%); }
+        .ground::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.06)); }
+        .tree { position: absolute; bottom: 22%; width: 90px; height: 120px; z-index: 4; }
+        .tree-left { left: 10%; }
+        .tree-mid-left { left: 28%; transform: scale(.8); }
+        .tree-mid-right { right: 26%; transform: scale(.8); }
+        .tree-right { right: 12%; }
+        .tree::before { content: ''; position: absolute; left: 50%; bottom: 0; width: 12px; height: 60px; transform: translateX(-50%); background: linear-gradient(180deg, #7a4d2f 0%, #4e2c1d 100%); border-radius: 4px; }
+        .tree::after { content: ''; position: absolute; left: 50%; bottom: 42px; width: 64px; height: 64px; transform: translateX(-50%); background: radial-gradient(circle at 35% 35%, #9dd879 0%, #5d9d5c 48%, #2e6d3c 100%); border-radius: 50%; box-shadow: -20px 10px 0 -8px rgba(53, 122, 62, 1.0), 20px 12px 0 -8px rgba(53, 122, 62, .9), 0 24px 0 -10px rgba(44, 92, 49, .9); }
+        .tree-trunk { position: absolute; left: 50%; bottom: 0; width: 12px; height: 60px; transform: translateX(-50%); background: linear-gradient(180deg, #7a4d2f 0%, #4e2c1d 100%); border-radius: 4px; }
+        .fog { position: absolute; inset: auto 0 0; height: 26%; z-index: 7; background: linear-gradient(180deg, transparent, rgba(39, 61, 68, .15)); }
+
+        /* ===== UI STAGE ===== */
+        .ui-stage {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            min-width: 0;
+            min-height: 0;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        .reticle { position: absolute; top: 48%; left: 50%; width: 20px; height: 20px; transform: translate(-50%, -50%); opacity: .65; }
+        .reticle::before, .reticle::after, .reticle span::before, .reticle span::after { content: ''; position: absolute; background: rgba(242, 238, 228, .85); }
+        .reticle::before { width: 1px; height: 8px; left: 9px; top: 0; }
+        .reticle::after { width: 1px; height: 8px; left: 9px; bottom: 0; }
+        .reticle span::before { height: 1px; width: 8px; left: 0; top: 9px; }
+        .reticle span::after { height: 1px; width: 8px; right: 0; top: 9px; }
+
+        /* ===== LOCK TOAST ===== */
+        .lock-toast {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 200;
+            padding: 14px 26px;
+            border: 1px solid rgba(215, 173, 96, .55);
+            border-radius: 3px;
+            background: rgba(17, 24, 27, .92);
+            color: var(--gold-bright);
+            font-family: Consolas, 'Courier New', monospace;
+            font-size: 16px;
+            letter-spacing: .28em;
+            text-transform: uppercase;
+            box-shadow: 0 20px 60px rgba(5, 11, 12, .55);
+            backdrop-filter: blur(10px);
+            pointer-events: none;
+            opacity: 0;
+        }
+        .lock-toast.is-showing {
+            animation: lockToastFade 1.5s ease-out forwards;
+        }
+        @keyframes lockToastFade {
+            0%   { opacity: 0; transform: translate(-50%, -50%) scale(.92); }
+            15%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            70%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(1.04); }
+        }
+
+        /* ===== HUD PANELS ===== */
+        .hud-panel, .settings-panel {
+            position: absolute;
+            padding: 16px;
+            border: 0;
+            border-radius: 3px;
+            background: color-mix(in srgb, var(--panel-base) calc(var(--panel-opacity) * 100%), rgba(10,14,18,0.12));
+            box-shadow: 0 15px 45px rgba(5,11,12,.24);
+            backdrop-filter: blur(12px);
+            z-index: 20;
+            user-select: none;
+        }
+        .hud-panel {
+            width: 270px;
+            animation: reveal .55s both;
+            transform: scale(var(--ui-window-scale, 1));
+            transform-origin: top left;
+        }
+        .window-settings {
+            position: absolute; z-index: 2; top: 7px; right: 7px;
+            width: 22px; height: 22px; padding: 0; border: 0;
+            color: var(--muted); background: transparent;
+            font-size: 14px; line-height: 22px; cursor: pointer; opacity: .8;
+        }
+        .window-settings:hover { color: var(--gold-bright); opacity: 1; }
+        .panel-heading h2 { margin: 0; margin-top: 3px; color: var(--ink); font-size: 19px; font-weight: 600; letter-spacing: .02em; }
+        .eyebrow { display: block; color: var(--muted); font-family: Consolas, 'Courier New', monospace; font-size: 9px; letter-spacing: .14em; line-height: 1.3; text-transform: uppercase; }
+        .eyebrow.accent { color: var(--gold-bright); }
+
+        .character-identity { display: flex; align-items: center; gap: 11px; }
+        .avatar-mark, .member-avatar { display: grid; place-items: center; border: 1px solid rgba(215,173,96,.65); color: var(--gold-bright); background: linear-gradient(135deg, #395951, #15252a); font-family: Consolas, 'Courier New', monospace; }
+        .avatar-mark { width: 39px; height: 39px; font-size: 12px; }
+        .resource { margin-top: 11px; }
+        .resource-track { display: grid; grid-template-columns: 58px 1fr auto; align-items: center; gap: 7px; }
+        .resource-name { color: var(--muted); font-family: Consolas, 'Courier New', monospace; font-size: 10px; text-transform: uppercase; }
+        .resource-track strong { color: var(--ink); font-weight: 400; font-family: Consolas, 'Courier New', monospace; font-size: 10px; }
+        .meter, .mini-meter, .quest-progress { height: var(--character-bar-height, 5px); overflow: hidden; border: 1px solid rgba(255,255,255,.12); background: rgba(0,0,0,.3); }
+        .meter span, .mini-meter span, .quest-progress span { display: block; height: 100%; }
+        .health .meter span { background: var(--rose); }
+        .mana .meter span { background: #72a9d0; }
+        .stamina .meter span { background: var(--teal); }
+
+        .quest-panel p { margin: 0 0 17px; color: #c4c7bd; font-size: 15px; line-height: 1.25; }
+        .quest-progress span { width: 40%; background: var(--gold); }
+        .quest-meta { display: flex; justify-content: space-between; margin-top: 7px; color: var(--muted); font-family: Consolas, 'Courier New', monospace; font-size: 9px; }
+
+        .party-member { display: flex; align-items: center; gap: 9px; margin: 11px 0; }
+        .member-avatar { width: 27px; height: 27px; border-color: var(--line); border-radius: 50%; font-size: 12px; }
+        .member-avatar.rose { color: #ec9d96; border-color: #a45e5a; }
+        .member-avatar.green { color: #8fd7b4; border-color: #5b997d; }
+        .member-info { flex: 1; }
+        .member-info > div:first-child { display: flex; justify-content: space-between; font-size: 14px; }
+        .member-info span { color: var(--muted); font-size: 12px; }
+        .mini-meter { height: 3px; margin-top: 5px; }
+        .mini-meter span { background: var(--teal); }
+        .member-health { color: var(--muted); font-family: Consolas, 'Courier New', monospace; font-size: 9px; }
+
+        .minimap-panel { width: 265px; }
+        .minimap { position: relative; height: 170px; overflow: hidden; border: 1px solid rgba(223,204,145,.3); background: #334f49; clip-path: polygon(0 6%, 7% 0, 93% 0, 100% 7%, 100% 93%, 93% 100%, 7% 100%, 0 93%); }
+        .minimap::before { content: ''; position: absolute; inset: -30%; background: radial-gradient(ellipse, rgba(147,174,127,.4), transparent 56%), linear-gradient(130deg, transparent 48%, rgba(204,184,124,.3) 49%, rgba(204,184,124,.3) 50%, transparent 51%); transform: rotate(-13deg); }
+        .map-grid { position: absolute; inset: 0; opacity: .25; background: repeating-linear-gradient(0deg, transparent 0 26px, rgba(234,219,165,.22) 27px 28px), repeating-linear-gradient(90deg, transparent 0 32px, rgba(234,219,165,.22) 33px 34px); }
+        .map-path { position: absolute; width: 170px; height: 80px; top: 48px; left: 35px; border: 2px solid rgba(237,208,132,.72); border-left-color: transparent; border-bottom-color: transparent; border-radius: 50%; transform: rotate(26deg); }
+        .map-player { position: absolute; top: 94px; left: 134px; width: 11px; height: 11px; border: 2px solid #fff2bb; border-radius: 50%; background: var(--gold); box-shadow: 0 0 12px var(--gold); }
+        .map-label { position: absolute; color: rgba(255,239,180,.8); font-family: Consolas, 'Courier New', monospace; font-size: 9px; text-transform: uppercase; }
+        .label-ruins { top: 32px; right: 18px; }
+        .label-camp { bottom: 28px; left: 24px; }
+
+        .chat-panel { --chat-width: 310px; --chat-height: 82px; --chat-font-size: 10px; width: var(--chat-width); }
+        .chat-filters { display: flex; gap: 6px; margin-bottom: 8px; }
+        .chat-filter {
+            display: inline-flex; align-items: center; justify-content: center; flex: 1; min-width: 0;
+            padding: 4px 6px; border: 1px solid rgba(236,227,202,.15);
+            background: rgba(10,16,18,.9); color: var(--muted);
+            font-family: Consolas, 'Courier New', monospace; font-size: 9px; letter-spacing: .08em;
+            text-transform: uppercase; cursor: pointer;
+            transition: background .2s, color .2s, border-color .2s;
+        }
+        .chat-filter.is-on { background: rgba(241,202,120,.92); border-color: rgba(241,202,120,.9); color: #1b1b18; }
+        .chat-filter.is-off { background: rgba(10,16,18,.9); color: var(--muted); }
+        .chat-log { height: var(--chat-height); overflow-y: auto; overflow-x: hidden; color: #c4c7bd; font-family: Consolas, 'Courier New', monospace; font-size: var(--chat-font-size); line-height: 1.5; }
+        .chat-log p { display: flex; align-items: flex-start; gap: 6px; margin: 6px 0; }
+        .chat-text { flex: 1; min-width: 0; display: block; color: #dfeae1; line-height: 1.45; white-space: normal; overflow-wrap: anywhere; word-break: break-word; text-align: left; }
+        .chat-channel { display: inline-flex; align-items: center; justify-content: center; min-width: 14px; color: var(--gold); font-size: 11px; margin-top: 1px; }
+        .chat-channel.chat { color: var(--gold); }
+        .chat-channel.combat { color: var(--rose); }
+        .chat-channel.system { color: var(--muted); }
+        .chat-log strong { color: var(--ink); font-weight: 500; }
+        .chat-input { display: flex; justify-content: space-between; margin-top: 12px; padding: 7px 9px; border: 1px solid var(--line); color: #747d78; font-family: Consolas, 'Courier New', monospace; font-size: 9px; }
+        .chat-input button { padding: 0; border: 0; color: var(--gold); background: transparent; cursor: pointer; }
+
+        .hotbar-panel { width: max-content; max-width: min(90vw, 560px); padding: 11px 13px 13px; }
+        .hotbar-panel.vertical .ability-row { flex-direction: column; }
+        .hotbar-panel.vertical .ability { width: 38px; height: 38px; }
+        .ability-row { display: flex; gap: 6px; flex-wrap: nowrap; }
+        .ability {
+            position: relative; width: 45px; height: 45px; padding: 0;
+            border: 1px solid rgba(231,205,141,.35);
+            background: linear-gradient(135deg, rgba(83,115,96,.65), rgba(17,28,30,.9));
+            cursor: pointer; transition: border-color .2s, transform .2s;
+        }
+        .ability:hover { border-color: var(--gold-bright); transform: translateY(-2px); }
+        .ability-icon { color: var(--gold-bright); font-size: 21px; }
+        .ability b { position: absolute; inset: 0; display: grid; place-items: center; color: rgba(255,255,255,.75); font-size: 13px; font-weight: 400; background: rgba(9,15,17,.45); }
+        .ability.empty { border-style: dashed; border-color: rgba(255,255,255,.16); }
+        .ability.empty .ability-icon { color: rgba(255,255,255,.25); }
+
+        .settings-toggle {
+            position: fixed; z-index: 50; top: 20px; right: 20px;
+            display: flex; align-items: center; gap: 7px;
+            padding: 9px 12px; border: 1px solid rgba(236,227,202,.3);
+            border-radius: 2px; color: var(--gold-bright);
+            background: rgba(17,24,27,.8); font-family: Consolas, 'Courier New', monospace;
+            font-size: 10px; text-transform: uppercase; cursor: pointer;
+        }
+        .settings-toggle:hover { background: rgba(41,60,55,.95); }
+
+        .menu-popover {
+            position: fixed; z-index: 90; left: 50%; top: 50%;
+            transform: translate(-50%, -50%);
+            width: min(92vw, 440px); height: min(74vh, 560px);
+            padding: 0; border: 1px solid rgba(236,227,202,.28);
+            border-radius: 8px; background: rgba(17,24,27,.97);
+            box-shadow: 0 28px 70px rgba(5,11,12,.42); overflow: hidden;
+        }
+        .menu-popover[hidden] { display: none !important; }
+        .menu-header {
+            display: grid; grid-template-columns: 80px 1fr 80px;
+            align-items: center; gap: 12px; padding: 14px 18px;
+            border-bottom: 1px solid rgba(236,227,202,.18);
+            background: rgba(255,255,255,.02);
+        }
+        .menu-header h2 { margin: 0; color: var(--ink); font-size: 20px; text-align: center; }
+        .menu-back, .menu-exit { border: 0; background: transparent; color: var(--gold-bright); font-family: Consolas, 'Courier New', monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; }
+        .menu-back { justify-self: start; }
+        .menu-exit { justify-self: end; }
+        .menu-body { height: calc(100% - 64px); overflow-y: auto; padding: 18px; }
+        .menu-home-body { display: grid; gap: 10px; }
+        .menu-nav-button {
+            width: 100%; padding: 12px 14px;
+            border: 1px solid rgba(236,227,202,.18);
+            background: rgba(255,255,255,.02); color: var(--ink);
+            text-align: left; font-family: Consolas, 'Courier New', monospace;
+            font-size: 12px; letter-spacing: .1em; text-transform: uppercase; cursor: pointer;
+        }
+        .menu-nav-button:hover { background: rgba(215,173,96,.12); border-color: rgba(215,173,96,.34); color: var(--gold-bright); }
+        .menu-settings-body, .menu-screen-body { display: grid; gap: 16px; }
+        .menu-control-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--ink); font-family: Consolas, 'Courier New', monospace; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+        .menu-control-row output { color: var(--gold-bright); }
+        .menu-popover input[type="range"] { width: 100%; }
+        .menu-popover input[type="color"] { width: 100%; height: 42px; padding: 0; border: 1px solid rgba(236,227,202,.18); background: rgba(255,255,255,.02); }
+        .menu-placeholder { margin: 0; color: var(--muted); font-family: Consolas, 'Courier New', monospace; font-size: 12px; line-height: 1.6; }
+
+        .settings-panel { z-index: 60; right: 20px; top: 62px; bottom: auto; width: 290px; }
+        .settings-panel .panel-heading { margin-bottom: 20px; }
+        .control-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 15px; color: var(--ink); font-size: 14px; }
+        .control-row output { color: var(--gold-bright); font-family: Consolas, 'Courier New', monospace; font-size: 11px; }
+        input[type='range'] { width: 100%; margin: 10px 0 4px; accent-color: var(--gold); cursor: pointer; }
+        .window-visibility { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; margin: 19px 0 0; padding: 11px 0 0; border: 0; border-top: 1px solid var(--line); }
+        .window-visibility legend { padding: 0 8px 0 0; color: var(--muted); font-family: Consolas, 'Courier New', monospace; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; }
+        .window-visibility label { display: flex; align-items: center; gap: 6px; color: var(--ink); font-size: 13px; }
+        .toggle-input-wrap { display: flex; align-items: center; gap: 6px; min-width: 0; }
+        .window-toggle-item { justify-content: space-between; }
+        .toggle-label { flex: 1; min-width: 0; }
+        .window-visibility input { margin: 0; accent-color: var(--gold); }
+        .window-settings-popover {
+            position: absolute; z-index: 90; right: 320px; bottom: 70px;
+            width: 240px; padding: 14px; border: 1px solid rgba(236,227,202,.28);
+            border-radius: 4px; background: rgba(17,24,27,.96);
+            box-shadow: 0 18px 42px rgba(5,11,12,.38);
+        }
+        .window-settings-popover[hidden] { display: none !important; }
+        .window-settings-popover h3 { margin: 0 0 12px; font-size: 14px; color: var(--gold-bright); }
+        .window-settings-popover .setting-field { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; color: var(--ink); font-size: 12px; }
+        .window-settings-popover input, .window-settings-popover select { width: 96px; accent-color: var(--gold); }
+        .window-visibility .window-settings { position: static; z-index: auto; width: 22px; height: 22px; margin-left: 0; padding: 0; }
+
+        .reset-layout-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 18px;
+            padding-top: 14px;
+            border-top: 1px solid var(--line);
+            font-family: Consolas, 'Courier New', monospace;
+            font-size: 11px;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: var(--ink);
+        }
+        .reset-layout-row select {
+            background: rgba(10,16,18,.8);
+            border: 1px solid rgba(236,227,202,.2);
+            color: var(--ink);
+            padding: 6px 8px;
+            font-size: 11px;
+            border-radius: 2px;
+            font-family: Consolas, 'Courier New', monospace;
+            max-width: 130px;
+        }
+        .reset-layout-row select option { background: #171d1f; color: #f2eee4; }
+        .btn-reset {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold-bright);
+            padding: 6px 14px;
+            font-family: Consolas, 'Courier New', monospace;
+            font-size: 10px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: background .2s, color .2s;
+            white-space: nowrap;
+        }
+        .btn-reset:hover {
+            background: rgba(215,173,96,.18);
+            color: #fff3d6;
+        }
+
+        .keybind-category {
+            margin-bottom: 18px;
+        }
+        .keybind-category h3 {
+            margin: 0 0 8px;
+            font-size: 11px;
+            font-family: Consolas, 'Courier New', monospace;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--gold-bright);
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(236,227,202,.14);
+        }
+        .keybind-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 7px 0;
+            border-bottom: 1px solid rgba(236,227,202,.06);
+            font-family: Consolas, 'Courier New', monospace;
+            font-size: 12px;
+            color: var(--ink);
+        }
+        .keybind-row:last-child { border-bottom: 0; }
+        .keybind-row .keybind-action {
+            flex: 1;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            font-size: 10px;
+        }
+        .keybind-row .keybind-key {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 26px;
+            padding: 3px 9px;
+            border: 1px solid rgba(236,227,202,.28);
+            border-radius: 3px;
+            background: rgba(255,255,255,.04);
+            color: var(--gold-bright);
+            font-size: 11px;
+            letter-spacing: .05em;
+            box-shadow: inset 0 -2px 0 rgba(0,0,0,.3);
+        }
+
+        @media (max-width: 800px) {
+            .hud-panel { width: 245px; }
+            .minimap-panel { width: 245px; }
+            .chat-panel { width: 280px; }
+            .settings-panel { right: 12px; top: 62px; max-width: calc(100vw - 24px); }
+            .settings-toggle { right: 12px; top: 12px; }
+            .menu-popover { right: 12px; top: 52px; }
+        }
+    </style>
 </head>
 <body>
     <main id="app" aria-label="MMORPG user interface prototype">
@@ -13,20 +420,10 @@
             <div class="mountain mountain-back"></div>
             <div class="mountain mountain-mid"></div>
             <div class="mountain mountain-front"></div>
-
-            <div class="tree tree-left">
-                <span class="tree-trunk"></span>
-            </div>
-            <div class="tree tree-mid-left">
-                <span class="tree-trunk"></span>
-            </div>
-            <div class="tree tree-mid-right">
-                <span class="tree-trunk"></span>
-            </div>
-            <div class="tree tree-right">
-                <span class="tree-trunk"></span>
-            </div>
-
+            <div class="tree tree-left"><span class="tree-trunk"></span></div>
+            <div class="tree tree-mid-left"><span class="tree-trunk"></span></div>
+            <div class="tree tree-mid-right"><span class="tree-trunk"></span></div>
+            <div class="tree tree-right"><span class="tree-trunk"></span></div>
             <div class="ground"></div>
             <div class="fog"></div>
         </div>
@@ -35,120 +432,26 @@
             <div class="reticle" aria-hidden="true"><span></span></div>
         </section>
 
-        <button id="settings-toggle" class="settings-toggle" type="button" aria-controls="settings-panel" aria-expanded="false" title="Open menu">
+        <div id="lock-toast" class="lock-toast" aria-live="polite"></div>
+
+        <button id="settings-toggle" class="settings-toggle" type="button" aria-controls="menu-popover" aria-expanded="false" title="Open menu">
             <span>Menu</span>
         </button>
 
-        <div id="menu-popover" class="menu-popover" hidden>
-            <button type="button" data-menu-action="ui-settings">UI Settings</button>
-            <button type="button" data-menu-action="character">Character</button>
-            <button type="button" data-menu-action="quest">Quest Log</button>
-            <button type="button" data-menu-action="inventory">Inventory</button>
-            <button type="button" data-menu-action="journal">Journal</button>
-            <button type="button" data-menu-action="skills">Skills</button>
-            <button type="button" data-menu-action="party">Party</button>
-            <button type="button" data-menu-action="system">System</button>
-        </div>
+        <div id="menu-popover" class="menu-popover" hidden></div>
 
         <aside id="settings-panel" class="settings-panel" aria-label="Interface settings" hidden>
             <div class="panel-heading">
-                <div>
-                    <h2>UI Settings</h2>
-                </div>
+                <div><h2>UI Settings</h2></div>
             </div>
             <fieldset class="window-visibility">
                 <legend>Windows</legend>
-                <label class="window-toggle-item">
-                    <span class="toggle-input-wrap">
-                        <input type="checkbox" data-window-toggle="character">
-                        <button class="window-settings" type="button" data-window-settings="character" aria-label="Character window settings">⚙</button>
-                    </span>
-                    <span class="toggle-label">Character</span>
-                </label>
-                <label class="window-toggle-item">
-                    <span class="toggle-input-wrap">
-                        <input type="checkbox" data-window-toggle="quest">
-                        <button class="window-settings" type="button" data-window-settings="quest" aria-label="Quest window settings">⚙</button>
-                    </span>
-                    <span class="toggle-label">Quest log</span>
-                </label>
-                <label class="window-toggle-item">
-                    <span class="toggle-input-wrap">
-                        <input type="checkbox" data-window-toggle="inventory">
-                        <button class="window-settings" type="button" data-window-settings="inventory" aria-label="Inventory window settings">⚙</button>
-                    </span>
-                    <span class="toggle-label">Inventory</span>
-                </label>
-                <label class="window-toggle-item">
-                    <span class="toggle-input-wrap">
-                        <input type="checkbox" data-window-toggle="journal">
-                        <button class="window-settings" type="button" data-window-settings="journal" aria-label="Journal window settings">⚙</button>
-                    </span>
-                    <span class="toggle-label">Journal</span>
-                </label>
-                <label class="window-toggle-item">
-                    <span class="toggle-input-wrap">
-                        <input type="checkbox" data-window-toggle="skills">
-                        <button class="window-settings" type="button" data-window-settings="skills" aria-label="Skills window settings">⚙</button>
-                    </span>
-                    <span class="toggle-label">Skills</span>
-                </label>
-                <label class="window-toggle-item">
-                    <span class="toggle-input-wrap">
-                        <input type="checkbox" data-window-toggle="party">
-                        <button class="window-settings" type="button" data-window-settings="party" aria-label="Party window settings">⚙</button>
-                    </span>
-                    <span class="toggle-label">Party</span>
-                </label>
-                <label class="window-toggle-item">
-                    <span class="toggle-input-wrap">
-                        <input type="checkbox" data-window-toggle="minimap">
-                        <button class="window-settings" type="button" data-window-settings="minimap" aria-label="Map window settings">⚙</button>
-                    </span>
-                    <span class="toggle-label">Map</span>
-                </label>
-                <label class="window-toggle-item">
-                    <span class="toggle-input-wrap">
-                        <input type="checkbox" data-window-toggle="chat">
-                        <button class="window-settings" type="button" data-window-settings="chat" aria-label="Chat window settings">⚙</button>
-                    </span>
-                    <span class="toggle-label">Chat</span>
-                </label>
-                <label class="window-toggle-item">
-                    <span class="toggle-input-wrap">
-                        <input type="checkbox" data-window-toggle="system">
-                        <button class="window-settings" type="button" data-window-settings="system" aria-label="System window settings">⚙</button>
-                    </span>
-                    <span class="toggle-label">System</span>
-                </label>
-                <label class="window-toggle-item">
-                    <span class="toggle-input-wrap">
-                        <input type="checkbox" data-hotbar-toggle="1" checked>
-                        <button class="window-settings" type="button" data-window-settings="hotbar-1" aria-label="Skill Bar 1 settings">⚙</button>
-                    </span>
-                    <span class="toggle-label">Skill Bar 1</span>
-                </label>
-                <label class="window-toggle-item">
-                    <span class="toggle-input-wrap">
-                        <input type="checkbox" data-hotbar-toggle="2">
-                        <button class="window-settings" type="button" data-window-settings="hotbar-2" aria-label="Skill Bar 2 settings">⚙</button>
-                    </span>
-                    <span class="toggle-label">Skill Bar 2</span>
-                </label>
-                <label class="window-toggle-item">
-                    <span class="toggle-input-wrap">
-                        <input type="checkbox" data-hotbar-toggle="3">
-                        <button class="window-settings" type="button" data-window-settings="hotbar-3" aria-label="Skill Bar 3 settings">⚙</button>
-                    </span>
-                    <span class="toggle-label">Skill Bar 3</span>
-                </label>
             </fieldset>
             <label class="control-row" for="opacity-control">
                 <span>Opacity</span>
                 <output id="opacity-value" for="opacity-control">100%</output>
             </label>
             <input id="opacity-control" type="range" min="0.35" max="1" step="0.01" value="1.0">
-
             <label class="control-row" for="background-color-control">
                 <span>Background</span>
                 <output for="background-color-control">Theme</output>
@@ -158,6 +461,878 @@
 
         <div id="window-settings-popover" class="window-settings-popover" hidden></div>
     </main>
-    <script src="./ui/script.js"></script>
+
+    <script>
+        const UI_DATA = {
+            player: { name: "Kael Veyra", level: 42, class: "Spellblade", health: 86, mana: 64, stamina: 73, location: "Whispering Vale" },
+            quest: { title: "The Rootbound Oath", description: "Find the ancient shrine beneath the elder tree.", progress: "2 / 5", reward: "420 XP  ·  18 silver" },
+            party: [
+                { name: "Kael", role: "You", health: 86, color: "gold" },
+                { name: "Mira", role: "Cleric", health: 100, color: "rose" },
+                { name: "Thorne", role: "Warden", health: 58, color: "green" }
+            ],
+            chat: [
+                { channel: "LOCAL", name: "Mira", message: "The shrine should be close." },
+                { channel: "SYSTEM", name: "", message: "You discovered Whispering Vale." },
+                { channel: "PARTY", name: "Thorne", message: "I see movement by the ruins." },
+                { channel: "LOCAL", name: "Kael", message: "I can hear chanting through the trees." },
+                { channel: "COMBAT", name: "System", message: "Critical hit! Arc Slash deals 82 damage." },
+                { channel: "SYSTEM", name: "", message: "Quest updated: cleanse the root shrine." },
+                { channel: "LOCAL", name: "Thorne", message: "Stay low. The sentries are circling the ridge." },
+                { channel: "COMBAT", name: "Combat", message: "You dodge the strike and counterattack." },
+                { channel: "SYSTEM", name: "", message: "You restored 14 focus from the crystal basin." },
+                { channel: "LOCAL", name: "Mira", message: "The elder tree path is opening ahead." },
+                { channel: "COMBAT", name: "Combat", message: "Ward absorbed 22 damage." },
+                { channel: "SYSTEM", name: "", message: "The rootbound oath is 40% complete." }
+            ],
+            abilities: [
+                { key: "1", name: "Arc Slash", icon: "✦", cooldown: "" },
+                { key: "2", name: "Blink", icon: "◈", cooldown: "4" },
+                { key: "3", name: "Ward", icon: "◇", cooldown: "" },
+                { key: "4", name: "Emberfall", icon: "✹", cooldown: "12" },
+                { key: "5", name: "Potion", icon: "♢", cooldown: "" }
+            ]
+        };
+
+        const KEYBINDINGS = [
+            {
+                category: "General",
+                items: [
+                    { action: "Move Forward", key: "W" },
+                    { action: "Move Backward", key: "S" },
+                    { action: "Strafe Left", key: "A" },
+                    { action: "Strafe Right", key: "D" },
+                    { action: "Turn Left", key: "Q" },
+                    { action: "Turn Right", key: "E" },
+                    { action: "Jump", key: "Space" },
+                    { action: "Interact / Action", key: "F" },
+                    { action: "Select Target", key: "Tab" },
+                    { action: "Sheathe Weapon", key: "Z" }
+                ]
+            },
+            {
+                category: "Combat",
+                items: [
+                    { action: "Attack", key: "1" },
+                    { action: "Ability 2", key: "2" },
+                    { action: "Ability 3", key: "3" },
+                    { action: "Ability 4", key: "4" },
+                    { action: "Ability 5", key: "5" },
+                    { action: "Target Nearest Enemy", key: "Tab" },
+                    { action: "Target Next Enemy", key: "Ctrl+Tab" },
+                    { action: "Assist Target", key: "T" },
+                    { action: "Pet Attack", key: "Ctrl+1" }
+                ]
+            },
+            {
+                category: "Chat",
+                items: [
+                    { action: "Open Chat", key: "Enter" },
+                    { action: "Reply to Whisper", key: "R" },
+                    { action: "Party Chat", key: "/p" },
+                    { action: "Guild Chat", key: "/g" },
+                    { action: "Whisper", key: "/w" },
+                    { action: "Yell", key: "/y" },
+                    { action: "Say", key: "/s" },
+                    { action: "Emote", key: "/e" }
+                ]
+            },
+            {
+                category: "UI",
+                items: [
+                    { action: "Toggle Menu", key: "Esc" },
+                    { action: "Toggle UI Lock", key: "Ctrl+Shift+U" },
+                    { action: "Move Window (Hold)", key: "Shift+Drag" },
+                    { action: "Close Window", key: "Alt+RMB" }
+                ]
+            }
+        ];
+
+        const skillBarIds = ["hotbar-1", "hotbar-2", "hotbar-3"];
+        let uiDataCache = UI_DATA;
+        let topWindowLayer = 10;
+        let uiLocked = false;
+        const chatFilters = { chat: true, combat: true, system: true };
+
+        const RESOLUTIONS = {
+            "1920x1080": { width: 1920, height: 1080, label: "1920 × 1080 (16:9)" },
+            "1600x900":  { width: 1600, height: 900,  label: "1600 × 900 (16:9)" },
+            "1440x900":  { width: 1440, height: 900,  label: "1440 × 900 (16:10)" },
+            "1366x768":  { width: 1366, height: 768,  label: "1366 × 768 (16:9)" },
+            "1280x1024": { width: 1280, height: 1024, label: "1280 × 1024 (5:4)" },
+            "1024x768":  { width: 1024, height: 768,  label: "1024 × 768 (4:3)" }
+        };
+
+        const DEFAULT_RESOLUTION = "1440x900";
+
+        const UI_SIZES = {
+            compact: { scale: 0.90, label: "Compact" },
+            normal:  { scale: 1.15, label: "Normal" },
+            large:   { scale: 1.35, label: "Large" }
+        };
+        const DEFAULT_UI_SIZE = "compact";
+
+        function getDefaultPositions(resKey) {
+            const res = RESOLUTIONS[resKey] || RESOLUTIONS[DEFAULT_RESOLUTION];
+            const w = res.width;
+            const h = res.height;
+
+            const mX = Math.round(w * 0.025);
+            const mY = Math.round(h * 0.03);
+
+            return {
+                character: { left: `${mX}px`, top: `${mY}px`, right: "auto", bottom: "auto" },
+                minimap:   { right: `${mX}px`, top: `${mY}px`, left: "auto", bottom: "auto" },
+                quest:     { right: `${mX}px`, top: `${Math.round(h * 0.56)}px`, left: "auto", bottom: "auto" },
+                party:     { right: `${mX}px`, bottom: `${mY}px`, left: "auto", top: "auto" },
+                chat:      { left: `${mX}px`, bottom: `${mY}px`, right: "auto", top: "auto" },
+                "hotbar-1": { left: `${Math.round(w * 0.5)}px`, bottom: `${mY}px`, transform: "translateX(-50%)", right: "auto", top: "auto" },
+                "hotbar-2": { left: `${Math.round(w * 0.5)}px`, bottom: `${Math.round(mY + 72)}px`, transform: "translateX(-50%)", right: "auto", top: "auto" },
+                "hotbar-3": { left: `${Math.round(w * 0.5)}px`, bottom: `${Math.round(mY + 144)}px`, transform: "translateX(-50%)", right: "auto", top: "auto" }
+            };
+        }
+
+        const MIN_SIZES = {
+            character: { width: 220, barHeight: 3 },
+            minimap: { width: 200 },
+            quest: { width: 220 },
+            party: { width: 200 },
+            chat: { width: 220, height: 70, fontSize: 8 },
+            "hotbar-1": { slots: 5, orientation: "horizontal" },
+            "hotbar-2": { slots: 5, orientation: "horizontal" },
+            "hotbar-3": { slots: 5, orientation: "horizontal" }
+        };
+
+        const DEFAULT_WINDOWS = {
+            character: true, quest: false, inventory: false, journal: false,
+            skills: false, party: false, minimap: true, chat: true,
+            "hotbar-1": true, "hotbar-2": false, "hotbar-3": false
+        };
+
+        // Defaults bumped: character bar height 5 -> 9, chat font size 10 -> 14.
+        const DEFAULT_PANEL_CONFIG = {
+            character: { barHeight: 9 },
+            chat: { width: 350, height: 95, fontSize: 14 },
+            "hotbar-1": { orientation: "horizontal", slots: 10 },
+            "hotbar-2": { orientation: "horizontal", slots: 10 },
+            "hotbar-3": { orientation: "horizontal", slots: 10 }
+        };
+
+        let settings = {
+            opacity: 1.00,
+            backgroundColor: "#171d1f",
+            resolution: DEFAULT_RESOLUTION,
+            uiSize: DEFAULT_UI_SIZE,
+            windows: { ...DEFAULT_WINDOWS },
+            panelConfig: JSON.parse(JSON.stringify(DEFAULT_PANEL_CONFIG))
+        };
+
+        function getSettingsState() { return settings; }
+        function saveSettingsState() { /* no-op, memory only */ }
+
+        function loadUi() {
+            renderPanels(uiDataCache);
+            restoreSettings();
+            restoreLayout();
+            requestAnimationFrame(() => {
+                applyUiSize();
+                cascadeVisiblePanelsFromTopLeft();
+            });
+            setupSettings();
+            setupDragging();
+            setupHotbar();
+        }
+
+        function buildSkillBarMarkup(barId, barNumber, slotCount, abilities) {
+            const slots = Array.from({ length: slotCount }, (_, slotIndex) => {
+                const ability = abilities[(barNumber - 1) * 15 + slotIndex];
+                if (!ability) {
+                    return `<button class="ability empty" type="button" aria-label="Empty ability slot"><span class="ability-icon">+</span></button>`;
+                }
+                return `<button class="ability" type="button" aria-label="${ability.name}"><span class="ability-icon">${ability.icon}</span>${ability.cooldown ? `<b>${ability.cooldown}</b>` : ""}</button>`;
+            }).join("");
+            return `<section class="hud-panel hotbar-panel" data-panel="${barId}" data-hotbar-id="${barId}" aria-label="Skill Bar ${barNumber}">
+                <div class="hotbar-bar visible" data-hotbar-bar="${barNumber}"><div class="ability-row">${slots}</div></div>
+            </section>`;
+        }
+
+        function getChatFilterGroup(channel) {
+            const normalized = String(channel || "").toUpperCase();
+            if (normalized === "SYSTEM") return "system";
+            if (normalized === "COMBAT") return "combat";
+            return "chat";
+        }
+
+        function renderChatLog() {
+            const chatPanel = document.querySelector('[data-panel="chat"]');
+            if (!chatPanel || !uiDataCache) return;
+            const logEl = chatPanel.querySelector(".chat-log");
+            if (!logEl) return;
+            const filteredLines = uiDataCache.chat.filter(line => {
+                const group = getChatFilterGroup(line.channel);
+                return chatFilters[group] !== false;
+            });
+            logEl.innerHTML = filteredLines.map(line => {
+                const group = getChatFilterGroup(line.channel);
+                const iconMap = { chat: "💬", combat: "⚔️", system: "✦" };
+                const shouldShowName = group === "chat" && Boolean(line.name) && line.name !== "System" && line.name !== "Combat";
+                const safeName = shouldShowName ? `<strong>${line.name}</strong>` : "";
+                const messageText = shouldShowName ? `"${line.message}"` : line.message;
+                return `<p><span class="chat-channel ${group}">${iconMap[group] || "•"}</span><span class="chat-text">${safeName ? `${safeName} ${messageText}` : messageText}</span></p>`;
+            }).join("");
+        }
+
+        function setupChatFilters() {
+            document.querySelectorAll(".chat-filter").forEach(button => {
+                const filter = button.dataset.chatFilter;
+                const isOn = chatFilters[filter] !== false;
+                button.classList.toggle("is-on", isOn);
+                button.classList.toggle("is-off", !isOn);
+                button.setAttribute("aria-pressed", String(isOn));
+                button.addEventListener("click", () => {
+                    chatFilters[filter] = !chatFilters[filter];
+                    renderChatLog();
+                    const active = chatFilters[filter];
+                    button.classList.toggle("is-on", active);
+                    button.classList.toggle("is-off", !active);
+                    button.setAttribute("aria-pressed", String(active));
+                });
+            });
+        }
+
+        function renderPanels(data) {
+            const stage = document.getElementById("ui-stage");
+            stage.insertAdjacentHTML("beforeend", `
+                <section class="hud-panel character-panel" data-panel="character" aria-label="Character status">
+                    <div class="panel-heading"><div class="character-identity"><div class="avatar-mark">KV</div><div><span class="eyebrow">Level ${data.player.level} · ${data.player.class}</span><h2>${data.player.name}</h2></div></div></div>
+                    <div class="resource health"><div class="resource-track"><span class="resource-name">Vitality</span><div class="meter"><span style="width: ${data.player.health}%"></span></div><strong>${data.player.health}%</strong></div></div>
+                    <div class="resource mana"><div class="resource-track"><span class="resource-name">Focus</span><div class="meter"><span style="width: ${data.player.mana}%"></span></div><strong>${data.player.mana}%</strong></div></div>
+                    <div class="resource stamina"><div class="resource-track"><span class="resource-name">Stamina</span><div class="meter"><span style="width: ${data.player.stamina}%"></span></div><strong>${data.player.stamina}%</strong></div></div>
+                </section>
+                <section class="hud-panel quest-panel" data-panel="quest" aria-label="Quest tracker">
+                    <div class="panel-heading"><div><span class="eyebrow accent">Active quest</span><h2>${data.quest.title}</h2></div></div>
+                    <p>${data.quest.description}</p><div class="quest-progress"><span></span></div><div class="quest-meta"><span>${data.quest.progress} objectives</span><span>${data.quest.reward}</span></div>
+                </section>
+                <section class="hud-panel party-panel" data-panel="party" aria-label="Party members">
+                    <div class="panel-heading"><div><h2>Adventuring party</h2></div></div>
+                    ${data.party.filter(member => member.role !== "You").map(member => `<div class="party-member"><div class="member-avatar ${member.color}">${member.name.slice(0, 1)}</div><div class="member-info"><div><strong>${member.name}</strong><span>${member.role}</span></div><div class="mini-meter"><span style="width: ${member.health}%"></span></div></div><span class="member-health">${member.health}%</span></div>`).join("")}
+                </section>
+                <section class="hud-panel minimap-panel" data-panel="minimap" aria-label="Minimap">
+                    <div class="minimap"><span class="map-grid"></span><span class="map-path"></span><span class="map-player"></span><span class="map-label label-ruins">Ruins</span><span class="map-label label-camp">Camp</span></div>
+                </section>
+                <section class="hud-panel chat-panel" data-panel="chat" aria-label="Chat log">
+                    <div class="chat-filters" aria-label="Chat filters">
+                        <button class="chat-filter is-on" type="button" data-chat-filter="chat" aria-label="Toggle chat" aria-pressed="true" title="Chat">Chat</button>
+                        <button class="chat-filter is-on" type="button" data-chat-filter="combat" aria-label="Toggle combat" aria-pressed="true" title="Combat">Combat</button>
+                        <button class="chat-filter is-on" type="button" data-chat-filter="system" aria-label="Toggle system" aria-pressed="true" title="System">System</button>
+                    </div>
+                    <div class="chat-log"></div>
+                    <div class="chat-input"><span>Send a message...</span><button type="button" aria-label="Send message">↵</button></div>
+                </section>
+                ${skillBarIds.map((barId, index) => {
+                    const barNumber = index + 1;
+                    const s = getSettingsState();
+                    const slots = Math.min(15, Math.max(5, s.panelConfig?.[barId]?.slots ?? 10));
+                    return buildSkillBarMarkup(barId, barNumber, slots, data.abilities);
+                }).join("")}
+            `);
+            renderChatLog();
+            setupChatFilters();
+        }
+
+        function restoreSettings() {
+            const s = getSettingsState();
+            const opacityValue = Number(s.opacity ?? 1.0);
+            const backgroundColor = s.backgroundColor || "#171d1f";
+            setCssSetting("--panel-opacity", opacityValue);
+            setCssSetting("--panel-base", backgroundColor);
+            const opacityControl = document.getElementById("opacity-control");
+            if (opacityControl) opacityControl.value = String(opacityValue);
+            const backgroundControl = document.getElementById("background-color-control");
+            if (backgroundControl) backgroundControl.value = backgroundColor;
+            document.querySelectorAll(".hud-panel").forEach(panel => {
+                panel.hidden = s.windows?.[panel.dataset.panel] === false;
+            });
+            applyPanelSettings();
+        }
+
+        function applyPanelSettings() {
+            const s = getSettingsState();
+            const chatPanel = document.querySelector('[data-panel="chat"]');
+            const characterPanel = document.querySelector('[data-panel="character"]');
+            const chatConfig = s.panelConfig?.chat || { width: 350, height: 95, fontSize: 14 };
+            const characterConfig = s.panelConfig?.character || { barHeight: 9 };
+
+            if (chatPanel) {
+                chatPanel.style.setProperty("--chat-width", `${chatConfig.width || 350}px`);
+                chatPanel.style.setProperty("--chat-height", `${chatConfig.height || 95}px`);
+                chatPanel.style.setProperty("--chat-font-size", `${chatConfig.fontSize || 14}px`);
+            }
+            if (characterPanel) {
+                const barHeight = Math.max(3, Math.min(16, Number(characterConfig.barHeight) || 9));
+                characterPanel.style.setProperty("--character-bar-height", `${barHeight}px`);
+            }
+            skillBarIds.forEach((barId, index) => {
+                const barPanel = document.querySelector(`[data-panel="${barId}"]`);
+                const barConfig = s.panelConfig?.[barId] || { orientation: "horizontal", slots: 10 };
+                if (!barPanel) return;
+                const orientation = barConfig.orientation === "vertical" ? "vertical" : "horizontal";
+                barPanel.classList.toggle("vertical", orientation === "vertical");
+                barPanel.dataset.orientation = orientation;
+                const slotCount = Math.min(15, Math.max(5, Number(barConfig.slots) || 10));
+                const row = barPanel.querySelector(".ability-row");
+                if (!row) return;
+                row.innerHTML = Array.from({ length: slotCount }, (_, slotIndex) => {
+                    const ability = uiDataCache?.abilities?.[(index) * 15 + slotIndex];
+                    if (!ability) return `<button class="ability empty" type="button" aria-label="Empty ability slot"><span class="ability-icon">+</span></button>`;
+                    return `<button class="ability" type="button" aria-label="${ability.name}"><span class="ability-icon">${ability.icon}</span>${ability.cooldown ? `<b>${ability.cooldown}</b>` : ""}</button>`;
+                }).join("");
+            });
+        }
+
+        function setCssSetting(name, value) { document.documentElement.style.setProperty(name, value); }
+
+        function syncWindowToggleState(panelName, isVisible) {
+            if (!panelName) return;
+            const directToggle = document.querySelector(`[data-window-toggle="${panelName}"]`);
+            const hotbarToggle = panelName.startsWith("hotbar-")
+                ? document.querySelector(`[data-hotbar-toggle="${panelName.replace("hotbar-", "")}"]`)
+                : null;
+            if (directToggle) directToggle.checked = isVisible;
+            if (hotbarToggle) hotbarToggle.checked = isVisible;
+            settings.windows[panelName] = isVisible;
+        }
+
+        function getPanelSettingsMarkup(panelName) {
+            const s = getSettingsState();
+            const config = s.panelConfig?.[panelName] || {};
+            if (panelName === "character") {
+                const barHeight = Math.max(3, Math.min(16, Number(config.barHeight) || 9));
+                return `<div class="setting-field-group"><label class="menu-control-row" for="panel-setting-bar-height"><span>Bar height</span><output>${barHeight}px</output></label><input id="panel-setting-bar-height" type="number" min="3" max="16" step="1" value="${barHeight}" data-config-key="barHeight" data-panel-name="character"></div>`;
+            }
+            if (panelName === "chat") {
+                return `<div class="setting-field-group"><label class="menu-control-row" for="panel-setting-chat-width"><span>Width</span><output>${config.width || 350}px</output></label><input id="panel-setting-chat-width" type="number" min="220" max="600" step="10" value="${config.width || 350}" data-config-key="width" data-panel-name="chat"><label class="menu-control-row" for="panel-setting-chat-height"><span>Height</span><output>${config.height || 95}px</output></label><input id="panel-setting-chat-height" type="number" min="70" max="220" step="5" value="${config.height || 95}" data-config-key="height" data-panel-name="chat"><label class="menu-control-row" for="panel-setting-chat-font"><span>Font size</span><output>${config.fontSize || 14}px</output></label><input id="panel-setting-chat-font" type="number" min="8" max="20" step="1" value="${config.fontSize || 14}" data-config-key="fontSize" data-panel-name="chat"></div>`;
+            }
+            if (skillBarIds.includes(panelName)) {
+                const orientation = config.orientation === "vertical" ? "vertical" : "horizontal";
+                const slots = Math.min(15, Math.max(5, Number(config.slots) || 10));
+                return `<div class="setting-field-group"><label class="menu-control-row" for="panel-setting-orientation"><span>Layout</span><output>${orientation}</output></label><select id="panel-setting-orientation" data-config-key="orientation" data-panel-name="${panelName}"><option value="horizontal" ${orientation === "horizontal" ? "selected" : ""}>Horizontal</option><option value="vertical" ${orientation === "vertical" ? "selected" : ""}>Vertical</option></select><label class="menu-control-row" for="panel-setting-slots"><span>Skill slots</span><output>${slots}</output></label><input id="panel-setting-slots" type="number" min="5" max="15" step="1" value="${slots}" data-config-key="slots" data-panel-name="${panelName}"></div>`;
+            }
+            return "";
+        }
+
+        function bindSettingsControlGroup(root = document) {
+            const s = getSettingsState();
+            const windowToggles = root.querySelectorAll("[data-window-toggle]");
+            const hotbarToggles = root.querySelectorAll("[data-hotbar-toggle]");
+            const opacity = root.querySelector("#opacity-control") || root.querySelector("#menu-opacity-control");
+
+            windowToggles.forEach(toggle => {
+                const target = document.querySelector(`[data-panel="${toggle.dataset.windowToggle}"]`);
+                toggle.checked = !target || target.hidden !== true;
+                toggle.onchange = () => {
+                    const panelElement = document.querySelector(`[data-panel="${toggle.dataset.windowToggle}"]`);
+                    if (panelElement) panelElement.hidden = !toggle.checked;
+                    syncWindowToggleState(toggle.dataset.windowToggle, toggle.checked);
+                };
+            });
+            hotbarToggles.forEach(toggle => {
+                const barId = `hotbar-${toggle.dataset.hotbarToggle}`;
+                const target = document.querySelector(`[data-panel="${barId}"]`);
+                toggle.checked = !target || target.hidden !== true;
+                toggle.onchange = () => {
+                    const panelElement = document.querySelector(`[data-panel="${barId}"]`);
+                    if (panelElement) panelElement.hidden = !toggle.checked;
+                    syncWindowToggleState(barId, toggle.checked);
+                };
+            });
+            if (opacity) {
+                opacity.addEventListener("input", () => {
+                    s.opacity = Number(opacity.value);
+                });
+            }
+        }
+
+        const CASCADE_GAP = 12;
+        const CASCADE_COL_W = 260;
+        const CASCADE_ROW_H = 120;
+
+        function cascadeVisiblePanelsFromTopLeft() {
+            const panels = Array.from(document.querySelectorAll(".hud-panel"))
+                .filter(panel => !panel.hidden && isDraggablePanel(panel));
+
+            panels.forEach((panel, index) => {
+                const col = index % 3;
+                const row = Math.floor(index / 3);
+                const x = CASCADE_GAP + col * CASCADE_COL_W;
+                const y = CASCADE_GAP + row * CASCADE_ROW_H;
+
+                panel.style.left = `${x}px`;
+                panel.style.top = `${y}px`;
+                panel.style.right = "auto";
+                panel.style.bottom = "auto";
+                panel.style.transformOrigin = "top left";
+            });
+        }
+
+        function resetLayout() {
+            document.querySelectorAll(".hud-panel").forEach(panel => {
+                panel.style.left = "";
+                panel.style.right = "";
+                panel.style.top = "";
+                panel.style.bottom = "";
+            });
+
+            cascadeVisiblePanelsFromTopLeft();
+        }
+
+        function showLockToast(message) {
+            const toast = document.getElementById("lock-toast");
+            if (!toast) return;
+            toast.textContent = message;
+            toast.classList.remove("is-showing");
+            void toast.offsetWidth;
+            toast.classList.add("is-showing");
+        }
+
+        function setupSettings() {
+            const toggle = document.getElementById("settings-toggle");
+            const menu = document.getElementById("menu-popover");
+            const s = getSettingsState();
+            bindSettingsControlGroup(document);
+
+            // Tracks where a per-panel settings view was opened from so Back
+            // returns to UI Settings instead of Menu home.
+            let previousScreen = null;
+
+            const menuHomeButtons = [
+                { action: "ui-settings", label: "UI Settings" },
+                { action: "keybindings", label: "Keybindings" },
+                { action: "character", label: "Character" },
+                { action: "quest", label: "Quest Log" },
+                { action: "inventory", label: "Inventory" },
+                { action: "journal", label: "Journal" },
+                { action: "skills", label: "Skills" },
+                { action: "party", label: "Party" }
+            ];
+
+            const screenLabels = {
+                character: "Character",
+                quest: "Quest Log",
+                inventory: "Inventory",
+                journal: "Journal",
+                skills: "Skills",
+                party: "Party",
+                keybindings: "Keybindings"
+            };
+
+            function renderMenuHome() {
+                if (!menu) return;
+                menu.hidden = false;
+                menu.innerHTML = `
+                    <div class="menu-header">
+                        <div class="menu-header-spacer"></div>
+                        <h2>Menu</h2>
+                        <button type="button" class="menu-exit" data-menu-action="exit">Exit</button>
+                    </div>
+                    <div class="menu-body menu-home-body">
+                        ${menuHomeButtons.map(item => `<button class="menu-nav-button" type="button" data-menu-action="${item.action}">${item.label}</button>`).join("")}
+                    </div>
+                `;
+                toggle.setAttribute("aria-expanded", "true");
+            }
+
+            function renderKeybindings() {
+                if (!menu) return;
+                const categories = KEYBINDINGS.map(cat => `
+                    <div class="keybind-category">
+                        <h3>${cat.category}</h3>
+                        ${cat.items.map(item => `
+                            <div class="keybind-row">
+                                <span class="keybind-action">${item.action}</span>
+                                <span class="keybind-key">${item.key}</span>
+                            </div>
+                        `).join("")}
+                    </div>
+                `).join("");
+                menu.innerHTML = `
+                    <div class="menu-header">
+                        <button type="button" class="menu-back" data-menu-action="back">Back</button>
+                        <h2>Keybindings</h2>
+                        <button type="button" class="menu-exit" data-menu-action="exit">Exit</button>
+                    </div>
+                    <div class="menu-body menu-settings-body">
+                        ${categories}
+                    </div>
+                `;
+            }
+
+            function renderMenuScreen(screen) {
+                if (!menu) return;
+                if (screen === "keybindings") {
+                    renderKeybindings();
+                    return;
+                }
+                if (screen === "ui-settings") {
+                    const current = getSettingsState();
+                    const resOptions = Object.entries(RESOLUTIONS).map(([key, val]) =>
+                        `<option value="${key}" ${current.resolution === key ? "selected" : ""}>${val.label}</option>`
+                    ).join("");
+
+                    menu.innerHTML = `
+                        <div class="menu-header">
+                            <button type="button" class="menu-back" data-menu-action="back">Back</button>
+                            <h2>UI Settings</h2>
+                            <button type="button" class="menu-exit" data-menu-action="exit">Exit</button>
+                        </div>
+                        <div class="menu-body menu-settings-body">
+                            <fieldset class="window-visibility">
+                                <legend>Windows</legend>
+                                <label class="window-toggle-item"><span class="toggle-input-wrap"><input type="checkbox" data-window-toggle="character"><button class="window-settings" type="button" data-window-settings="character" aria-label="Character window settings">⚙</button></span><span class="toggle-label">Character</span></label>
+                                <label class="window-toggle-item"><span class="toggle-input-wrap"><input type="checkbox" data-window-toggle="quest"><button class="window-settings" type="button" data-window-settings="quest" aria-label="Quest window settings">⚙</button></span><span class="toggle-label">Quest log</span></label>
+                                <label class="window-toggle-item"><span class="toggle-input-wrap"><input type="checkbox" data-window-toggle="minimap"><button class="window-settings" type="button" data-window-settings="minimap" aria-label="Map window settings">⚙</button></span><span class="toggle-label">Map</span></label>
+                                <label class="window-toggle-item"><span class="toggle-input-wrap"><input type="checkbox" data-window-toggle="chat"><button class="window-settings" type="button" data-window-settings="chat" aria-label="Chat window settings">⚙</button></span><span class="toggle-label">Chat</span></label>
+                                <label class="window-toggle-item"><span class="toggle-input-wrap"><input type="checkbox" data-window-toggle="party"><button class="window-settings" type="button" data-window-settings="party" aria-label="Party window settings">⚙</button></span><span class="toggle-label">Party</span></label>
+                                <label class="window-toggle-item"><span class="toggle-input-wrap"><input type="checkbox" data-hotbar-toggle="1" checked><button class="window-settings" type="button" data-window-settings="hotbar-1" aria-label="Skill Bar 1 settings">⚙</button></span><span class="toggle-label">Skill Bar 1</span></label>
+                                <label class="window-toggle-item"><span class="toggle-input-wrap"><input type="checkbox" data-hotbar-toggle="2"><button class="window-settings" type="button" data-window-settings="hotbar-2" aria-label="Skill Bar 2 settings">⚙</button></span><span class="toggle-label">Skill Bar 2</span></label>
+                                <label class="window-toggle-item"><span class="toggle-input-wrap"><input type="checkbox" data-hotbar-toggle="3"><button class="window-settings" type="button" data-window-settings="hotbar-3" aria-label="Skill Bar 3 settings">⚙</button></span><span class="toggle-label">Skill Bar 3</span></label>
+                            </fieldset>
+                            <label class="menu-control-row" for="menu-opacity-control"><span>Opacity</span><output id="menu-opacity-value" for="menu-opacity-control">${Math.round((Number(current.opacity ?? 1) * 100))}%</output></label>
+                            <input id="menu-opacity-control" type="range" min="0.35" max="1" step="0.01" value="${current.opacity ?? 1}">
+                            <label class="menu-control-row" for="menu-background-color-control"><span>Background</span><output for="menu-background-color-control">Theme</output></label>
+                            <input id="menu-background-color-control" type="color" value="${current.backgroundColor || "#171d1f"}" aria-label="Pick a UI background color">
+
+                            <label class="menu-control-row" for="menu-resolution-select"><span>Screen Resolution</span><output>${RESOLUTIONS[current.resolution]?.label || ""}</output></label>
+                            <select id="menu-resolution-select" aria-label="Screen resolution preset" style="width:100%; padding:8px; background:rgba(10,16,18,.8); border:1px solid rgba(236,227,202,.2); color:var(--ink); font-family:Consolas, 'Courier New', monospace; font-size:11px; border-radius:2px;">
+                                ${resOptions}
+                            </select>
+
+                            <label class="menu-control-row" for="menu-ui-size-select"><span>UI Size</span><output>${UI_SIZES[current.uiSize]?.label || UI_SIZES[DEFAULT_UI_SIZE].label}</output></label>
+                            <select id="menu-ui-size-select" aria-label="UI size" style="width:100%; padding:8px; background:rgba(10,16,18,.8); border:1px solid rgba(236,227,202,.2); color:var(--ink); font-family:Consolas, 'Courier New', monospace; font-size:11px; border-radius:2px;">
+                                ${Object.entries(UI_SIZES).map(([key, val]) => `<option value="${key}" ${current.uiSize === key ? "selected" : ""}>${val.label}</option>`).join("")}
+                            </select>
+
+                            <div class="reset-layout-row">
+                                <span style="flex:1; font-size:10px; opacity:0.9;">Reset window positions only</span>
+                                <button id="menu-reset-layout" class="btn-reset" type="button">Reset Layout</button>
+                            </div>
+                        </div>
+                    `;
+                    bindSettingsControlGroup(menu);
+                    bindMenuInlineControls();
+
+                    const resSelect = menu.querySelector("#menu-resolution-select");
+                    if (resSelect) {
+                        // Screen resolution selection is currently inactive.
+                    }
+
+                    const uiSizeSelect = menu.querySelector("#menu-ui-size-select");
+                    if (uiSizeSelect) {
+                        uiSizeSelect.addEventListener("change", (e) => {
+                            const state = getSettingsState();
+                            state.uiSize = e.target.value;
+                            applyUiSize();
+                            const output = uiSizeSelect.closest(".menu-settings-body").querySelector("label[for='menu-ui-size-select'] output");
+                            if (output) output.textContent = UI_SIZES[state.uiSize]?.label || UI_SIZES[DEFAULT_UI_SIZE].label;
+                        });
+                    }
+
+                    const resetBtn = menu.querySelector("#menu-reset-layout");
+                    if (resetBtn) {
+                        resetBtn.addEventListener("click", () => {
+                            const menuBody = menu.querySelector(".menu-body");
+                            const scrollTop = menuBody ? menuBody.scrollTop : 0;
+
+                            resetLayout();
+                            renderMenuScreen("ui-settings");
+
+                            const newMenuBody = menu.querySelector(".menu-body");
+                            if (newMenuBody) newMenuBody.scrollTop = scrollTop;
+                        });
+                    }
+                    return;
+                }
+                const label = screenLabels[screen] || "Menu";
+                menu.innerHTML = `
+                    <div class="menu-header">
+                        <button type="button" class="menu-back" data-menu-action="back">Back</button>
+                        <h2>${label}</h2>
+                        <button type="button" class="menu-exit" data-menu-action="exit">Exit</button>
+                    </div>
+                    <div class="menu-body menu-screen-body"><p class="menu-placeholder">${label} content goes here.</p></div>
+                `;
+            }
+
+            function renderPanelSettings(panelName) {
+                if (!menu) return;
+                const markup = getPanelSettingsMarkup(panelName);
+                if (!markup) return;
+                const title = panelName === "character" ? "Character"
+                    : panelName === "chat" ? "Chat"
+                    : panelName.startsWith("hotbar-") ? `Skill Bar ${panelName.replace("hotbar-", "")}`
+                    : panelName.charAt(0).toUpperCase() + panelName.slice(1);
+                menu.innerHTML = `
+                    <div class="menu-header">
+                        <button type="button" class="menu-back" data-menu-action="back">Back</button>
+                        <h2>${title}</h2>
+                        <button type="button" class="menu-exit" data-menu-action="exit">Exit</button>
+                    </div>
+                    <div class="menu-body menu-settings-body">${markup}</div>
+                `;
+                menu.querySelectorAll("[data-config-key]").forEach(input => {
+                    input.addEventListener("change", event => {
+                        const state = getSettingsState();
+                        const key = event.target.dataset.configKey;
+                        const current = state.panelConfig?.[panelName] || {};
+                        const value = event.target.type === "number" ? Number(event.target.value) : event.target.value;
+                        current[key] = value;
+                        state.panelConfig[panelName] = current;
+                        applyPanelSettings();
+                    });
+                });
+            }
+
+            function bindMenuInlineControls() {
+                if (!menu) return;
+                const menuOpacity = menu.querySelector("#menu-opacity-control");
+                if (menuOpacity) {
+                    menuOpacity.addEventListener("input", () => {
+                        const value = Number(menuOpacity.value);
+                        setCssSetting("--panel-opacity", String(value));
+                        const opacityValue = menu.querySelector("#menu-opacity-value");
+                        if (opacityValue) opacityValue.textContent = `${Math.round(value * 100)}%`;
+                        getSettingsState().opacity = value;
+                    });
+                }
+                const menuBackground = menu.querySelector("#menu-background-color-control");
+                if (menuBackground) {
+                    menuBackground.addEventListener("input", () => {
+                        const backgroundColor = menuBackground.value;
+                        setCssSetting("--panel-base", backgroundColor);
+                        getSettingsState().backgroundColor = backgroundColor;
+                    });
+                }
+            }
+
+            menu.addEventListener("click", (event) => {
+                const actionBtn = event.target.closest("[data-menu-action]");
+                if (actionBtn && menu.contains(actionBtn)) {
+                    const action = actionBtn.dataset.menuAction;
+                    if (action === "exit") {
+                        menu.hidden = true;
+                        toggle.setAttribute("aria-expanded", "false");
+                        previousScreen = null;
+                        return;
+                    }
+                    if (action === "back") {
+                        if (previousScreen) {
+                            const target = previousScreen;
+                            previousScreen = null;
+                            renderMenuScreen(target);
+                        } else {
+                            renderMenuHome();
+                        }
+                        return;
+                    }
+                    if (action === "ui-settings") {
+                        previousScreen = null;
+                        renderMenuScreen("ui-settings");
+                        return;
+                    }
+                    if (action === "keybindings") {
+                        previousScreen = null;
+                        renderMenuScreen("keybindings");
+                        return;
+                    }
+                    renderMenuScreen(action);
+                    return;
+                }
+
+                const gearBtn = event.target.closest("[data-window-settings]");
+                if (gearBtn && menu.contains(gearBtn)) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    previousScreen = "ui-settings";
+                    renderPanelSettings(gearBtn.dataset.windowSettings);
+                }
+            });
+
+            toggle.addEventListener("click", (event) => {
+                event.stopPropagation();
+                const isOpen = menu && menu.hidden === false;
+                if (isOpen) {
+                    menu.hidden = true;
+                    toggle.setAttribute("aria-expanded", "false");
+                    previousScreen = null;
+                    return;
+                }
+                renderMenuHome();
+            });
+        }
+
+        function setUiLocked(locked) {
+            uiLocked = locked;
+            document.body.dataset.uiLocked = String(locked);
+            showLockToast(locked ? "UI Locked" : "UI Unlocked");
+        }
+
+        function isDraggablePanel(el) {
+            if (!el || !el.classList) return false;
+            if (!el.classList.contains("hud-panel")) return false;
+            if (el.id === "settings-panel") return false;
+            if (el.id === "menu-popover") return false;
+            if (el.id === "window-settings-popover") return false;
+            return true;
+        }
+
+        let activeDrag = null;
+
+        function setupDragging() {
+            document.querySelectorAll(".hud-panel").forEach(panel => {
+                if (!isDraggablePanel(panel)) return;
+
+                panel.addEventListener("pointerdown", (event) => {
+                    if (
+                        uiLocked ||
+                        event.button !== 0 ||
+                        !event.shiftKey ||
+                        event.target.closest("#menu-popover, #window-settings-popover")
+                    ) return;
+
+                    event.preventDefault();
+                    panel.style.zIndex = String(++topWindowLayer);
+
+                    try { panel.setPointerCapture(event.pointerId); } catch (_) {}
+
+                    const bounds = panel.getBoundingClientRect();
+
+                    activeDrag = {
+                        panel,
+                        pointerId: event.pointerId,
+                        lastX: event.clientX,
+                        lastY: event.clientY,
+                        currentLeft: bounds.left,
+                        currentTop: bounds.top
+                    };
+                });
+
+                panel.addEventListener("pointermove", (event) => {
+                    if (!activeDrag || activeDrag.panel !== panel) return;
+                    if (event.pointerId !== activeDrag.pointerId) return;
+
+                    const dx = event.clientX - activeDrag.lastX;
+                    const dy = event.clientY - activeDrag.lastY;
+                    activeDrag.lastX = event.clientX;
+                    activeDrag.lastY = event.clientY;
+
+                    activeDrag.currentLeft += dx;
+                    activeDrag.currentTop += dy;
+
+                    panel.style.left = `${activeDrag.currentLeft}px`;
+                    panel.style.top = `${activeDrag.currentTop}px`;
+                    panel.style.right = "auto";
+                    panel.style.bottom = "auto";
+                    panel.style.transformOrigin = "top left";
+                });
+
+                const endDrag = (event) => {
+                    if (!activeDrag || activeDrag.panel !== panel) return;
+                    if (event && event.pointerId !== undefined && event.pointerId !== activeDrag.pointerId) return;
+                    try { panel.releasePointerCapture(activeDrag.pointerId); } catch (_) {}
+                    activeDrag = null;
+                };
+
+                panel.addEventListener("pointerup", endDrag);
+                panel.addEventListener("pointercancel", endDrag);
+                panel.addEventListener("lostpointercapture", endDrag);
+            });
+        }
+
+        window.addEventListener("blur", () => { activeDrag = null; });
+
+        function setupHotbar() {
+            skillBarIds.forEach((barId, index) => {
+                const barPanel = document.querySelector(`[data-panel="${barId}"]`);
+                if (!barPanel) return;
+                const barConfig = getSettingsState().panelConfig?.[barId] || { orientation: "horizontal", slots: 10 };
+                const orientation = barConfig.orientation === "vertical" ? "vertical" : "horizontal";
+                barPanel.classList.toggle("vertical", orientation === "vertical");
+                barPanel.dataset.orientation = orientation;
+                const slotCount = Math.min(15, Math.max(5, Number(barConfig.slots) || 10));
+                const row = barPanel.querySelector(".ability-row");
+                if (!row) return;
+                row.innerHTML = Array.from({ length: slotCount }, (_, slotIndex) => {
+                    const ability = uiDataCache?.abilities?.[(index) * 15 + slotIndex];
+                    if (!ability) return `<button class="ability empty" type="button" aria-label="Empty ability slot"><span class="ability-icon">+</span></button>`;
+                    return `<button class="ability" type="button" aria-label="${ability.name}"><span class="ability-icon">${ability.icon}</span>${ability.cooldown ? `<b>${ability.cooldown}</b>` : ""}</button>`;
+                }).join("");
+            });
+        }
+
+        function getUiSizeScale(sizeKey) {
+            return UI_SIZES[sizeKey]?.scale ?? UI_SIZES[DEFAULT_UI_SIZE].scale;
+        }
+
+        function applyUiSize() {
+            const scale = getUiSizeScale(getSettingsState().uiSize);
+            document.querySelectorAll(".hud-panel").forEach(panel => {
+                panel.style.setProperty("--ui-window-scale", scale);
+            });
+        }
+
+        function restoreLayout() {
+            const s = getSettingsState();
+            const resKey = s.resolution || DEFAULT_RESOLUTION;
+            const positions = getDefaultPositions(resKey);
+
+            document.querySelectorAll(".hud-panel").forEach(panel => {
+                const panelName = panel.dataset.panel;
+                const pos = positions[panelName];
+                if (pos) {
+                    panel.style.left = "auto";
+                    panel.style.right = "auto";
+                    panel.style.top = "auto";
+                    panel.style.bottom = "auto";
+                    panel.style.setProperty("--ui-window-scale", getUiSizeScale(s.uiSize));
+                    if (pos.left !== undefined) panel.style.left = pos.left;
+                    if (pos.right !== undefined) panel.style.right = pos.right;
+                    if (pos.top !== undefined) panel.style.top = pos.top;
+                    if (pos.bottom !== undefined) panel.style.bottom = pos.bottom;
+                }
+            });
+        }
+
+        window.addEventListener("keydown", (event) => {
+            if (event.ctrlKey && event.shiftKey && event.key && event.key.toLowerCase() === "u") {
+                event.preventDefault();
+                setUiLocked(!uiLocked);
+            }
+        });
+
+        document.addEventListener("contextmenu", (event) => {
+            if (uiLocked || !event.altKey) return;
+
+            const menuTarget = event.target.closest("#menu-popover, #window-settings-popover");
+            if (menuTarget) {
+                event.preventDefault();
+                return;
+            }
+
+            const targetWindow = event.target.closest(".hud-panel, #settings-panel");
+            if (!targetWindow) return;
+
+            event.preventDefault();
+            const panelName = targetWindow.dataset.panel || targetWindow.id;
+            targetWindow.hidden = true;
+            if (panelName && panelName !== "settings-panel") {
+                syncWindowToggleState(panelName, false);
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            setUiLocked(false);
+            loadUi();
+        });
+    </script>
 </body>
 </html>

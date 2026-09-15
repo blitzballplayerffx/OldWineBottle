@@ -1,182 +1,685 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base href="./main/">
     <title>Legends of Aetheria MMORPG</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e1b4b);
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== UTILITY ===== */
+        .hidden {
+            display: none !important;
+        }
+
+        /* ===== TOP NAV ===== */
+        .top-nav-bar {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 12px;
+            flex-wrap: wrap;
+            z-index: 10;
+        }
+
+        .top-nav-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            width: min(100%, 1000px);
+            flex-wrap: wrap;
+        }
+
+        .top-nav-btn {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 10px 16px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .top-nav-btn:hover,
+        .top-nav-btn.active {
+            background: #ffd166;
+            color: #0d0d0d;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 209, 102, 0.3);
+        }
+
+        /* ===== CARDS / SECTIONS ===== */
+        .card {
+            width: 100%;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            text-align: center;
+            gap: 20px;
+        }
+
+        .home {
+            padding-top: 20px;
+        }
+
+        .home-title-row {
+            width: min(1100px, 100%);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: clamp(36px, 6vw, 76px);
+            color: #ffd166;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-size: clamp(30px, 4vw, 52px);
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: clamp(24px, 3vw, 38px);
+            color: #ffd166;
+            margin-bottom: 12px;
+        }
+
+        /* ===== HOME HERO ===== */
+        .home-hero-layout {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            width: min(1100px, 100%);
+        }
+
+        .home-banner-img {
+            width: 100%;
+            max-width: 850px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            display: block;
+        }
+
+        .quick-links-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            width: fit-content;
+            max-width: 100%;
+        }
+
+        .quick-link {
+            height: 44px;
+            padding: 10px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .quick-link:hover {
+            background: #ffd166;
+            color: #0d0d0d;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 209, 102, 0.3);
+        }
+
+        /* ===== SLIDER ===== */
+        .slider {
+            width: min(1100px, 100%);
+            display: flex;
+            overflow: hidden;
+            margin-top: 10px;
+            border-radius: 24px;
+            position: relative;
+        }
+
+        .slide {
+            flex: 0 0 100%;
+            width: 100%;
+            min-width: 100%;
+            padding: 35px 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.28);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 24px;
+        }
+
+        .slide-emoji {
+            font-size: 58px;
+            margin-bottom: 10px;
+        }
+
+        .slide p {
+            max-width: 800px;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #eee;
+        }
+
+        /* ===== FEATURES LIST ===== */
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            max-width: 850px;
+            padding: 0;
+            margin: 10px 0 0;
+            list-style: none;
+        }
+
+        .features li {
+            padding: 9px 14px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .features li::before {
+            content: "✦ ";
+            color: #ffd166;
+        }
+
+        /* ===== BOTTOM NAV ===== */
+        .bottom-nav {
+            width: min(1200px, 100%);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px 14px;
+            padding: 10px;
+        }
+
+        .nav-item {
+            min-width: 82px;
+            padding: 8px 6px;
+            font-size: 36px;
+            line-height: 1;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 14px;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            transform: scale(1.08);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .nav-label {
+            font-size: 13px;
+            margin-top: 7px;
+            color: #eee;
+            white-space: nowrap;
+        }
+
+        /* ===== SLIDER DOTS ===== */
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot:hover {
+            background: rgba(255, 209, 102, 0.6);
+            transform: scale(1.2);
+        }
+
+        .dot.active {
+            background: #ffd166;
+            transform: scale(1.25);
+            box-shadow: 0 0 8px rgba(255, 209, 102, 0.6);
+        }
+
+        /* ===== SECTION BACKGROUNDS ===== */
+        .news {
+            background: linear-gradient(135deg, #0e1330, #2b1f62);
+        }
+
+        .story {
+            background: radial-gradient(circle at 50% 18%, rgba(255, 177, 71, 0.12), transparent 28%), linear-gradient(135deg, #0f172a, #1e1b4b);
+        }
+
+        .features-section {
+            background: linear-gradient(135deg, #2b1d3d, #172b4a);
+        }
+
+        .realms {
+            background: linear-gradient(135deg, #10251d, #1a392a);
+        }
+
+        .races {
+            background: linear-gradient(135deg, #171b3b, #292054);
+        }
+
+        .classes {
+            background: linear-gradient(135deg, #351b3b, #542044);
+        }
+
+        .support {
+            background: linear-gradient(135deg, #2a1b10, #b86b18);
+        }
+
+        .media {
+            background: linear-gradient(135deg, #221233, #5b2d9b);
+        }
+
+        .account {
+            background: linear-gradient(135deg, #071827, #163a52);
+        }
+
+        /* ===== ACCOUNT ===== */
+        .account-panel {
+            width: min(700px, 100%);
+        }
+
+        .account-notice {
+            padding: 16px 20px;
+            border: 1px solid rgba(255, 209, 102, 0.45);
+            border-radius: 8px;
+            background: rgba(255, 209, 102, 0.12);
+            color: #fff3c4;
+            line-height: 1.6;
+        }
+
+        .account-auth,
+        .account-subpage,
+        .account-overview {
+            padding: 30px;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.25);
+            width: 100%;
+        }
+
+        .account-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .account-button {
+            min-width: 150px;
+            padding: 11px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            font-size: 16px;
+        }
+
+        .account-button:hover {
+            background: #ffd166;
+            color: #0d0d0d;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 209, 102, 0.3);
+        }
+
+        .sign-in-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            max-width: 360px;
+            margin: 24px auto 0;
+        }
+
+        .sign-in-form label {
+            align-self: stretch;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .sign-in-form input {
+            width: 100%;
+            padding: 11px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 6px;
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            font: inherit;
+        }
+
+        .sign-in-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .sign-in-message {
+            min-height: 24px;
+            margin: 0;
+            color: #ffd166;
+        }
+
+        .account-overview-details {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 20px;
+            padding: 18px;
+            border-left: 3px solid #ffd166;
+            background: rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+
+        /* ===== FOOTER ===== */
+        .site-footer {
+            width: 100%;
+            margin-top: auto;
+            padding: 28px 20px 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.18);
+            background: rgba(0, 0, 0, 0.28);
+            color: rgba(255, 255, 255, 0.72);
+            text-align: left;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 18px 30px;
+            width: min(1100px, 100%);
+            margin: 0 auto;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .footer-brand strong {
+            color: #ffd166;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #ffd166;
+        }
+
+        .footer-meta {
+            grid-column: 1 / -1;
+            margin: 0;
+            color: rgba(255, 255, 255, 0.52);
+            font-size: 14px;
+        }
+
+        /* ===== VIDEO ===== */
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            padding-bottom: 30%;
+            height: 0;
+            margin-top: 10px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* ===== SOCIAL BUTTONS ===== */
+        .social-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .social-btn {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .social-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 850px) {
+            .quick-links-bar {
+                gap: 6px;
+            }
+
+            .quick-link {
+                height: 40px;
+                padding: 8px 10px;
+                font-size: 13px;
+            }
+
+            .card {
+                padding: 30px 15px;
+            }
+
+            .home {
+                padding-top: 15px;
+            }
+
+            .slide {
+                padding: 25px 18px;
+            }
+
+            .slide p {
+                font-size: 16px;
+            }
+
+            .bottom-nav {
+                gap: 6px 8px;
+                padding: 6px;
+            }
+
+            .nav-item {
+                min-width: 64px;
+                padding: 6px 4px;
+                font-size: 28px;
+            }
+
+            .nav-label {
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .footer-links {
+                justify-content: flex-start;
+            }
+
+            .nav-item {
+                min-width: 54px;
+                font-size: 24px;
+            }
+
+            .nav-label {
+                font-size: 9px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- Global Top Navigation -->
+    <!-- ===== TOP NAVIGATION ===== -->
     <div class="top-nav-bar" id="top-nav-bar"></div>
 
-    <!-- =========================
-         HOME SECTION
-         ========================= -->
+    <!-- ===== HOME SECTION ===== -->
     <section class="card home" id="home">
-
         <div class="home-title-row">
             <h1>Legends of Aetheria</h1>
         </div>
-
-
-
-        <!-- Home Hero Layout -->
         <div class="home-hero-layout">
             <img src="images/party-banner.jpg" alt="Party Showcase" class="home-banner-img">
-
             <nav class="quick-links-bar" id="quick-links-bar"></nav>
         </div>
-
     </section>
 
-    <!-- =========================
-         NEWS SECTION
-         ========================= -->
+    <!-- ===== NEWS SECTION ===== -->
     <section class="card news" id="news">
-
-        <!-- News Carousel (moved from Home) -->
         <div class="slider" id="newsSlider"></div>
         <div class="slider-dots" id="newsDots"></div>
-
-        <!-- Example static news article -->
-        <article class="news-article">
+        <article class="news-article" style="max-width:800px; text-align:left; margin-top:20px;">
             <h3>Welcome to the Legends of Aetheria Dev Blog</h3>
-            <p>This page contains the main announcements and spotlight trailers. Use the carousel above to cycle through highlights.</p>
+            <p>This page contains the main announcements and spotlight trailers. Use the carousel above to cycle through
+                highlights.</p>
         </article>
     </section>
 
-    <!-- =========================
-         STORY SECTION
-         ========================= -->
+    <!-- ===== STORY SECTION ===== -->
     <section class="card story" id="story">
-        <div class="ambient-particles" aria-hidden="true">
-            <span></span><span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span><span></span>
-        </div>
-        <div class="story-content" id="storyContent"></div>
+        <div class="story-content" id="storyContent" style="max-width:900px;"></div>
     </section>
 
-    <!-- =========================
-         FEATURES SECTION
-         ========================= -->
+    <!-- ===== FEATURES SECTION ===== -->
     <section class="card features-section" id="features">
         <div class="slider" id="featuresSlider"></div>
         <div class="bottom-nav" id="featuresNav"></div>
     </section>
 
-    <!-- =========================
-         REALMS SECTION
-         ========================= -->
+    <!-- ===== REALMS SECTION ===== -->
     <section class="card realms" id="realms">
         <div class="slider" id="realmsSlider"></div>
         <div class="bottom-nav" id="realmsNav"></div>
     </section>
 
-    <!-- =========================
-         RACES SECTION
-         ========================= -->
+    <!-- ===== RACES SECTION ===== -->
     <section class="card races" id="races">
         <div class="slider" id="racesSlider"></div>
         <div class="bottom-nav" id="racesNav"></div>
     </section>
 
-    <!-- =========================
-         CLASSES SECTION
-         ========================= -->
+    <!-- ===== CLASSES SECTION ===== -->
     <section class="card classes" id="classes">
         <div class="slider" id="classesSlider"></div>
         <div class="bottom-nav" id="classesNav"></div>
     </section>
 
-    <!-- =========================
-         CRAFTING SECTION
-         ========================= -->
+    <!-- ===== CRAFTING SECTION ===== -->
     <section id="crafting" class="card features-section">
         <div id="craftingSlider" class="slider"></div>
         <div id="craftingNav" class="bottom-nav"></div>
     </section>
 
-    <!-- =========================
-         WIKI SECTION
-         ========================= -->
-    <section class="wiki-view hidden" id="wiki">
-        <nav class="wiki-sidebar">
-            <h2>Wiki Index</h2>
-            <ul class="wiki-nav-list">
-                <li><a onclick="loadMainPage()">Home</a></li>
-                <li class="category-start"><a onclick="loadFeature('armor')">Armor</a></li>
-                <li><a onclick="loadFeature('books')">Books</a></li>
-                <li><a onclick="loadFeature('customization')">Character Customization</a></li>
-                <li><a onclick="loadClassesIndex()">Classes</a></li>
-                <li><a onclick="loadFeature('clothing')">Clothing</a></li>
-                <li><a onclick="loadFeature('combat')">Combat</a></li>
-                <li><a onclick="loadFeature('crafting')">Crafting</a></li>
-                <li><a onclick="loadFeature('dual-classing')">Dual Classing</a></li>
-                <li><a onclick="loadFeature('exploration')">Exploration</a></li>
-                <li><a onclick="loadFeature('food')">Food</a></li>
-                <li><a onclick="loadFeature('gathering')">Gathering</a></li>
-                <li><a onclick="loadFeature('jewelry')">Jewelry</a></li>
-                <li><a onclick="loadFeature('leveling')">Leveling</a></li>
-                <li><a onclick="loadMagicIndex()">Magic</a></li>
-                <li><a onclick="loadFeature('maps')">Maps</a></li>
-                <li><a onclick="loadFeature('mounts')">Mounts</a></li>
-                <li><a onclick="loadFeature('pets')">Pets</a></li>
-                <li><a onclick="loadFeature('housing')">Player Housing</a></li>
-                <li><a onclick="loadFeature('potions')">Potions</a></li>
-                <li><a onclick="loadFeature('pvp')">PvP</a></li>
-                <li><a onclick="loadRacesIndex()">Races</a></li>
-                <li><a onclick="loadRealmsIndex()">Realms</a></li>
-                <li><a onclick="loadFeature('tools')">Tools</a></li>
-                <li><a onclick="loadFeature('traps')">Traps</a></li>
-                <li><a onclick="loadFeature('weapons')">Weapons</a></li>
-            </ul>
-        </nav>
-        <main class="wiki-main-content">
-            <header class="wiki-header">
-                <h1>Aetheria Explorer's Codex</h1>
-                <p>The official archive for game mechanics, job paths, and world lore.</p>
-            </header>
-            <div id="content-area"></div>
-        </main>
-    </section>
-
-    <!-- =========================
-         SUPPORT SECTION
-         ========================= -->
-    <section class="card support" id="support">
+    <!-- ===== SUPPORT SECTION ===== -->
+    <section class="card support hidden" id="support">
         <h2>Support</h2>
-        <p>If you need help, contact our support team or check the community forums. This is placeholder content for the support page.</p>
-        <ul>
+        <p>If you need help, contact our support team or check the community forums.</p>
+        <ul style="list-style:none; padding:0;">
             <li>How to report bugs</li>
             <li>Known issues</li>
             <li>Contact: support@example.com</li>
         </ul>
     </section>
 
-    <!-- =========================
-         ABOUT SECTION (removed)
-
-    <!-- =========================
-         MEDIA SECTION
-         ========================= -->
-    <section class="card media" id="media">
+    <!-- ===== MEDIA SECTION ===== -->
+    <section class="card media hidden" id="media">
         <h2>Media</h2>
         <p>Trailers, screenshots, and artwork gallery. Placeholder content for the media page.</p>
     </section>
 
-    <!-- =========================
-         ACCOUNT SECTION
-         ========================= -->
-    <section class="card account" id="account">
+    <!-- ===== ACCOUNT SECTION ===== -->
+    <section class="card account hidden" id="account">
         <div class="account-panel">
-            <p class="account-notice">Account registration is paused until the game is developed. You can sign in with "user" and "password" to try the account overview.</p>
-
+            <p class="account-notice">Account registration is paused until the game is developed. You can sign in with
+                "user" and "password" to try the account overview.</p>
             <div id="account-auth" class="account-auth">
                 <h2>Account</h2>
                 <div class="account-actions">
@@ -184,22 +687,19 @@
                     <button type="button" class="account-button" id="show-sign-in-button">Sign In</button>
                 </div>
             </div>
-
             <div id="register-page" class="account-subpage" hidden>
                 <h2>Register</h2>
                 <p>Account registration is paused until the game is developed.</p>
                 <button type="button" class="account-button" id="back-from-register-button">Back</button>
             </div>
-
             <div id="sign-in-page" class="account-subpage" hidden>
                 <h2>Sign In</h2>
                 <form id="sign-in-form" class="sign-in-form">
                     <label for="account-username">Username</label>
                     <input type="text" id="account-username" name="username" autocomplete="username" required>
-
                     <label for="account-password">Password</label>
-                    <input type="password" id="account-password" name="password" autocomplete="current-password" required>
-
+                    <input type="password" id="account-password" name="password" autocomplete="current-password"
+                        required>
                     <div class="sign-in-actions">
                         <button type="submit" class="account-button">Sign In</button>
                         <button type="button" class="account-button" id="back-from-sign-in-button">Back</button>
@@ -207,7 +707,6 @@
                     <p id="sign-in-message" class="sign-in-message" role="status" aria-live="polite"></p>
                 </form>
             </div>
-
             <div id="account-overview" class="account-overview" hidden>
                 <h2>Account Overview</h2>
                 <p>Welcome back, user.</p>
@@ -220,6 +719,7 @@
         </div>
     </section>
 
+    <!-- ===== FOOTER ===== -->
     <footer class="site-footer">
         <div class="footer-content">
             <div class="footer-brand">
@@ -229,13 +729,445 @@
             <nav class="footer-links" aria-label="Footer navigation">
                 <a href="#support">Support</a>
                 <a href="#wiki">Wiki</a>
-                <a href="https://github.com/blitzballplayerffx/OldWineBottle" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://github.com/blitzballplayerffx/OldWineBottle" target="_blank"
+                    rel="noopener noreferrer">GitHub</a>
             </nav>
-            <p class="footer-meta">© 2026 Legends of Aetheria. Worldbuilding, systems, and adventures are still taking shape.</p>
+            <p class="footer-meta">© 2026 Legends of Aetheria. Worldbuilding, systems, and adventures are still taking
+                shape.</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // ===== DATA =====
+        const DATA = {
+            topNavLinks: [
+                { label: "🏠 Home", href: "#home" },
+                { label: "📰 News", href: "#news" },
+                { label: "👤 Account", href: "#account" },
+                { label: "🎧 Support", href: "#support" },
+                { label: "🎬 Media", href: "#media" },
+                { label: "📚 Wiki", href: "wiki.html", target: "_blank" },
+                { label: "💻 GitHub", href: "https://github.com/blitzballplayerffx/OldWineBottle", target: "_blank" }
+            ],
+            quickLinks: [
+                { label: "📖 Story", href: "#story" },
+                { label: "✨ Features", href: "#features" },
+                { label: "🌍 Realms", href: "#realms" },
+                { label: "🧬 Races", href: "#races" },
+                { label: "⚔️ Classes", href: "#classes" },
+                { label: "🛠️ Crafting", href: "#crafting" }
+            ],
+            homeSlides: [
+                {
+                    type: "social",
+                    title: "Follow Us on Social Media",
+                    description: "Join our growing community! Stay connected for real-time announcements, artwork, community events, and live Q&A sessions with the development team.",
+                    buttons: [
+                        { label: "Discord", href: "#" },
+                        { label: "X / Twitter", href: "#" },
+                        { label: "Reddit", href: "#" },
+                        { label: "YouTube", href: "#" }
+                    ]
+                },
+                {
+                    type: "list",
+                    title: "Developer Updates & Patch Notes",
+                    description: "Version 0.8.2 is live! We've rebalanced faction warfare, added new high-level crafting recipes, and optimized server memory allocation for large-scale world bosses.",
+                    features: ["Server performance improvements", "New Mercenary contract system", "Expanded UI dark mode support"]
+                },
+                {
+                    type: "list",
+                    title: "History of Aetheria",
+                    description: "Forged over a decade of dedicated indie development, Legends of Aetheria brings back the classic, cooperative feel of timeless MMORPGs where player decisions and community bonds truly matter.",
+                    features: ["Classic 75-cap spirit", "Player-driven economy", "No automated trust bots"]
+                },
+                {
+                    type: "video",
+                    videoUrl: "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ"
+                }
+            ],
+            story: {
+                title: "🌌 Legends of Aetheria",
+                subtitle: "The Shattered World",
+                paragraphs: [
+                    "Long ago, the world of Aetheria was protected by the Celestial Crown, an ancient artifact that kept the realms in balance. When the Crown shattered, its fragments fell across the world, awakening forgotten gods, cursed kingdoms, and creatures from beyond the stars.",
+                    "Players must choose their race and class, explore dangerous realms, form alliances, defeat rival factions, and collect the fragments of the Celestial Crown before Aetheria collapses into eternal chaos."
+                ],
+                features: ["Open-world exploration", "Faction warfare", "Ancient artifacts", "Player guilds", "World bosses", "Branching storylines"]
+            },
+            features: [
+                { emoji: "🧑", label: "Customization", title: "Character Customization", description: "Create a character that feels uniquely yours with a wide range of appearance, equipment, and personalization options.", features: ["Appearance customization", "Armor styles", "Outfit styles", "Weapons", "Accessories", "Personal character identity"] },
+                { emoji: "⬆️", label: "Leveling", title: "Leveling", description: "Progress your character through combat, quests, exploration, and achievements while unlocking new abilities and equipment.", features: ["Character progression", "Ability unlocks", "Powerful equipment", "Multiple progression paths"] },
+                { emoji: "⚔️", label: "Combat", title: "Combat", description: "Master fast-paced battles with tactical abilities, class strengths, and deliberate choices that make every encounter matter.", features: ["Action-based encounters", "Class abilities", "Combos", "Tactical enemy strategies", "Group combat", "Solo combat"] },
+                { emoji: "🎭", label: "Dual Classing", title: "Dual Classing", description: "Combine two distinct job paths to create unique synergies, tailoring your abilities and playstyle to suit any challenge.", features: ["Sub-job combinations", "Shared ability pools", "Flexible builds", "Custom synergies"] },
+                { emoji: "🐎", label: "Mounts", title: "Mounts", description: "Travel across the vast world of Aetheria with mounts ranging from dependable steeds to fantastic creatures of legend.", features: ["Land mounts", "Flying mounts", "Rare creatures", "Mount collection"] },
+                { emoji: "🐾", label: "Pets", title: "Pets and Companions", description: "Raise, train, and adventure alongside loyal pets that support you with unique abilities and companionship.", features: ["Pet adoption", "Companion abilities", "Training", "Bonding", "Rare pet breeds"] },
+                { emoji: "⚔️", label: "PvP", title: "PvP", description: "Test your skills against other players through faction warfare, competitive battles, and dangerous conflicts across Aetheria.", features: ["Player versus player combat", "Faction warfare", "Arenas", "Battlegrounds", "Competitive rewards"] },
+                { emoji: "🏠", label: "Housing", title: "Player Housing", description: "Claim your own place in Aetheria and turn it into a personal home, gathering space, trophy room, or headquarters for your adventures.", features: ["Personal homes", "Furniture", "Decoration", "Trophy displays", "Player gathering spaces"] },
+                { emoji: "🔨", label: "Crafting", title: "Crafting", description: "Gather resources throughout the world and transform them into useful gear, consumables, decorations, and valuable items.", features: ["Resource gathering", "Weapons", "Armor", "Potions", "Consumables", "Rare crafting recipes"] },
+                { emoji: "🗺️", label: "Exploration", title: "Exploration", description: "Venture beyond the beaten path to discover hidden locations, ancient ruins, secret treasures, dangerous creatures, and forgotten mysteries.", features: ["Hidden locations", "Ancient ruins", "Secret treasures", "Exploration discoveries"] }
+            ],
+            realms: [
+                { emoji: "🌄", label: "Ironpeak", title: "Ironpeak Mountains", description: "A towering mountain range filled with sky temples, ancient mines, and clans of battle-hardened guardians. Storms constantly circle the highest peaks.", features: ["Mining expeditions", "Mountain fortresses", "Lightning storms", "Giant eagle mounts"] },
+                { emoji: "🏜️", label: "Sunscorch", title: "Sunscorch Desert", description: "A vast golden desert hiding buried cities, colossal sandworms, and merchant kingdoms that control the world's rarest resources.", features: ["Sandworm hunts", "Buried ruins", "Caravan trading", "Desert survival events"] },
+                { emoji: "❄️", label: "Frostveil", title: "Frostveil Tundra", description: "A frozen wasteland where ancient ice dragons sleep beneath the glaciers and wandering spirits guide travelers through endless snow.", features: ["Ice dragon lairs", "Blizzard conditions", "Frozen dungeons", "Winter crafting materials"] },
+                { emoji: "🐊", label: "Whispering Mire", title: "Whispering Mire", description: "A poisonous swamp filled with ancient trees, hidden villages, witch covens, and creatures that mimic the voices of lost travelers.", features: ["Poisonous wetlands", "Witch covens", "Hidden pathways", "Rare alchemy plants"] },
+                { emoji: "🌊", label: "Azure Expanse", title: "Azure Expanse", description: "A massive ocean region containing pirate kingdoms, underwater temples, sea monsters, and islands that appear only during eclipses.", features: ["Ship battles", "Underwater cities", "Treasure islands", "Sea monster raids"] },
+                { emoji: "🌋", label: "Emberfall", title: "Emberfall Caldera", description: "A volcanic wasteland ruled by fire giants and molten war machines. The land changes whenever the central volcano erupts.", features: ["Volcanic eruptions", "Fire giant strongholds", "Molten weapons", "Dynamic terrain"] },
+                { emoji: "☁️", label: "Cloudspire", title: "Cloudspire Isles", description: "Floating islands suspended above the clouds, connected by magical bridges and guarded by storm spirits and ancient sky pirates.", features: ["Airship travel", "Floating islands", "Sky pirate factions", "Wind-based puzzles"] },
+                { emoji: "🌑", label: "Umbral Hollow", title: "Umbral Hollow", description: "A realm trapped in permanent darkness where shadows take physical form and forgotten memories become dangerous enemies.", features: ["Stealth missions", "Shadow creatures", "Memory puzzles", "Cursed treasures"] }
+            ],
+            races: [
+                { emoji: "🧑", label: "Human", title: "Human", description: "Adaptable explorers who have settled nearly every region of Aetheria and learned to combine many forms of magic.", features: ["Flexible skills", "Extra equipment slot", "Fast reputation gains", "Access to every faction"] },
+                { emoji: "🧝", label: "Elf", title: "Elf", description: "Elegant descendants of celestial beings who draw power from starlight and ancient magic.", features: ["Night vision", "Arcane resistance", "Starborn magic", "Ancient ruin bonuses"] },
+                { emoji: "👹", label: "Orc", title: "Orc", description: "Nomadic warriors who channel the fury of storms through ritual combat and fearless strength.", features: ["Melee damage", "Storm battle cries", "Intimidation", "Storm bonuses"] },
+                { emoji: "👺", label: "Goblin", title: "Goblin", description: "Clever scavengers and inventive tinkerers who turn discarded objects into dangerous tools and traps.", features: ["Trap construction", "Improvised weapons", "Stealth bonuses", "Fast gathering"] },
+                { emoji: "🐉", label: "Drakari", title: "Drakari", description: "Dragon-blooded people who inherit elemental breath, powerful scales, and ancestral memories.", features: ["Elemental breath", "Natural armor", "Dragon language", "Dragon resistance"] },
+                { emoji: "🧚", label: "Fey", title: "Fey", description: "Unpredictable beings from enchanted forests who use illusion, charm, and nature magic.", features: ["Teleportation", "Illusions", "Nature affinity", "Reduced fall damage"] },
+                { emoji: "🧛", label: "Vampire", title: "Vampire", description: "Night-born survivors who wield blood magic, heightened senses, and ancient knowledge.", features: ["Blood magic", "Night vision", "Life draining", "Enhanced senses"] },
+                { emoji: "🐺", label: "Lycan", title: "Lycan", description: "Cursed shapeshifters who balance keen instincts and physical strength with pack traditions.", features: ["Beast transformation", "Keen tracking", "Pack instincts", "Regeneration"] },
+                { emoji: "⛏️", label: "Dwarf", title: "Dwarf", description: "Underground builders and master engineers known for legendary armor and resilient bodies.", features: ["Armor endurance", "Mining bonuses", "Mechanical crafting", "Knockback resistance"] },
+                { emoji: "🧜", label: "Nerithai", title: "Nerithai", description: "Aquatic people who guard submerged ruins, command the currents, and move through oceans with ease.", features: ["Water breathing", "Swimming speed", "Tidal magic", "Underwater vision"] },
+                { emoji: "💪", label: "Gravorn", title: "Gravorn", description: "Ancient mountain dwellers whose immense bodies carry the strength of stone and forgotten ages.", features: ["Great strength", "High health", "Mountain stride", "Earth resistance"] },
+                { emoji: "🦊", label: "Vulpiri", title: "Vulpiri", description: "Clever fox spirits who use illusion, quick movement, and shimmering fire to outwit enemies.", features: ["Foxfire magic", "Illusions", "Quick movement", "Social versatility"] },
+                { emoji: "🗿", label: "Runekith", title: "Runekith", description: "Constructed beings awakened by ancient cores who bring tireless focus and durable bodies.", features: ["Construct body", "Damage resistance", "Tireless endurance", "Rune affinity"] },
+                { emoji: "🧙", label: "Brindlekin", title: "Brindlekin", description: "Small, fortunate travelers whose courage and resourcefulness help them thrive in a dangerous world.", features: ["Lucky escapes", "Stealth bonuses", "Camp cooking", "Quick hands"] }
+            ],
+            classes: [
+                { emoji: "⚔️", label: "Warrior", title: "Warrior", description: "A heavily trained frontline fighter who protects allies and overwhelms enemies with powerful weapon techniques.", features: ["Heavy armor", "Taunt abilities", "Weapon mastery", "High health"] },
+                { emoji: "🛡️", label: "Knight", title: "Knight", description: "A disciplined defender clad in heavy plate, trained to absorb massive damage and hold the frontline for their allies.", features: ["Heavy plate armor", "Shield blocks", "Enemy taunts", "High defense"] },
+                { emoji: "⚜️", label: "Paladin", title: "Paladin", description: "A holy warrior who combines heavy martial combat with sacred light magic to heal allies and smite evil forces.", features: ["Holy damage", "Self & party heals", "Auras of protection", "Undead counter"] },
+                { emoji: "🦇", label: "Dark Knight", title: "Dark Knight", description: "A formidable knight who sacrifices their own vitality to channel dark magic and inflict heavy physical damage.", features: ["Two-handed scythes/swords", "Life-drain attacks", "Dark elemental magic", "High risk, high reward"] },
+                { emoji: "🪓", label: "Barbarian", title: "Barbarian", description: "A fierce berserker who enters chaotic rages to increase raw strength, movement speed, and resistance to crowd control.", features: ["Berserker rage", "Dual-wielding heavy weapons", "Intimidating roars", "High health pool"] },
+                { emoji: "🥋", label: "Monk", title: "Monk", description: "A martial artist who harnesses internal energy and rapid hand-to-hand combat techniques to overpower foes.", features: ["Unarmed mastery", "Chakra self-healing", "High attack speed", "Counter-attacks"] },
+                { emoji: "🗡️", label: "Blademaster", title: "Blademaster", description: "A disciplined master of swordcraft who delivers high-burst physical damage through rapid strikes, counter-stances, and precise critical hits.", features: ["Katana & Greatsword mastery", "Counter-strike stances", "Precision critical strikes", "High melee burst damage"] },
+                { emoji: "🏹", label: "Ranger", title: "Ranger", description: "A skilled hunter who excels at long-range combat, wilderness survival, tracking, and fighting alongside animal companions.", features: ["Long-range attacks", "Animal companions", "Tracking skills", "Poison arrows"] },
+                { emoji: "🗡️", label: "Rogue", title: "Rogue", description: "A fast and deceptive assassin who uses stealth, traps, poisons, and precise attacks to eliminate enemies before they can respond.", features: ["Stealth movement", "Critical strikes", "Lockpicking", "Deadly poisons"] },
+                { emoji: "💰", label: "Thief", title: "Thief", description: "A quick-witted rogue who excels at stealing valuable loot, dodging incoming attacks, and exploiting critical weaknesses.", features: ["Treasure hunting", "High evasion", "Pickpocketing", "Agile strikes"] },
+                { emoji: "👤", label: "Assassin", title: "Assassin", description: "A master of shadow techniques and lethal surprise attacks who strikes from behind to eliminate high-value targets instantly.", features: ["Stealth mastery", "Critical backstabs", "Deadly poisons", "Smoke bombs"] },
+                { emoji: "🐾", label: "Beastmaster", title: "Beastmaster", description: "A wilderness specialist who tames wild beasts, commanding powerful animals in battle to fight alongside them.", features: ["Wild beast taming", "Pet combat commands", "Companion buffs", "Dual axe strikes"] },
+                { emoji: "🔮", label: "Mage", title: "Mage", description: "A scholar of raw elemental magic who unleashes destructive fire, ice, and lightning spells upon groups of enemies.", features: ["High burst damage", "Area of effect spells", "Mana shields", "Teleportation"] },
+                { emoji: "✝️", label: "Cleric", title: "Cleric", description: "A divine servant who protects allies with healing magic, sacred shields, and powerful blessings against dark forces.", features: ["Healing magic", "Protective blessings", "Undead banishment", "Party revival skills"] },
+                { emoji: "🌿", label: "Druid", title: "Druid", description: "A guardian of nature who commands plants, animals, storms, and shapeshifting abilities to adapt to any situation.", features: ["Animal transformation", "Nature magic", "Healing over time", "Weather control"] },
+                { emoji: "🗿", label: "Shaman", title: "Shaman", description: "A spiritual guide who calls upon elemental totems and ancestral spirits to buff allies and weaken opponents.", features: ["Elemental totems", "Spirit warding", "Chain lightning", "Status cleanses"] },
+                { emoji: "✨", label: "Enchanter", title: "Enchanter", description: "A tactical spellcaster specializing in battlefield crowd control, enemy mind control, and powerful support illusions.", features: ["Area crowd control", "Mana regeneration buffs", "Enemy illusions", "Haste enchantments"] },
+                { emoji: "🎵", label: "Bard", title: "Bard", description: "A traveling performer whose music inspires allies, weakens enemies, and changes the mood of entire battlefields.", features: ["Party buffs", "Enemy debuffs", "Charm abilities", "Bonus dialogue options"] },
+                { emoji: "💀", label: "Necromancer", title: "Necromancer", description: "A forbidden spellcaster who commands undead minions and converts life energy into destructive curses.", features: ["Summon undead", "Life-drain spells", "Curse abilities", "Minion customization"] },
+                { emoji: "📜", label: "Summoner", title: "Summoner", description: "A magical scholar who forms pacts with ancient avatars and elemental spirits to call them forth in battle.", features: ["Elemental avatars", "Pet spellcasting", "Pact abilities", "Ranged magic support"] },
+                { emoji: "🧪", label: "Alchemist", title: "Alchemist", description: "A resourceful experimenter who concocts volatile explosives, restorative elixirs, and debilitating chemical mixtures to control the field.", features: ["Explosive potions", "Healing & mana elixirs", "Acid & poison debuffs", "Transmutation utilities"] }
+            ],
+            crafting: [
+                { emoji: "🗡️", label: "Weapons", title: "Weapons", description: "Forge blades, bows, staves, and enchanted armaments used by warriors, rogues, and mages.", features: ["Melee weapons", "Ranged weapons", "Magical weapons", "Enchantment slots", "Quality tiers"] },
+                { emoji: "🛡️", label: "Armor", title: "Armor", description: "Craft protective gear ranging from light clothing to heavy plate infused with magical properties.", features: ["Light armor", "Medium armor", "Heavy armor", "Magical reinforcement", "Set bonuses"] },
+                { emoji: "🧪", label: "Potions", title: "Potions & Elixirs", description: "Brew healing potions, mana elixirs, poisons, and powerful temporary buffs.", features: ["Healing potions", "Mana elixirs", "Buff mixtures", "Poisons", "Rare catalyst reactions"] },
+                { emoji: "👗", label: "Clothing", title: "Clothing", description: "Create everyday outfits, cosmetic gear, robes, cloaks, and faction‑themed attire.", features: ["Cosmetic outfits", "Robes & cloaks", "Faction clothing", "Dye customization", "Tailored bonuses"] },
+                { emoji: "💍", label: "Jewelry", title: "Jewelry", description: "Craft rings, necklaces, charms, and magical accessories that enhance character stats.", features: ["Rings", "Necklaces", "Charms", "Gem socketing", "Magical infusions"] },
+                { emoji: "🗺️", label: "Maps", title: "Maps", description: "Create detailed maps revealing hidden paths, treasure locations, and secret world routes.", features: ["Treasure maps", "Dungeon maps", "Exploration charts", "Hidden route markers", "Cartography skill bonuses"] },
+                { emoji: "📚", label: "Books", title: "Books & Tomes", description: "Write spell tomes, lore books, crafting manuals, and collectible codices.", features: ["Spell tomes", "Lore books", "Crafting manuals", "Collectible codices", "Skill‑granting texts"] },
+                { emoji: "🍲", label: "Food", title: "Food & Cooking", description: "Prepare meals that grant buffs, restore health, or provide long‑term stat bonuses.", features: ["Healing meals", "Buff foods", "Rare recipes", "Feasts", "Seasonal ingredients"] },
+                { emoji: "🛠️", label: "Tools", title: "Tools", description: "Craft utility tools used for gathering, exploration, construction, and survival.", features: ["Gathering tools", "Construction tools", "Exploration gear", "Repair kits", "Utility devices"] },
+                { emoji: "🥅", label: "Traps", title: "Traps", description: "Build mechanical and magical traps for hunting, defense, or tactical combat.", features: ["Hunting traps", "Explosive traps", "Magical snares", "Poison traps", "Remote‑trigger devices"] }
+            ]
+        };
+
+        // ===== RENDER LOGIC =====
+        const sliderState = { news: 0, features: 0, realms: 0, races: 0, classes: 0, crafting: 0 };
+
+        function renderIconLabel(label) {
+            const match = label.match(/^(\S+)\s+(.+)$/u);
+            if (!match) return label;
+            return `<span class="quick-link-icon">${match[1]}</span><div class="nav-label">${match[2]}</div>`;
+        }
+
+        function renderApp() {
+            // Top Nav
+            const topNav = document.getElementById("top-nav-bar");
+            if (topNav) {
+                topNav.innerHTML = `<div class="top-nav-links">${DATA.topNavLinks.map(link =>
+                    `<a href="${link.href}" class="top-nav-btn" ${link.target ? `target="${link.target}" rel="noopener noreferrer"` : ''}>${link.label}</a>`
+                ).join('')}</div>`;
+            }
+
+            // Quick Links
+            const quickLinks = document.getElementById("quick-links-bar");
+            if (quickLinks) {
+                quickLinks.innerHTML = DATA.quickLinks.map(link =>
+                    `<a href="${link.href}" class="quick-link">${renderIconLabel(link.label)}</a>`
+                ).join('');
+            }
+
+            // News Slider
+            const newsSlider = document.getElementById("newsSlider");
+            const newsDots = document.getElementById("newsDots");
+            if (newsSlider) {
+                newsSlider.innerHTML = DATA.homeSlides.map(slide => {
+                    if (slide.type === "social") {
+                        const btns = slide.buttons.map(b => `<a href="${b.href}" class="social-btn">${b.label}</a>`).join('');
+                        return `<div class="slide"><h3>${slide.title}</h3><p>${slide.description}</p><div class="social-buttons">${btns}</div></div>`;
+                    } else if (slide.type === "list") {
+                        const feats = slide.features.map(f => `<li>${f}</li>`).join('');
+                        return `<div class="slide"><h3>${slide.title}</h3><p>${slide.description}</p><ul class="features">${feats}</ul></div>`;
+                    } else if (slide.type === "video") {
+                        return `<div class="slide"><div class="video-container"><iframe src="${slide.videoUrl}" title="Trailer" allowfullscreen></iframe></div></div>`;
+                    }
+                }).join('');
+
+                if (newsDots) {
+                    newsDots.innerHTML = DATA.homeSlides.map((_, i) =>
+                        `<div class="dot ${i === 0 ? 'active' : ''}" onclick="userSelectNewsSlide(${i})"></div>`
+                    ).join('');
+                }
+            }
+
+            // Story
+            const storyContent = document.getElementById("storyContent");
+            if (storyContent) {
+                const paragraphs = DATA.story.paragraphs.map(p => `<p>${p}</p>`).join('');
+                const features = DATA.story.features.map(f => `<li>${f}</li>`).join('');
+                storyContent.innerHTML = `<h1>${DATA.story.title}</h1><h2>${DATA.story.subtitle}</h2>${paragraphs}<ul class="features">${features}</ul>`;
+            }
+
+            // Generic sections
+            renderStandardSection("features", DATA.features);
+            renderStandardSection("realms", DATA.realms);
+            renderStandardSection("races", DATA.races);
+            renderStandardSection("classes", DATA.classes);
+            renderStandardSection("crafting", DATA.crafting);
+        }
+
+        function renderStandardSection(sectionKey, dataArray) {
+            const slider = document.getElementById(`${sectionKey}Slider`);
+            const nav = document.getElementById(`${sectionKey}Nav`);
+
+            if (slider) {
+                slider.innerHTML = dataArray.map(item => {
+                    const features = item.features.map(f => `<li>${f}</li>`).join('');
+                    return `<div class="slide"><div class="slide-emoji">${item.emoji}</div><h3>${item.title}</h3><p>${item.description}</p><ul class="features">${features}</ul></div>`;
+                }).join('');
+            }
+
+            if (nav) {
+                nav.innerHTML = dataArray.map((item, index) =>
+                    `<div class="nav-item ${index === 0 ? 'active' : ''}" onclick="swapSlide('${sectionKey}', ${index})">${item.emoji}<div class="nav-label">${item.label}</div></div>`
+                ).join('');
+            }
+        }
+
+        function swapSlide(sectionName, index) {
+            const slider = document.getElementById(sectionName + "Slider");
+            if (!slider) return;
+            const slides = slider.querySelectorAll(".slide");
+            if (!slides.length) return;
+            index = Math.max(0, Math.min(index, slides.length - 1));
+            sliderState[sectionName] = index;
+            const offset = index * slider.clientWidth;
+            slider.scrollTo({ left: offset, behavior: "smooth" });
+
+            const section = document.getElementById(sectionName);
+            if (section) {
+                const navItems = section.querySelectorAll(".nav-item");
+                navItems.forEach((item, itemIndex) => item.classList.toggle("active", itemIndex === index));
+                const dots = section.querySelectorAll(".dot");
+                dots.forEach((dot, dotIndex) => dot.classList.toggle("active", dotIndex === index));
+            }
+        }
+
+        // Auto cycle for news
+        let newsAutoCycleTimer = null;
+        function startNewsAutoCycle() {
+            stopNewsAutoCycle();
+            newsAutoCycleTimer = setInterval(() => {
+                const slider = document.getElementById("newsSlider");
+                if (!slider) return;
+                const totalSlides = slider.querySelectorAll(".slide").length;
+                let nextIndex = (sliderState.news + 1) % totalSlides;
+                swapSlide("news", nextIndex);
+            }, 4000);
+        }
+        function stopNewsAutoCycle() {
+            if (newsAutoCycleTimer) clearInterval(newsAutoCycleTimer);
+        }
+        function userSelectNewsSlide(index) {
+            swapSlide("news", index);
+            startNewsAutoCycle();
+        }
+
+        function updateSliderPositions() {
+            Object.keys(sliderState).forEach(sectionName => {
+                const slider = document.getElementById(sectionName + "Slider");
+                if (!slider) return;
+                const index = sliderState[sectionName];
+                slider.scrollLeft = index * slider.clientWidth;
+            });
+        }
+
+        // Section show/hide
+        const sectionGroups = {
+            home: ['home', 'story', 'features', 'realms', 'races', 'classes', 'crafting'],
+            news: ['news'],
+            support: ['support'],
+            media: ['media'],
+            account: ['account'],
+            wiki: ['wiki']
+        };
+
+        function hideAllSections() {
+            document.querySelectorAll('section.card').forEach(s => s.classList.add('hidden'));
+        }
+
+        function showGroup(name) {
+            const ids = sectionGroups[name] || [name];
+            hideAllSections();
+            ids.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.remove('hidden');
+            });
+            // Update top nav active state
+            const topNavBtns = document.querySelectorAll('.top-nav-bar .top-nav-btn');
+            topNavBtns.forEach(btn => {
+                const href = btn.getAttribute('href') || '';
+                const targetId = href.startsWith('#') ? href.slice(1) : '';
+                btn.classList.toggle('active', targetId === name);
+            });
+            updateSliderPositions();
+        }
+
+        function setupNavBehavior() {
+            const topNav = document.getElementById('top-nav-bar');
+            if (!topNav) return;
+            topNav.querySelectorAll('a.top-nav-btn').forEach(a => {
+                const href = a.getAttribute('href') || '';
+                const isExternal = a.hasAttribute('target');
+                if (isExternal) return;
+                if (!href.startsWith('#')) return;
+                a.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const id = href.slice(1);
+                    if (id === 'home') showGroup('home');
+                    else if (id === 'wiki') { /* handled by link to wiki.html */ }
+                    else showGroup(id);
+                    if (id === 'news') startNewsAutoCycle();
+                    else stopNewsAutoCycle();
+                });
+            });
+
+            const quickLinks = document.getElementById('quick-links-bar');
+            if (quickLinks) {
+                quickLinks.querySelectorAll('a.quick-link').forEach(a => {
+                    const href = a.getAttribute('href') || '';
+                    if (!href.startsWith('#')) return;
+                    a.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const id = href.slice(1);
+                        if (sectionGroups.home.includes(id)) {
+                            showGroup('home');
+                            const target = document.getElementById(id);
+                            if (target) target.scrollIntoView({ behavior: 'smooth' });
+                        } else showGroup(id);
+                    });
+                });
+            }
+
+            const footer = document.querySelector('.site-footer');
+            if (footer) {
+                footer.querySelectorAll('a[href^="#"]').forEach(a => {
+                    a.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const id = a.getAttribute('href').slice(1);
+                        showGroup(id);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
+                });
+            }
+        }
+
+        // Account logic
+        function setupAccountBehavior() {
+            const signInButton = document.getElementById('show-sign-in-button');
+            const signInForm = document.getElementById('sign-in-form');
+            const accountAuth = document.getElementById('account-auth');
+            const registerPage = document.getElementById('register-page');
+            const signInPage = document.getElementById('sign-in-page');
+            const accountOverview = document.getElementById('account-overview');
+            const signInMessage = document.getElementById('sign-in-message');
+            const signOutButton = document.getElementById('sign-out-button');
+            const registerButton = document.getElementById('register-button');
+            const backFromRegisterButton = document.getElementById('back-from-register-button');
+            const backFromSignInButton = document.getElementById('back-from-sign-in-button');
+
+            if (!signInButton || !signInForm || !accountAuth) return;
+
+            const showAccountOverview = () => {
+                accountAuth.hidden = true;
+                registerPage.hidden = true;
+                signInPage.hidden = true;
+                accountOverview.hidden = false;
+            };
+            const showAccountLanding = () => {
+                accountAuth.hidden = false;
+                registerPage.hidden = true;
+                signInPage.hidden = true;
+                accountOverview.hidden = true;
+            };
+
+            if (sessionStorage.getItem('aetheriaSignedIn') === 'true') showAccountOverview();
+
+            registerButton.addEventListener('click', () => {
+                accountAuth.hidden = true;
+                registerPage.hidden = false;
+            });
+            signInButton.addEventListener('click', () => {
+                accountAuth.hidden = true;
+                signInPage.hidden = false;
+                signInMessage.textContent = '';
+                document.getElementById('account-username').focus();
+            });
+            backFromRegisterButton.addEventListener('click', showAccountLanding);
+            backFromSignInButton.addEventListener('click', showAccountLanding);
+
+            signInForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const username = document.getElementById('account-username').value;
+                const password = document.getElementById('account-password').value;
+                if (username === 'user' && password === 'password') {
+                    sessionStorage.setItem('aetheriaSignedIn', 'true');
+                    showAccountOverview();
+                    return;
+                }
+                signInMessage.textContent = 'Use the demo username and password to continue.';
+            });
+
+            signOutButton.addEventListener('click', () => {
+                sessionStorage.removeItem('aetheriaSignedIn');
+                showAccountLanding();
+                signInForm.reset();
+                signInMessage.textContent = '';
+            });
+        }
+
+        // ===== INIT =====
+        document.addEventListener("DOMContentLoaded", () => {
+            renderApp();
+            setupNavBehavior();
+            setupAccountBehavior();
+            showGroup('home');
+
+            const newsSliderElement = document.getElementById("newsSlider");
+            if (newsSliderElement) {
+                newsSliderElement.addEventListener("mouseenter", stopNewsAutoCycle);
+                newsSliderElement.addEventListener("mouseleave", startNewsAutoCycle);
+            }
+            window.addEventListener("resize", updateSliderPositions);
+            updateSliderPositions();
+            swapSlide("news", 0);
+            swapSlide("features", 0);
+            swapSlide("realms", 0);
+            swapSlide("races", 0);
+            swapSlide("classes", 0);
+            swapSlide("crafting", 0);
+            startNewsAutoCycle();
+        });
+    </script>
 </body>
 
 </html>
