@@ -20,6 +20,9 @@ Music: Vacant<br>
 Sound: Vacant<br>
 Writing: Vacant<br>
 
+## Updates
+[updates.md](updates.md)
+
 ## Social
 Youtube:<br>
 Discord:<br>
