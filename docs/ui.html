@@ -35,10 +35,20 @@
             <div class="reticle" aria-hidden="true"><span></span></div>
         </section>
 
-        <button id="settings-toggle" class="settings-toggle" type="button" aria-controls="settings-panel" aria-expanded="false" title="Open interface settings">
-            <span aria-hidden="true">⚙</span>
-            <span>Settings</span>
+        <button id="settings-toggle" class="settings-toggle" type="button" aria-controls="settings-panel" aria-expanded="false" title="Open menu">
+            <span>Menu</span>
         </button>
+
+        <div id="menu-popover" class="menu-popover" hidden>
+            <button type="button" data-menu-action="ui-settings">UI Settings</button>
+            <button type="button" data-menu-action="character">Character</button>
+            <button type="button" data-menu-action="quest">Quest Log</button>
+            <button type="button" data-menu-action="inventory">Inventory</button>
+            <button type="button" data-menu-action="journal">Journal</button>
+            <button type="button" data-menu-action="skills">Skills</button>
+            <button type="button" data-menu-action="party">Party</button>
+            <button type="button" data-menu-action="system">System</button>
+        </div>
 
         <aside id="settings-panel" class="settings-panel" aria-label="Interface settings" hidden>
             <div class="panel-heading">
@@ -46,10 +56,6 @@
                     <h2>UI Settings</h2>
                 </div>
             </div>
-            <label class="toggle-row" for="edit-ui-mode">
-                <span><strong>Edit UI mode</strong><small>Hold Shift to move or Ctrl to resize</small></span>
-                <input id="edit-ui-mode" type="checkbox">
-            </label>
             <fieldset class="window-visibility">
                 <legend>Windows</legend>
                 <label class="window-toggle-item">
@@ -65,6 +71,27 @@
                         <button class="window-settings" type="button" data-window-settings="quest" aria-label="Quest window settings">⚙</button>
                     </span>
                     <span class="toggle-label">Quest log</span>
+                </label>
+                <label class="window-toggle-item">
+                    <span class="toggle-input-wrap">
+                        <input type="checkbox" data-window-toggle="inventory">
+                        <button class="window-settings" type="button" data-window-settings="inventory" aria-label="Inventory window settings">⚙</button>
+                    </span>
+                    <span class="toggle-label">Inventory</span>
+                </label>
+                <label class="window-toggle-item">
+                    <span class="toggle-input-wrap">
+                        <input type="checkbox" data-window-toggle="journal">
+                        <button class="window-settings" type="button" data-window-settings="journal" aria-label="Journal window settings">⚙</button>
+                    </span>
+                    <span class="toggle-label">Journal</span>
+                </label>
+                <label class="window-toggle-item">
+                    <span class="toggle-input-wrap">
+                        <input type="checkbox" data-window-toggle="skills">
+                        <button class="window-settings" type="button" data-window-settings="skills" aria-label="Skills window settings">⚙</button>
+                    </span>
+                    <span class="toggle-label">Skills</span>
                 </label>
                 <label class="window-toggle-item">
                     <span class="toggle-input-wrap">
@@ -86,6 +113,13 @@
                         <button class="window-settings" type="button" data-window-settings="chat" aria-label="Chat window settings">⚙</button>
                     </span>
                     <span class="toggle-label">Chat</span>
+                </label>
+                <label class="window-toggle-item">
+                    <span class="toggle-input-wrap">
+                        <input type="checkbox" data-window-toggle="system">
+                        <button class="window-settings" type="button" data-window-settings="system" aria-label="System window settings">⚙</button>
+                    </span>
+                    <span class="toggle-label">System</span>
                 </label>
                 <label class="window-toggle-item">
                     <span class="toggle-input-wrap">
@@ -114,6 +148,12 @@
                 <output id="opacity-value" for="opacity-control">100%</output>
             </label>
             <input id="opacity-control" type="range" min="0.35" max="1" step="0.01" value="1.0">
+
+            <label class="control-row" for="background-color-control">
+                <span>Background</span>
+                <output for="background-color-control">Theme</output>
+            </label>
+            <input id="background-color-control" type="color" value="#171d1f" aria-label="Pick a UI background color">
         </aside>
 
         <div id="window-settings-popover" class="window-settings-popover" hidden></div>

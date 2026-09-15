@@ -22,7 +22,16 @@
 	"chat": [
 		{ "channel": "LOCAL", "name": "Mira", "message": "The shrine should be close." },
 		{ "channel": "SYSTEM", "name": "", "message": "You discovered Whispering Vale." },
-		{ "channel": "PARTY", "name": "Thorne", "message": "I see movement by the ruins." }
+		{ "channel": "PARTY", "name": "Thorne", "message": "I see movement by the ruins." },
+		{ "channel": "LOCAL", "name": "Kael", "message": "I can hear chanting through the trees." },
+		{ "channel": "COMBAT", "name": "System", "message": "Critical hit! Arc Slash deals 82 damage." },
+		{ "channel": "SYSTEM", "name": "", "message": "Quest updated: cleanse the root shrine." },
+		{ "channel": "LOCAL", "name": "Thorne", "message": "Stay low. The sentries are circling the ridge." },
+		{ "channel": "COMBAT", "name": "Combat", "message": "You dodge the strike and counterattack." },
+		{ "channel": "SYSTEM", "name": "", "message": "You restored 14 focus from the crystal basin." },
+		{ "channel": "LOCAL", "name": "Mira", "message": "The elder tree path is opening ahead." },
+		{ "channel": "COMBAT", "name": "Combat", "message": "Ward absorbed 22 damage." },
+		{ "channel": "SYSTEM", "name": "", "message": "The rootbound oath is 40% complete." }
 	],
 	"abilities": [
 		{ "key": "1", "name": "Arc Slash", "icon": "✦", "cooldown": "" },

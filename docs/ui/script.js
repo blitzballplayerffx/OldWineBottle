@@ -2,10 +2,12 @@ const stage = document.getElementById("ui-stage");
 const skillBarIds = ["hotbar-1", "hotbar-2", "hotbar-3"];
 let uiDataCache = null;
 let topWindowLayer = 10;
+let uiLocked = false;
+const chatFilters = { chat: true, combat: true, system: true };
 const defaultPositions = {
     character: { left: "2.5vw", top: "3vh" },
     quest: { right: "2.5vw", top: "58vh" },
-    party: { left: "2.5vw", top: "28vh" },
+    party: { right: "2.5vw", bottom: "3vh" },
     minimap: { right: "2.5vw", top: "3vh" },
     chat: { left: "2.5vw", bottom: "3vh" },
     "hotbar-1": { left: "calc(50% - 240px)", bottom: "3vh", width: "480px" },
@@ -14,25 +16,53 @@ const defaultPositions = {
 };
 
 function getSettingsState() {
-    return {
+    const defaults = {
         opacity: 1.00,
-        editMode: false,
+        backgroundColor: "#171d1f",
         windows: {
+            character: true,
+            quest: false,
+            inventory: true,
+            journal: true,
+            skills: true,
+            party: true,
+            minimap: true,
+            chat: true,
+            system: true,
             "hotbar-1": true,
             "hotbar-2": false,
             "hotbar-3": false
         },
         panelConfig: {
+            character: { barHeight: 5 },
             chat: { width: 350, height: 95, fontSize: 10 },
             "hotbar-1": { orientation: "horizontal", slots: 10 },
             "hotbar-2": { orientation: "horizontal", slots: 10 },
             "hotbar-3": { orientation: "horizontal", slots: 10 }
         }
     };
+
+    try {
+        const saved = localStorage.getItem("ui-settings");
+        if (!saved) return defaults;
+        const parsed = JSON.parse(saved);
+        return {
+            ...defaults,
+            ...parsed,
+            windows: { ...defaults.windows, ...(parsed.windows || {}) },
+            panelConfig: { ...defaults.panelConfig, ...(parsed.panelConfig || {}) }
+        };
+    } catch (error) {
+        return defaults;
+    }
 }
 
 function saveSettingsState(settings) {
-    return;
+    try {
+        localStorage.setItem("ui-settings", JSON.stringify(settings));
+    } catch (error) {
+        console.warn("Unable to save UI settings:", error);
+    }
 }
 
 async function loadUi() {
@@ -63,29 +93,85 @@ function buildSkillBarMarkup(barId, barNumber, slotCount, abilities) {
     </section>`;
 }
 
+function getChatFilterGroup(channel) {
+    const normalized = String(channel || "").toUpperCase();
+    if (normalized === "SYSTEM") return "system";
+    if (normalized === "COMBAT") return "combat";
+    return "chat";
+}
+
+function renderChatLog() {
+    const chatPanel = document.querySelector('[data-panel="chat"]');
+    if (!chatPanel || !uiDataCache) return;
+
+    const logEl = chatPanel.querySelector(".chat-log");
+    if (!logEl) return;
+
+    const filteredLines = uiDataCache.chat.filter(line => {
+        const group = getChatFilterGroup(line.channel);
+        return chatFilters[group] !== false;
+    });
+
+    logEl.innerHTML = filteredLines.map(line => {
+        const group = getChatFilterGroup(line.channel);
+        const iconMap = {
+            chat: "💬",
+            combat: "⚔️",
+            system: "✦"
+        };
+        const shouldShowName = group === "chat" && Boolean(line.name) && line.name !== "System" && line.name !== "Combat";
+        const safeName = shouldShowName ? `<strong>${line.name}</strong>` : "";
+        const messageText = shouldShowName ? `"${line.message}"` : line.message;
+        return `<p><span class="chat-channel ${group}">${iconMap[group] || "•"}</span><span class="chat-text">${safeName ? `${safeName} ${messageText}` : messageText}</span></p>`;
+    }).join("");
+}
+
+function setupChatFilters() {
+    document.querySelectorAll(".chat-filter").forEach(button => {
+        const filter = button.dataset.chatFilter;
+        const isOn = chatFilters[filter] !== false;
+        button.classList.toggle("is-on", isOn);
+        button.classList.toggle("is-off", !isOn);
+        button.setAttribute("aria-pressed", String(isOn));
+
+        button.addEventListener("click", () => {
+            chatFilters[filter] = !chatFilters[filter];
+            renderChatLog();
+            const active = chatFilters[filter];
+            button.classList.toggle("is-on", active);
+            button.classList.toggle("is-off", !active);
+            button.setAttribute("aria-pressed", String(active));
+        });
+    });
+}
+
 function renderPanels(data) {
     stage.insertAdjacentHTML("beforeend", `
         <section class="hud-panel character-panel" data-panel="character" aria-label="Character status">
             <div class="panel-heading"><div class="character-identity"><div class="avatar-mark">KV</div><div><span class="eyebrow">Level ${data.player.level} · ${data.player.class}</span><h2>${data.player.name}</h2></div></div></div>
-            <div class="resource health"><div class="resource-label"><span>Vitality</span><strong>${data.player.health}%</strong></div><div class="meter"><span style="width: ${data.player.health}%"></span></div></div>
-            <div class="resource mana"><div class="resource-label"><span>Focus</span><strong>${data.player.mana}%</strong></div><div class="meter"><span style="width: ${data.player.mana}%"></span></div></div>
-            <div class="resource stamina"><div class="resource-label"><span>Stamina</span><strong>${data.player.stamina}%</strong></div><div class="meter"><span style="width: ${data.player.stamina}%"></span></div></div>
+            <div class="resource health"><div class="resource-track"><span class="resource-name">Vitality</span><div class="meter"><span style="width: ${data.player.health}%"></span></div><strong>${data.player.health}%</strong></div></div>
+            <div class="resource mana"><div class="resource-track"><span class="resource-name">Focus</span><div class="meter"><span style="width: ${data.player.mana}%"></span></div><strong>${data.player.mana}%</strong></div></div>
+            <div class="resource stamina"><div class="resource-track"><span class="resource-name">Stamina</span><div class="meter"><span style="width: ${data.player.stamina}%"></span></div><strong>${data.player.stamina}%</strong></div></div>
         </section>
         <section class="hud-panel quest-panel" data-panel="quest" aria-label="Quest tracker">
             <div class="panel-heading"><div><span class="eyebrow accent">Active quest</span><h2>${data.quest.title}</h2></div></div>
             <p>${data.quest.description}</p><div class="quest-progress"><span></span></div><div class="quest-meta"><span>${data.quest.progress} objectives</span><span>${data.quest.reward}</span></div>
         </section>
         <section class="hud-panel party-panel" data-panel="party" aria-label="Party members">
-            <div class="panel-heading"><div><span class="eyebrow">Adventuring party</span><h2>Three souls bound</h2></div></div>
-            ${data.party.map(member => `<div class="party-member"><div class="member-avatar ${member.color}">${member.name.slice(0, 1)}</div><div class="member-info"><div><strong>${member.name}</strong><span>${member.role}</span></div><div class="mini-meter"><span style="width: ${member.health}%"></span></div></div><span class="member-health">${member.health}%</span></div>`).join("")}
+            <div class="panel-heading"><div><h2>Adventuring party</h2></div></div>
+            ${data.party.filter(member => member.role !== "You").map(member => `<div class="party-member"><div class="member-avatar ${member.color}">${member.name.slice(0, 1)}</div><div class="member-info"><div><strong>${member.name}</strong><span>${member.role}</span></div><div class="mini-meter"><span style="width: ${member.health}%"></span></div></div><span class="member-health">${member.health}%</span></div>`).join("")}
         </section>
         <section class="hud-panel minimap-panel" data-panel="minimap" aria-label="Minimap">
-            <div class="panel-heading"><div><span class="eyebrow">Current region</span><h2>${data.player.location}</h2></div></div>
-            <div class="minimap"><span class="map-grid"></span><span class="map-path"></span><span class="map-player"></span><span class="map-label label-ruins">Ruins</span><span class="map-label label-camp">Camp</span></div><div class="map-footer"><span>◉ 12:48</span><span>☼ Clear</span></div>
+            <div class="minimap"><span class="map-grid"></span><span class="map-path"></span><span class="map-player"></span><span class="map-label label-ruins">Ruins</span><span class="map-label label-camp">Camp</span></div>
         </section>
         <section class="hud-panel chat-panel" data-panel="chat" aria-label="Chat log">
-            <div class="panel-heading"><div><span class="eyebrow">Social feed</span><h2>Party chat</h2></div></div>
-            <div class="chat-log">${data.chat.map(line => `<p><span class="chat-channel ${line.channel.toLowerCase()}">${line.channel}</span>${line.name ? `<strong>${line.name}</strong>` : ""}<span>${line.message}</span></p>`).join("")}</div><div class="chat-input"><span>Send a message...</span><button type="button" aria-label="Send message">↵</button></div>
+            <div class="chat-filters" aria-label="Chat filters">
+                <button class="chat-filter is-on" type="button" data-chat-filter="chat" aria-label="Toggle chat" aria-pressed="true" title="Chat">Chat</button>
+                <button class="chat-filter is-on" type="button" data-chat-filter="combat" aria-label="Toggle combat" aria-pressed="true" title="Combat">Combat</button>
+                <button class="chat-filter is-on" type="button" data-chat-filter="system" aria-label="Toggle system" aria-pressed="true" title="System">System</button>
+            </div>
+            <div class="chat-log"></div>
+            <div class="chat-input"><span>Send a message...</span><button type="button" aria-label="Send message">↵</button></div>
         </section>
         ${skillBarIds.map((barId, index) => {
             const barNumber = index + 1;
@@ -94,15 +180,23 @@ function renderPanels(data) {
             return buildSkillBarMarkup(barId, barNumber, slots, data.abilities);
         }).join("")}
     `);
+    renderChatLog();
+    setupChatFilters();
  }
 
 function restoreSettings() {
     const settings = getSettingsState();
     const opacityValue = Number(settings.opacity ?? 1.0);
+    const backgroundColor = settings.backgroundColor || "#171d1f";
     setCssSetting("--panel-opacity", opacityValue);
+    setCssSetting("--panel-base", backgroundColor);
     const opacityControl = document.getElementById("opacity-control");
     if (opacityControl) {
         opacityControl.value = String(opacityValue);
+    }
+    const backgroundControl = document.getElementById("background-color-control");
+    if (backgroundControl) {
+        backgroundControl.value = backgroundColor;
     }
     document.querySelectorAll(".hud-panel").forEach(panel => {
         panel.hidden = settings.windows?.[panel.dataset.panel] === false;
@@ -113,12 +207,19 @@ function restoreSettings() {
 function applyPanelSettings() {
     const settings = getSettingsState();
     const chatPanel = document.querySelector('[data-panel="chat"]');
+    const characterPanel = document.querySelector('[data-panel="character"]');
     const chatConfig = settings.panelConfig?.chat || { width: 350, height: 95, fontSize: 10 };
+    const characterConfig = settings.panelConfig?.character || { barHeight: 5 };
 
     if (chatPanel) {
         chatPanel.style.setProperty("--chat-width", `${chatConfig.width || 350}px`);
         chatPanel.style.setProperty("--chat-height", `${chatConfig.height || 95}px`);
         chatPanel.style.setProperty("--chat-font-size", `${chatConfig.fontSize || 10}px`);
+    }
+
+    if (characterPanel) {
+        const barHeight = Math.max(3, Math.min(16, Number(characterConfig.barHeight) || 5));
+        characterPanel.style.setProperty("--character-bar-height", `${barHeight}px`);
     }
 
     skillBarIds.forEach((barId, index) => {
@@ -145,8 +246,27 @@ function applyPanelSettings() {
 
 function setCssSetting(name, value) { document.documentElement.style.setProperty(name, value); }
 
+function syncWindowToggleState(panelName, isVisible) {
+    if (!panelName) return;
+
+    const directToggle = document.querySelector(`[data-window-toggle="${panelName}"]`);
+    const hotbarToggle = panelName.startsWith("hotbar-")
+        ? document.querySelector(`[data-hotbar-toggle="${panelName.replace("hotbar-", "")}"]`)
+        : null;
+
+    if (directToggle) directToggle.checked = isVisible;
+    if (hotbarToggle) hotbarToggle.checked = isVisible;
+
+    const settingsState = getSettingsState();
+    settingsState.windows[panelName] = isVisible;
+    saveSettingsState(settingsState);
+}
+
 function updateSettingLabels(scale, opacity) {
-    document.getElementById("opacity-value").textContent = `${Math.round(opacity * 100)}%`;
+    const opacityValue = document.getElementById("opacity-value");
+    if (opacityValue) {
+        opacityValue.textContent = `${Math.round(opacity * 100)}%`;
+    }
 }
 
 function showWindowSettingsPopover(panelName) {
@@ -157,7 +277,16 @@ function showWindowSettingsPopover(panelName) {
     const config = settings.panelConfig?.[panelName] || {};
     let content = '';
 
-    if (panelName === "chat") {
+    if (panelName === "character") {
+        const barHeight = Math.max(3, Math.min(16, Number(config.barHeight) || 5));
+        content = `
+            <h3>Character settings</h3>
+            <label class="setting-field">
+                <span>Bar height</span>
+                <input type="number" min="3" max="16" step="1" value="${barHeight}" data-config-key="barHeight" data-panel-name="character">
+            </label>
+        `;
+    } else if (panelName === "chat") {
         content = `
             <h3>Chat settings</h3>
             <label class="setting-field">
@@ -219,8 +348,8 @@ function showWindowSettingsPopover(panelName) {
 function setupSettings() {
     const toggle = document.getElementById("settings-toggle");
     const panel = document.getElementById("settings-panel");
+    const menu = document.getElementById("menu-popover");
     const opacity = document.getElementById("opacity-control");
-    const editMode = document.getElementById("edit-ui-mode");
     const settings = getSettingsState();
     const windowToggles = document.querySelectorAll("[data-window-toggle]");
     const hotbarToggles = document.querySelectorAll("[data-hotbar-toggle]");
@@ -232,12 +361,10 @@ function setupSettings() {
             windows[barId] = toggle.checked;
         });
         settings.opacity = Number(opacity.value);
-        settings.editMode = editMode.checked;
         settings.windows = windows;
         saveSettingsState(settings);
     };
 
-    editMode.checked = settings.editMode === true;
     windowToggles.forEach(toggle => {
         const target = document.querySelector(`[data-panel="${toggle.dataset.windowToggle}"]`);
         toggle.checked = !target || target.hidden !== true;
@@ -246,6 +373,7 @@ function setupSettings() {
             if (panelElement) {
                 panelElement.hidden = !toggle.checked;
             }
+            syncWindowToggleState(toggle.dataset.windowToggle, toggle.checked);
             save();
         });
     });
@@ -259,6 +387,7 @@ function setupSettings() {
             if (panelElement) {
                 panelElement.hidden = !toggle.checked;
             }
+            syncWindowToggleState(barId, toggle.checked);
             save();
         });
     });
@@ -278,22 +407,78 @@ function setupSettings() {
         });
     });
 
-    toggle.addEventListener("click", () => { panel.hidden = !panel.hidden; toggle.setAttribute("aria-expanded", String(!panel.hidden)); });
-    editMode.addEventListener("change", save);
-    opacity.addEventListener("input", () => { setCssSetting("--panel-opacity", opacity.value); updateSettingLabels(null, opacity.value); save(); });
-    document.addEventListener("click", (event) => {
-        const popover = document.getElementById("window-settings-popover");
-        if (!popover || popover.hidden) return;
-        if (!event.target.closest(".window-settings") && !event.target.closest(".window-settings-popover")) {
-            popover.hidden = true;
+    toggle.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const menuVisible = menu && menu.hidden === false;
+        const settingsVisible = panel && panel.hidden === false;
+        const windowSettingsVisible = document.getElementById("window-settings-popover") && document.getElementById("window-settings-popover").hidden === false;
+
+        if (menuVisible || settingsVisible || windowSettingsVisible) {
+            if (menu) menu.hidden = true;
+            if (panel) panel.hidden = true;
+            const popover = document.getElementById("window-settings-popover");
+            if (popover) popover.hidden = true;
+            toggle.setAttribute("aria-expanded", "false");
+            return;
         }
+
+        if (menu) {
+            menu.hidden = false;
+        }
+        if (panel) {
+            panel.hidden = true;
+        }
+        toggle.setAttribute("aria-expanded", "true");
     });
+
+    document.querySelectorAll("[data-menu-action]").forEach(button => {
+        button.addEventListener("click", () => {
+            const action = button.dataset.menuAction;
+            if (action === "ui-settings") {
+                if (panel) {
+                    panel.hidden = !panel.hidden;
+                    toggle.setAttribute("aria-expanded", String(!panel.hidden));
+                }
+            } else {
+                if (panel) {
+                    panel.hidden = true;
+                    toggle.setAttribute("aria-expanded", "false");
+                }
+            }
+            if (menu) {
+                menu.hidden = true;
+            }
+        });
+    });
+
+    opacity.addEventListener("input", () => { setCssSetting("--panel-opacity", opacity.value); updateSettingLabels(null, opacity.value); save(); });
+
+    const backgroundColorControl = document.getElementById("background-color-control");
+    if (backgroundColorControl) {
+        backgroundColorControl.addEventListener("input", () => {
+            const backgroundColor = backgroundColorControl.value;
+            setCssSetting("--panel-base", backgroundColor);
+            const settings = getSettingsState();
+            settings.backgroundColor = backgroundColor;
+            saveSettingsState(settings);
+        });
+    }
+
+    document.addEventListener("click", (event) => {
+        const clickedControl = event.target.closest("#settings-toggle, #menu-popover, #settings-panel, .window-settings, .window-settings-popover");
+        if (clickedControl) return;
+    });
+}
+
+function setUiLocked(locked) {
+    uiLocked = locked;
+    document.body.dataset.uiLocked = String(locked);
 }
 
 function setupDragging() {
     document.querySelectorAll(".hud-panel").forEach(panel => {
         panel.addEventListener("pointerdown", event => {
-            if (event.button !== 0 || !document.getElementById("edit-ui-mode").checked || (!event.shiftKey && !event.ctrlKey)) return;
+            if (uiLocked || event.button !== 0 || (!event.shiftKey && !event.ctrlKey)) return;
             event.preventDefault();
             panel.style.zIndex = String(++topWindowLayer);
             panel.setPointerCapture(event.pointerId);
@@ -360,8 +545,10 @@ function saveLayout() {
 function restoreLayout() {
     document.querySelectorAll(".hud-panel").forEach(panel => {
         const position = defaultPositions[panel.dataset.panel];
-        Object.entries(position).forEach(([property, value]) => { panel.style[property] = value; });
-        ["left", "top", "right", "bottom"].filter(property => !(property in position)).forEach(property => { panel.style[property] = ""; });
+        if (position) {
+            Object.entries(position).forEach(([property, value]) => { panel.style[property] = value; });
+            ["left", "top", "right", "bottom"].filter(property => !(property in position)).forEach(property => { panel.style[property] = ""; });
+        }
     });
     requestAnimationFrame(clampAllPanels);
 }
@@ -404,8 +591,37 @@ function clampAllPanels() {
     });
 }
 
+window.addEventListener("keydown", (event) => {
+    if (event.ctrlKey && event.shiftKey && event.key && event.key.toLowerCase() === "u") {
+        event.preventDefault();
+        setUiLocked(!uiLocked);
+        console.log(`UI ${uiLocked ? "locked" : "unlocked"}`);
+    }
+});
+
+document.addEventListener("contextmenu", (event) => {
+    if (!event.altKey) return;
+
+    const targetWindow = event.target.closest(".hud-panel, #settings-panel, #menu-popover, #window-settings-popover");
+    if (!targetWindow) return;
+
+    event.preventDefault();
+    const panelName = targetWindow.dataset.panel || targetWindow.id;
+    targetWindow.hidden = true;
+
+    if (panelName && panelName !== "menu-popover" && panelName !== "window-settings-popover") {
+        syncWindowToggleState(panelName, false);
+    }
+
+    const toggle = document.getElementById("settings-toggle");
+    if (toggle) {
+        toggle.setAttribute("aria-expanded", "false");
+    }
+});
+
 window.addEventListener("resize", () => {
     clampAllPanels();
 });
 
+setUiLocked(false);
 loadUi().catch(error => console.error("Unable to load UI prototype data:", error));
