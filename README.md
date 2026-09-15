@@ -1,5 +1,5 @@
 ## About
-Open-source prototype Fantasy RPG Game. You can read updates here -> [updates.md](updates.md).
+Open-source prototype Fantasy RPG Game.<br><br>You can read updates here -> [updates.md](updates.md).
 
 ## Webpage
 https://blitzballplayerffx.github.io/OldWineBottle/
