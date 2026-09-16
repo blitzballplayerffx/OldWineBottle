@@ -8,7 +8,7 @@ https://blitzballplayerffx.github.io/OldWineBottle/
 https://blitzballplayerffx.github.io/OldWineBottle/ui.html
 
 ## Interested in Contributing?
-You can post in discussions or send an email to 2028GameDev@gmail.com. Looking for 3D Modelers but programmers are also welcome.
+You can post in discussions. Just share a little about your ambitions and your experience. Looking for 3D Modelers but others are also welcome.
 
 ## Developers
 Programming: blitzballplayerffx<br>
