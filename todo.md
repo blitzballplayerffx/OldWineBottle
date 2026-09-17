@@ -1,5 +1,7 @@
 # Project Documentation
 
+> **Progress legend:** `*` = not started / just started · `* *` = early work · `* * *` = halfway · `* * * *` = nearly done · `* * * * *` = almost finished · `✅` = done
+
 | Category | Progress | Feature | Notes |
 |:---|:---:|:---|:---|
 | **Documentation** | ✅ | Webpage | |
