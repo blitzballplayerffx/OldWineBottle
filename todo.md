@@ -4,47 +4,79 @@
 > 🌱 = just started<br>
 > ⏳ = halfway<br>
 > ⚒️ = almost finished<br>
-> ✅ = finished<br>
+> ✅ = finished
 
-| Category | Progress | Feature | Notes |
-|:---|:---:|:---|:---|
-| **Documentation** | ✅ | Webpage | |
-| **Documentation** | ✅ | Wiki | |
-| **Documentation** | ✅ | Prototype UI | |
-| **Documentation** | ✅ | Github | |
-| **Gameplay** | 🌱 | Player movement | |
-| **Gameplay** | 🌱 | Jumping | |
-| **Gameplay** | ⏳ | Sprinting | |
-| **Gameplay** | ⏳ | Camera toggle (1st / 3rd person) | |
-| **Gameplay** | ⚒️ | Animation state machine | Almost done |
-| **Gameplay** | ✅ | Input rebinding | Finished |
-| **3D / Visual** | 🌱 | Character model import | |
-| **3D / Visual** | 🌱 | Rigging / skeleton | |
-| **3D / Visual** | ⏳ | Idle / walk / run animations | |
-| **3D / Visual** | ⏳ | Lighting setup | |
-| **3D / Visual** | ⚒️ | Post-processing | |
-| **3D / Visual** | ✅ | Skybox | Finished |
-| **Multiplayer** | 🌱 | Networking framework | |
-| **Multiplayer** | 🌱 | Lobby / matchmaking | |
-| **Multiplayer** | ⏳ | Player sync (position / rotation) | |
-| **Multiplayer** | ⏳ | Chat system | |
-| **Multiplayer** | ⚒️ | Lag compensation | |
-| **Multiplayer** | ✅ | Server hosting | Finished |
-| **Audio** | 🌱 | Sound effects | |
-| **Audio** | 🌱 | Footsteps | |
-| **Audio** | ⏳ | Music tracks | |
-| **Audio** | ⏳ | Dynamic mixing | |
-| **Audio** | ⚒️ | Voice chat | |
-| **Audio** | ✅ | Menu music | Finished |
-| **UI / UX** | 🌱 | Main menu | |
-| **UI / UX** | 🌱 | Pause menu | |
-| **UI / UX** | ⏳ | Settings screen | |
-| **UI / UX** | ⏳ | HUD | |
-| **UI / UX** | ⚒️ | Accessibility options | |
-| **UI / UX** | ✅ | Loading screen | Finished |
-| **Polish** | 🌱 | Bug fixing | |
-| **Polish** | 🌱 | Performance pass | |
-| **Polish** | ⏳ | Juice (screen shake, particles) | |
-| **Polish** | ⏳ | Playtesting | |
-| **Polish** | ⚒️ | Store page | |
-| **Polish** | ✅ | Version control setup | Finished |
+## Documentation
+
+| Progress | Feature | Notes |
+|:---:|:---|:---|
+| ✅ | Webpage | |
+| ✅ | Wiki | |
+| ✅ | Prototype UI | |
+| ✅ | Github | |
+
+## Gameplay
+
+| Progress | Feature | Notes |
+|:---:|:---|:---|
+| 🌱 | Player movement | |
+| 🌱 | Jumping | |
+| ⏳ | Sprinting | |
+| ⏳ | Camera toggle (1st / 3rd person) | |
+| ⚒️ | Animation state machine | Almost done |
+| ✅ | Input rebinding | Finished |
+
+## 3D / Visual
+
+| Progress | Feature | Notes |
+|:---:|:---|:---|
+| 🌱 | Character model import | |
+| 🌱 | Rigging / skeleton | |
+| ⏳ | Idle / walk / run animations | |
+| ⏳ | Lighting setup | |
+| ⚒️ | Post-processing | |
+| ✅ | Skybox | Finished |
+
+## Multiplayer
+
+| Progress | Feature | Notes |
+|:---:|:---|:---|
+| 🌱 | Networking framework | |
+| 🌱 | Lobby / matchmaking | |
+| ⏳ | Player sync (position / rotation) | |
+| ⏳ | Chat system | |
+| ⚒️ | Lag compensation | |
+| ✅ | Server hosting | Finished |
+
+## Audio
+
+| Progress | Feature | Notes |
+|:---:|:---|:---|
+| 🌱 | Sound effects | |
+| 🌱 | Footsteps | |
+| ⏳ | Music tracks | |
+| ⏳ | Dynamic mixing | |
+| ⚒️ | Voice chat | |
+| ✅ | Menu music | Finished |
+
+## UI / UX
+
+| Progress | Feature | Notes |
+|:---:|:---|:---|
+| 🌱 | Main menu | |
+| 🌱 | Pause menu | |
+| ⏳ | Settings screen | |
+| ⏳ | HUD | |
+| ⚒️ | Accessibility options | |
+| ✅ | Loading screen | Finished |
+
+## Polish
+
+| Progress | Feature | Notes |
+|:---:|:---|:---|
+| 🌱 | Bug fixing | |
+| 🌱 | Performance pass | |
+| ⏳ | Juice (screen shake, particles) | |
+| ⏳ | Playtesting | |
+| ⚒️ | Store page | |
+| ✅ | Version control setup | Finished |
