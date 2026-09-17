@@ -4,7 +4,7 @@ Currently working on: `models and animations in the editor`.<br><br>
 
 Read todo list here -> [TODO LIST](todo.md)<br>
 Read updates here -> [UPDATES](updates.md)
-(if you have any feature requests or suggestions, please go to github discussions)
+(if you have any feature requests or suggestions, please go to [GitHub Discussions](https://github.com/blitzballplayerffx/OldWineBottle/discussions)
 
 ## Webpage
 https://blitzballplayerffx.github.io/OldWineBottle/
