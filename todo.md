@@ -1,6 +1,6 @@
 # Project Documentation
 
-> **Progress legend:**
+> **Progress legend:**<br>
 > 🌱 = just started<br>
 > ⏳ = halfway<br>
 > ⚒️ = almost finished<br>
