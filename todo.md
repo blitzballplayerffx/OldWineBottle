@@ -50,6 +50,17 @@
 | 📁 | Dwarf — Model | |
 | 📁 | Dwarf — Animations | |
 
+## Environment
+
+| Progress | Feature | Notes |
+|:---:|:---|:---|
+| 📁 | Rain | |
+| 📁 | Snow | |
+| 📁 | Day / Night Cycle | |
+| 📁 | Shadows | |
+| 📁 | Ambient Lighting | |
+| 📁 | Fog | |
+
 ## Multiplayer
 
 | Progress | Feature | Notes |
