@@ -14,6 +14,10 @@
 | ✅ | Webpage | |
 | ✅ | Wiki | |
 | ✅ | Github | |
+| 📁 | Game Design Document | |
+| ✅ | Readme | |
+| ✅ | Todo List | |
+| 📁 | Strategy Guide | |
 
 ## Gameplay
 
