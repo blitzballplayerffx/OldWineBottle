@@ -72,12 +72,13 @@
 
 | Progress | Feature | Notes |
 |:---:|:---|:---|
-| 📁 | Sound effects | |
+| 📁 | Menu Music | |
+| 📁 | Menu Sounds | |
+| 📁 | General Environment | |
+| 📁 | Wind | |
+| 📁 | Voices | |
 | 📁 | Footsteps | |
-| 📁 | Music tracks | |
-| 📁 | Dynamic mixing | |
-| 📁 | Voice chat | |
-| 📁 | Menu music | |
+| 📁 | Combat Sounds | |
 
 ## UI / UX
 
