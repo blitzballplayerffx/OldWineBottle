@@ -25,12 +25,12 @@
 |:---:|:---|:---|
 | 📁 | Target Character / Item | |
 | ✅ | Player movement | |
-| 🌱 | Jumping | |
-| 🌱 | Sprinting | |
+| ⚒️ | Jumping | |
+| ⚒️ | Sprinting | |
 | 📁 | Interact with Object | |
 | 📁 | Talk to NPC | |
 | ✅ | 1st Person Camera | |
-| 🌱 | 3rd Person Camera | |
+| ⏳ | 3rd Person Camera | |
 | 📁 | Playable Demo | |
 
 ## Combat
