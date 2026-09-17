@@ -20,7 +20,7 @@
 
 
 <br><br><br>
-# Dev Update 9/17/2026
+# Dev Update 9/~/2026
 # Pixels in Motion
 
 `in progress`
