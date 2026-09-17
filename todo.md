@@ -1,11 +1,11 @@
 # Project Documentation
 
 > **Progress legend:**<br>
-> 📁 = planning<br>
-> 🌱 = just started<br>
-> ⏳ = halfway<br>
-> ⚒️ = almost finished<br>
-> ✅ = finished<br>
+> - 📁 = planning<br>
+> - 🌱 = just started<br>
+> - ⏳ = halfway<br>
+> - ⚒️ = almost finished<br>
+> - ✅ = finished<br>
 
 ## Documentation
 
