@@ -54,11 +54,11 @@
 | Progress | Feature | Notes |
 |:---:|:---|:---|
 | 📁 | Sound effects | |
-| 🌱 | Footsteps | |
-| ⏳ | Music tracks | |
-| ⏳ | Dynamic mixing | |
-| ⚒️ | Voice chat | |
-| ✅ | Menu music | Finished |
+| 📁 | Footsteps | |
+| 📁 | Music tracks | |
+| 📁 | Dynamic mixing | |
+| 📁 | Voice chat | |
+| 📁 | Menu music | Finished |
 
 ## UI / UX
 
@@ -70,14 +70,3 @@
 | ⏳ | HUD | |
 | ⚒️ | Accessibility options | |
 | ✅ | Loading screen | Finished |
-
-## Polish
-
-| Progress | Feature | Notes |
-|:---:|:---|:---|
-| 📁 | Bug fixing | |
-| 🌱 | Performance pass | |
-| ⏳ | Juice (screen shake, particles) | |
-| ⏳ | Playtesting | |
-| ⚒️ | Store page | |
-| ✅ | Version control setup | Finished |
