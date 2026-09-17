@@ -43,15 +43,18 @@
 | 📁 | Skills | |
 | 📁 | Spells | |
 
-## Models / Animations
+## Models / Textures / Animations
 
 | Progress | Feature | Notes |
 |:---:|:---|:---|
 | 📁 | Human — Model | |
+| 📁 | Human — Texture | |
 | 📁 | Human — Animations | |
 | 📁 | Elf — Model | |
+| 📁 | Elf — Texture | |
 | 📁 | Elf — Animations | |
 | 📁 | Dwarf — Model | |
+| 📁 | Elf — Texture | |
 | 📁 | Dwarf — Animations | |
 
 ## Environment
