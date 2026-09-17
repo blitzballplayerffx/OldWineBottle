@@ -6,9 +6,9 @@ Read todo list here -> [TODO LIST](todo.md)<br>
 Read updates here -> [UPDATES](updates.md)<br><br>
 If you have any feature requests or suggestions, please go to [GitHub Discussions](https://github.com/blitzballplayerffx/OldWineBottle/discussions)
 
-Webpage
+Webpage<br>
 https://blitzballplayerffx.github.io/OldWineBottle/
-Prototype UI
+Prototype UI<br>
 https://blitzballplayerffx.github.io/OldWineBottle/ui.html
 
 ## Interested in Contributing?
