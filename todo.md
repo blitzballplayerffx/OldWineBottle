@@ -85,8 +85,11 @@
 | Progress | Feature | Notes |
 |:---:|:---|:---|
 | 📁 | Main menu | |
-| 📁 | Pause menu | |
-| 📁 | Settings screen | |
-| 📁 | HUD | |
-| 📁 | Accessibility options | |
-| 📁 | Loading screen | |
+| 📁 | UI Settings | |
+| 📁 | Minimap | |
+| 📁 | Chat | |
+| 📁 | Inventory | |
+| 📁 | Skills | |
+| 📁 | Spells | |
+| 📁 | Crafting | |
+| 📁 | Character | |
