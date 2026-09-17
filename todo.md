@@ -66,12 +66,13 @@
 
 | Progress | Feature | Notes |
 |:---:|:---|:---|
-| 📁 | Networking framework | |
-| 📁 | Lobby / matchmaking | |
-| 📁 | Player sync (position / rotation) | |
+| 📁 | Server framework | |
+| 📁 | Account Registration / Login | |
+| 📁 | Player Movement | |
+| 📁 | Player Actions | |
 | 📁 | Chat system | |
-| 📁 | Lag compensation | |
-| 📁 | Server hosting | |
+| 📁 | Player Trade | |
+| 📁 | PvP | |
 
 ## Audio
 
