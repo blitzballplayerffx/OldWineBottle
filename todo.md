@@ -23,7 +23,7 @@
 
 | Progress | Feature | Notes |
 |:---:|:---|:---|
-| ✅ | Prototype UI | |
+| 📁 | Target Character / Item | |
 | ✅ | Player movement | |
 | 🌱 | Jumping | |
 | 🌱 | Sprinting | |
@@ -32,6 +32,16 @@
 | ✅ | 1st Person Camera | |
 | 🌱 | 3rd Person Camera | |
 | 📁 | Playable Demo | |
+
+## Combat
+
+| Progress | Feature | Notes |
+|:---:|:---|:---|
+| 📁 | Attack | |
+| 📁 | Evade | |
+| 📁 | Parry | |
+| 📁 | Skills | |
+| 📁 | Spells | |
 
 ## Models / Animations
 
