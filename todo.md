@@ -1,4 +1,4 @@
-- [✅] Webpage
-- [✅] Wiki
-- [✅] Prototype UI
-- [✅] Github
+[✅] Webpage
+[✅] Wiki
+[✅] Prototype UI
+[✅] Github
