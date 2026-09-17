@@ -11,21 +11,22 @@
 
 | Progress | Feature | Notes |
 |:---:|:---|:---|
-| 📁 | Webpage | |
-| 📁 | Wiki | |
-| 📁 | Prototype UI | |
-| 📁 | Github | |
+| ✅ | Webpage | |
+| ✅ | Wiki | |
+| ✅ | Github | |
 
 ## Gameplay
 
 | Progress | Feature | Notes |
 |:---:|:---|:---|
-| 📁 | Player movement | |
-| 📁 | Jumping | |
-| 📁 | Sprinting | |
-| 📁 | Camera toggle (1st / 3rd person) | |
-| 📁 | Animation state machine | |
-| 📁 | Input rebinding | |
+| ✅ | Prototype UI | |
+| ✅ | Player movement | |
+| 🌱 | Jumping | |
+| 🌱 | Sprinting | |
+| 📁 | Interact with Object | |
+| 📁 | Talk to NPC | |
+| 🌱 | Camera toggle (1st / 3rd person) | |
+| 📁 | Playable Demo | |
 
 ## 3D / Visual
 
