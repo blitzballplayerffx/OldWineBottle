@@ -17,3 +17,10 @@
 
 <img width="1414" height="846" alt="image" src="https://github.com/user-attachments/assets/2bd804f4-a1e8-4790-a080-d3fb1842ad0c" />
 *"The UI isn't very impressive at the moment but its a good placeholder, so i'll improve it later. Also increased the view distance a bit so it feels more immersive."*
+
+
+<br><br><br>
+# Dev Update 9/17/2026
+# Pixels in Motion
+
+`in progress`
