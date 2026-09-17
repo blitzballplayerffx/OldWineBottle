@@ -1,10 +1,11 @@
 # Project Documentation
 
-> **Progress legend:**<br>
+> **Progress legend:**
+> 📁 = planning<br>
 > 🌱 = just started<br>
 > ⏳ = halfway<br>
 > ⚒️ = almost finished<br>
-> ✅ = finished
+> ✅ = finished<br>
 
 ## Documentation
 
@@ -19,7 +20,7 @@
 
 | Progress | Feature | Notes |
 |:---:|:---|:---|
-| 🌱 | Player movement | |
+| 📁 | Player movement | |
 | 🌱 | Jumping | |
 | ⏳ | Sprinting | |
 | ⏳ | Camera toggle (1st / 3rd person) | |
@@ -30,7 +31,7 @@
 
 | Progress | Feature | Notes |
 |:---:|:---|:---|
-| 🌱 | Character model import | |
+| 📁 | Character model import | |
 | 🌱 | Rigging / skeleton | |
 | ⏳ | Idle / walk / run animations | |
 | ⏳ | Lighting setup | |
@@ -41,7 +42,7 @@
 
 | Progress | Feature | Notes |
 |:---:|:---|:---|
-| 🌱 | Networking framework | |
+| 📁 | Networking framework | |
 | 🌱 | Lobby / matchmaking | |
 | ⏳ | Player sync (position / rotation) | |
 | ⏳ | Chat system | |
@@ -52,7 +53,7 @@
 
 | Progress | Feature | Notes |
 |:---:|:---|:---|
-| 🌱 | Sound effects | |
+| 📁 | Sound effects | |
 | 🌱 | Footsteps | |
 | ⏳ | Music tracks | |
 | ⏳ | Dynamic mixing | |
@@ -63,7 +64,7 @@
 
 | Progress | Feature | Notes |
 |:---:|:---|:---|
-| 🌱 | Main menu | |
+| 📁 | Main menu | |
 | 🌱 | Pause menu | |
 | ⏳ | Settings screen | |
 | ⏳ | HUD | |
@@ -74,7 +75,7 @@
 
 | Progress | Feature | Notes |
 |:---:|:---|:---|
-| 🌱 | Bug fixing | |
+| 📁 | Bug fixing | |
 | 🌱 | Performance pass | |
 | ⏳ | Juice (screen shake, particles) | |
 | ⏳ | Playtesting | |
