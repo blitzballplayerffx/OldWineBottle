@@ -39,6 +39,17 @@
 | 📁 | Post-processing | |
 | 📁 | Skybox | |
 
+## Models / Animations
+
+| Progress | Feature | Notes |
+|:---:|:---|:---|
+| 📁 | Human — Model | |
+| 📁 | Human — Animations | |
+| 📁 | Elf — Model | |
+| 📁 | Elf — Animations | |
+| 📁 | Dwarf — Model | |
+| 📁 | Dwarf — Animations | |
+
 ## Multiplayer
 
 | Progress | Feature | Notes |
