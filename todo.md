@@ -101,6 +101,7 @@
 
 | Progress | Feature | Notes |
 |:---:|:---|:---|
+| ✅ | Prototype UI | |
 | 📁 | Main menu | |
 | 📁 | UI Settings | |
 | 📁 | Minimap | |
