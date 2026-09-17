@@ -61,8 +61,11 @@
 
 | Progress | Feature | Notes |
 |:---:|:---|:---|
-| 📁 | Rain | |
-| 📁 | Snow | |
+| ✅ | Ground | |
+| ✅ | Grass | |
+| ✅ | Trees | |
+| 📁 | Buildings | |
+| 📁 | NPCs | |
 | 📁 | Day / Night Cycle | |
 | 📁 | Shadows | |
 | 📁 | Ambient Lighting | |
