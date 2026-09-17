@@ -1,12 +1,12 @@
 # Project Documentation
 
-> **Progress legend:**
-> ⏳ = not started / just started <br>
-> ⏳⏳ = early work <br>
-> ⏳⏳⏳ = halfway <br>
-> ⏳⏳⏳⏳ = nearly done <br>
-> ⏳⏳⏳⏳⏳ = almost finished <br>
-> ✅ = done
+### **Progress legend:**
+- ⏳ = not started / just started <br>
+- ⏳⏳ = early work <br>
+- ⏳⏳⏳ = halfway <br>
+- ⏳⏳⏳⏳ = nearly done <br>
+- ⏳⏳⏳⏳⏳ = almost finished <br>
+- ✅ = done
 
 | Category | Progress | Feature | Notes |
 |:---|:---:|:---|:---|
