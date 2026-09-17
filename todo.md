@@ -29,17 +29,6 @@
 | 🌱 | 3rd Person Camera | |
 | 📁 | Playable Demo | |
 
-## 3D / Visual
-
-| Progress | Feature | Notes |
-|:---:|:---|:---|
-| 📁 | Character model import | |
-| 📁 | Rigging / skeleton | |
-| 📁 | Idle / walk / run animations | |
-| 📁 | Lighting setup | |
-| 📁 | Post-processing | |
-| 📁 | Skybox | |
-
 ## Models / Animations
 
 | Progress | Feature | Notes |
@@ -61,6 +50,7 @@
 | 📁 | Shadows | |
 | 📁 | Ambient Lighting | |
 | 📁 | Fog | |
+| 📁 | Skybox | |
 
 ## Multiplayer
 
