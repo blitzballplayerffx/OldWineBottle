@@ -103,3 +103,4 @@
 | 📁 | Spells | |
 | 📁 | Crafting | |
 | 📁 | Character | |
+| 📁 | Target Indicator | |
