@@ -25,7 +25,8 @@
 | 🌱 | Sprinting | |
 | 📁 | Interact with Object | |
 | 📁 | Talk to NPC | |
-| 🌱 | Camera toggle (1st / 3rd person) | |
+| ✅ | 1st Person Camera | |
+| 🌱 | 3rd Person Camera | |
 | 📁 | Playable Demo | |
 
 ## 3D / Visual
