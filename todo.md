@@ -44,7 +44,7 @@
 | Skills | 📁 |
 | Spells | 📁 |
 
-# Characters
+## Characters
 
 | Character | Model | Animation | Texture |
 |:---|:---:|:---:|:---:|
