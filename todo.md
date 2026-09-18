@@ -23,18 +23,23 @@
 
 | Feature | Progress |
 |:---|:---:|
-| Target Character / Item | 📁 |
-| Player movement | ✅ |
-| Jumping | ⚒️ |
-| Sprinting | ⚒️ |
-| Interact with Object | 📁 |
-| 1st Person Camera | ✅ |
-| 3rd Person Camera | ⏳ |
 | Crafting | 📁 |
 | Dialogues | 📁 |
 | Questing | 📁 |
 | Inventory | 📁 |
 | Playable Demo | 📁 |
+
+## Controls
+
+| Feature | Progress |
+|:---|:---:|
+| Player movement | ✅ |
+| Jumping | ⚒️ |
+| Sprinting | ⚒️ |
+| 1st Person Camera | ✅ |
+| 3rd Person Camera | ⏳ |
+| Target Character / Item | 📁 |
+| Interact with Object | 📁 |
 
 ## Combat
 
