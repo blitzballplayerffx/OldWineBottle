@@ -4,7 +4,7 @@ Currently working on: `models and animations in the editor`.<br><br>
 
 Read todo list here -> [TODO LIST](todo.md)<br>
 Read updates here -> [UPDATES](updates.md)<br><br>
-If you have any feature requests or suggestions, please go to [GitHub Discussions](https://github.com/blitzballplayerffx/OldWineBottle/discussions)
+If you have any feature requests or suggestions, please go to [Discussions](https://github.com/blitzballplayerffx/OldWineBottle/discussions)
 
 ### Webpage
 https://blitzballplayerffx.github.io/OldWineBottle/
@@ -14,7 +14,7 @@ https://blitzballplayerffx.github.io/OldWineBottle/ui.html
 https://blitzballplayerffx.github.io/OldWineBottle/wiki.html
 
 # Interested in Contributing?
-You can post in discussions. Just share a little about your ambitions and your experience. Looking for 3D Modelers but others are also welcome.
+You can post in [Discussions](https://github.com/blitzballplayerffx/OldWineBottle/discussions). Just share a little about your ambitions and your experience. Looking for 3D Modelers but others are also welcome.
 
 # Developers
 Programming: blitzballplayerffx<br>
