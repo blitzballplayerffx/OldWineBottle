@@ -28,10 +28,12 @@
 | Jumping | ⚒️ |
 | Sprinting | ⚒️ |
 | Interact with Object | 📁 |
-| Talk to NPC | 📁 |
 | 1st Person Camera | ✅ |
 | 3rd Person Camera | ⏳ |
 | Crafting | 📁 |
+| Dialogues | 📁 |
+| Questing | 📁 |
+| Inventory | 📁 |
 | Playable Demo | 📁 |
 
 ## Combat
