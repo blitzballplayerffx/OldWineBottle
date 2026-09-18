@@ -79,6 +79,7 @@
 | Shadows | 📁 |
 | Ambient Lighting | 📁 |
 | Fog | 📁 |
+| Caves / Dungeons | 📁 |
 | Skybox | 📁 |
 | Water | 📁 |
 | Clouds | 📁 |
