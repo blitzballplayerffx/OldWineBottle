@@ -296,14 +296,78 @@
                 }
             },
             realms: {
-                ironpeak: { name: "Ironpeak Mountains", description: "A towering mountain range filled with sky temples, ancient mines, and clans of battle-hardened guardians.", features: ["Mining expeditions", "Mountain fortresses", "Lightning storms", "Giant eagle mounts"] },
-                sunscorch: { name: "Sunscorch Desert", description: "A vast golden desert hiding buried cities, colossal sandworms, and merchant kingdoms.", features: ["Sandworm hunts", "Buried ruins", "Caravan trading", "Desert survival events"] },
-                frostveil: { name: "Frostveil Tundra", description: "A frozen wasteland where ancient ice dragons sleep beneath glaciers and wandering spirits guide travelers.", features: ["Ice dragon lairs", "Blizzard conditions", "Frozen dungeons", "Winter crafting materials"] },
-                "whispering-mire": { name: "Whispering Mire", description: "A poisonous swamp filled with ancient trees, hidden villages, witch covens, and creatures that mimic lost travelers.", features: ["Poisonous wetlands", "Witch covens", "Hidden pathways", "Rare alchemy plants"] },
-                "azure-expanse": { name: "Azure Expanse", description: "A massive ocean region containing pirate kingdoms, underwater temples, sea monsters, and eclipse islands.", features: ["Ship battles", "Underwater cities", "Treasure islands", "Sea monster raids"] },
-                emberfall: { name: "Emberfall Caldera", description: "A volcanic wasteland ruled by fire giants and molten war machines.", features: ["Volcanic eruptions", "Fire giant strongholds", "Molten weapons", "Dynamic terrain"] },
-                cloudspire: { name: "Cloudspire Isles", description: "Floating islands connected by magical bridges and guarded by storm spirits and sky pirates.", features: ["Airship travel", "Floating islands", "Sky pirate factions", "Wind-based puzzles"] },
-                "umbral-hollow": { name: "Umbral Hollow", description: "A realm trapped in permanent darkness where shadows take physical form.", features: ["Stealth missions", "Shadow creatures", "Memory puzzles", "Cursed treasures"] }
+                valdmarr: {
+                    name: "Valdmarr",
+                    subtitle: "Old Valdric · “The pledged land”",
+                    quote: "“An oath unkept is a wall unbuilt.”",
+                    quoteAttrib: "— Valdric proverb",
+                    description: "A confederation of human kingdoms bound by oath. Sturdy, proud, and always watching the wild edges where the greenskins press in. Every road is patrolled, every hillfort manned, every promise written in stone.",
+                    features: ["Fir & pine forests", "Grey slate mountains", "Rolling farmland", "Timber lords & frontier towns", "Mining holds & pass forts", "Heartland villages"]
+                },
+                morvhal: {
+                    name: "Morvhal",
+                    subtitle: "Mortis · “Where the breath stops”",
+                    quote: "“We do not bury our dead. We wait for them to stand.”",
+                    quoteAttrib: "— inscription on the Black Gate",
+                    description: "Not a kingdom so much as a condition. The land itself has stopped living, and nothing grows here that wasn't already dead. The marshes breathe. The trees listen. The dead do not always stay down.",
+                    features: ["Bone-white barrens", "Black marshes", "Grey dead forests", "Wandering ghouls", "Necromancer covens", "Wraith-haunted woods"]
+                },
+                aelithwyn: {
+                    name: "Aelithwyn",
+                    subtitle: "Sylvan · “The woven dream”",
+                    quote: "“You are welcome here. You were always welcome here. You have never left.”",
+                    quoteAttrib: "— spoken at every fey threshold",
+                    description: "The name the fey give themselves. Beautiful and wrong in equal measure. Seasons overlap, geometry bends, and colors are too saturated to be natural. Guests are honored — and rarely returned.",
+                    features: ["Bioluminescent forest", "Crystal spires", "Eternal blossom groves", "Seelie courts & glow-moths", "Unseelie towers", "Dryads & shapeshifters"]
+                },
+                "kazrun-dum": {
+                    name: "Kazrun-Dûm",
+                    subtitle: "Kazrun · “The deep-delved home”",
+                    quote: "“The mountain does not move. Neither do we.”",
+                    quoteAttrib: "— first oath of the stone-singers",
+                    description: "A hold, not a country. The dwarves measure it in tunnels, not miles, and the surface is only the roof of the real kingdom. Every hall was carved by hand, every forge lit from the same first fire.",
+                    features: ["Snowcapped iron peaks", "Volcanic forge valleys", "Cavern entrances", "Gate-forts & watch-spires", "Great forges & rune-smiths", "Deep-roads & sinkhole gates"]
+                },
+                itharion: {
+                    name: "Itharion",
+                    subtitle: "High Elvish · “The long twilight”",
+                    quote: "“We were not the first. We will not be the last. We are simply the ones who remember.”",
+                    quoteAttrib: "— from the Star-Reader's Lament",
+                    description: "The elves name it for the hour they love most, not the land itself. They are fading, and they know it. The realm fades with them — silver birch, still water, and quiet places that will outlast their keepers.",
+                    features: ["Silver birch forest", "Mirror lakes", "High meadow terraces", "Wood elf villages & song-paths", "Star-readers & oracle pools", "High elf sanctuaries"]
+                },
+                ghorvash: {
+                    name: "Ghorvash",
+                    subtitle: "Black Speech · “The scar that feeds us”",
+                    quote: "“The ground is ours because we bled on it first.”",
+                    quoteAttrib: "— orc, goblin, and troll saying alike",
+                    description: "Not a kingdom. A territory three peoples agreed not to slaughter each other over — mostly. The land is scarred because it has been fought over for centuries, and every crack tells you who won last.",
+                    features: ["Red cracked badlands", "Root-tangled scrub & cave hills", "Black mesas & bog hollows", "Orc war camps & muster grounds", "Goblin warrens & scrap-towns", "Troll lairs & hunting grounds"]
+                },
+                vaskarel: {
+                    name: "Vaskarel",
+                    subtitle: "Draconic · “The first fire”",
+                    quote: "“The mountain woke once. It will wake again.”",
+                    quoteAttrib: "— carved over every wyrm roost",
+                    description: "Named for the volcano the dragons consider their origin. Everything else in the realm is secondary to that mountain — the obsidian, the sulfur, the ash, the endless low rumble that never quite stops.",
+                    features: ["Obsidian fields", "Sulfur flats", "Volcanic calderas", "Dragon roosts & glass wastes", "Kobold warrens & steam vents", "Wyrm flights & ash plumes"]
+                },
+                hrimgard: {
+                    name: "Hrímgard",
+                    subtitle: "Jotun · “The frost-wall”",
+                    quote: "“We built the wall to keep you out. We are still deciding.”",
+                    quoteAttrib: "— frost giant gate-keeper",
+                    description: "The giants name it for the border it forms, not the land within. To them it's a wall they built to keep the small folk out, and it works. Beyond it: glacier, taiga, and cold that has its own opinion of travelers.",
+                    features: ["Glacier fields", "Frozen taiga", "Ice spires & fjords", "Frost giant halls & ice-rivers", "Ice troll lairs & wolf packs", "Winter fey & frozen shrines"]
+                },
+                "nyr-thessa": {
+                    name: "Nyr Thessa",
+                    subtitle: "Mer-tongue · “The tide that remembers”",
+                    quote: "“The surface forgets. The deep does not.”",
+                    quoteAttrib: "— merfolk tide-priest",
+                    description: "The merfolk name it for what the water holds, not what it looks like. Half-sunken, coral, tidal — more of it lies below than above, and the oldest parts have not seen light in a thousand years.",
+                    features: ["Coral shallows", "Sunken ruins", "Kelp forests", "Merfolk courts & reef-towns", "Drowned cities & sea-elf archives", "Triton hunts & kraken lairs"]
+                }
             },
             races: {
                 humans: { name: "Human", description: "Adaptable explorers who have settled nearly every region of Aetheria and learned to combine many forms of magic.", features: ["Flexible skills", "Extra equipment slot", "Fast reputation gains", "Access to every faction"] },
@@ -411,7 +475,7 @@
         function loadRealmsIndex() {
             let html = `<div class="wiki-card"><span class="section-tag">World Regions</span><h2>Realms</h2><p>Select a world realm below:</p><ul>`;
             for (const [key, r] of Object.entries(WIKI_DATA.realms)) {
-                html += `<li><a class="wiki-link" onclick="loadRealmDetail('${key}')">${r.name}</a> — ${r.description}</li>`;
+                html += `<li><a class="wiki-link" onclick="loadRealmDetail('${key}')">${r.name}</a> — <em>${r.subtitle}</em></li>`;
             }
             html += `</ul></div>`;
             renderContent(html);
@@ -420,7 +484,21 @@
         function loadRealmDetail(key) {
             const r = WIKI_DATA.realms[key];
             if (!r) return renderContent(`<div class="wiki-card"><h2>Realm Not Found</h2></div>`);
-            renderContent(`<button class="btn-back" onclick="loadRealmsIndex()">← Back to Realms</button><div class="wiki-card"><span class="section-tag">World Realm</span><h2>${r.name}</h2><p>${r.description}</p><h3>Realm Features</h3><ul>${r.features.map(f => `<li>${f}</li>`).join('')}</ul></div>`);
+            renderContent(`
+        <button class="btn-back" onclick="loadRealmsIndex()">← Back to Realms</button>
+        <div class="wiki-card">
+            <span class="section-tag">World Realm</span>
+            <h2>${r.name}</h2>
+            <p style="font-style:italic; color:#6b4a1a; margin-bottom:12px;">${r.subtitle}</p>
+            <blockquote style="font-style:italic; border-left:3px solid #c4b093; padding:10px 16px; margin:12px 0 16px; background:#f4ecd8; border-radius:4px;">
+                ${r.quote}
+                <span style="display:block; margin-top:6px; font-style:normal; font-size:0.8rem; letter-spacing:2px; text-transform:uppercase; color:#8a7a58; text-align:right;">${r.quoteAttrib}</span>
+            </blockquote>
+            <p>${r.description}</p>
+            <h3>Terrain &amp; Peoples</h3>
+            <ul>${r.features.map(f => `<li>${f}</li>`).join('')}</ul>
+        </div>
+    `);
         }
 
         function loadRacesIndex() {
