@@ -1,5 +1,5 @@
 # About
-Open-source prototype Fantasy RPG Game.<br><br>
+Open-source Prototype Fantasy RPG Game.<br><br>
 Currently working on: `models and animations in the editor`.<br><br>
 
 Read todo list here -> [TODO LIST](todo.md)<br>
