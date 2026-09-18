@@ -72,6 +72,7 @@
 | 📁 | Fog | |
 | 📁 | Skybox | |
 | 📁 | Water | |
+| 📁 | Clouds | |
 
 ## Multiplayer
 
