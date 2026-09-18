@@ -31,6 +31,7 @@
 | 📁 | Talk to NPC | |
 | ✅ | 1st Person Camera | |
 | ⏳ | 3rd Person Camera | |
+| 📁 | Crafting | |
 | 📁 | Playable Demo | |
 
 ## Combat
