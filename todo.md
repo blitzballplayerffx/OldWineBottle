@@ -44,19 +44,19 @@
 | 📁 | Skills | |
 | 📁 | Spells | |
 
-## Models / Textures / Animations
+# Characters
 
-| Progress | Feature | Notes |
-|:---:|:---|:---|
-| 📁 | Human — Model | |
-| 📁 | Human — Texture | |
-| 📁 | Human — Animations | |
-| 📁 | Elf — Model | |
-| 📁 | Elf — Texture | |
-| 📁 | Elf — Animations | |
-| 📁 | Dwarf — Model | |
-| 📁 | Elf — Texture | |
-| 📁 | Dwarf — Animations | |
+| Feature | Model | Animation | Texture | Notes |
+|:---|:---:|:---:|:---:|:---|
+| Human | 📁 | 📁 | 📁 | |
+| Elf | 📁 | 📁 | 📁 | |
+| Dwarf | 📁 | 📁 | 📁 | |
+| Goblin | 📁 | 📁 | 📁 | |
+| Orc | 📁 | 📁 | 📁 | |
+| Troll | 📁 | 📁 | 📁 | |
+| Bird | 📁 | 📁 | 📁 | |
+| Cat | 📁 | 📁 | 📁 | |
+| Dog | 📁 | 📁 | 📁 | |
 
 ## Environment
 
