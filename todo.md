@@ -62,6 +62,7 @@
 
 | Feature | Progress |
 |:---|:---:|
+| Realm / Zone Framework | ✅ |
 | Ground | ✅ |
 | Grass | ✅ |
 | Trees | ✅ |
@@ -79,7 +80,7 @@
 
 | Feature | Progress |
 |:---|:---:|
-| Server framework | 📁 |
+| Server Framework | 📁 |
 | Account Registration / Login | 📁 |
 | Player Movement | 📁 |
 | Player Actions | 📁 |
