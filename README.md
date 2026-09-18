@@ -19,9 +19,9 @@ You can post in discussions. Just share a little about your ambitions and your e
 # Developers
 Programming: blitzballplayerffx<br>
 3D Environment / Terrain: Vacant<br>
-3D Characters / Animations: Vacant<br>
+3D Models / Animations: Vacant<br>
 3D Effects: Vacant<br>
-2D: Vacant<br>
+2D Graphics / Textures: Vacant<br>
 Music: Vacant<br>
 Sound: Vacant<br>
 Writing: Vacant<br>
