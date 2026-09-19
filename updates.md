@@ -20,7 +20,11 @@
 
 
 <br><br><br>
+# Dev Update 9/19/2026
+# Map Regions Loading / Unloading
+`"This is a bit of a technical update, so you might get bored. Basically, the editor was using the main thread to load and unload the map regions as the player moves which blocked input and other processing. Fortunately the editor has a way of using threads. Windows PC has different hardware than a PS2. The PS2 has hardware and software designed specifically for video games and graphics. That's why I was so confused how a less advanced CPU on a PS2 was loading and unloading map regions better than my PC with better hardware. For now, map regions loading and unloading is working better."`
+
+
+<br><br><br>
 # Dev Update 9/~/2026
 # Pixels in Motion
-
-`in progress`
