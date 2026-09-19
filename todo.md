@@ -34,10 +34,10 @@
 | Feature | Progress |
 |:---|:---:|
 | Player movement | ✅ |
-| Jumping | ⚒️ |
-| Sprinting | ⚒️ |
+| Jumping | ✅ |
+| Sprinting | ✅ |
 | 1st Person Camera | ✅ |
-| 3rd Person Camera | ⏳ |
+| 3rd Person Camera | ✅ |
 | Target Character / Item | 📁 |
 | Interact with Object | 📁 |
 
