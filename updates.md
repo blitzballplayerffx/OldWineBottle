@@ -22,6 +22,8 @@
 <br><br><br>
 # Dev Update 9/19/2026
 # Map Regions Loading / Unloading
+
+<img width="1420" height="835" alt="image" src="https://github.com/user-attachments/assets/8aec8dd4-db2f-4415-8321-c8f2c48f403f" />
 "This is a bit of a technical update, so you might get bored. Basically, the editor was using the main thread to load and unload the map regions as the player moves which blocked input and other processing. Fortunately the editor has a way of using threads. Windows PC has different hardware than a PS2. The PS2 has hardware and software designed specifically for video games and graphics. That's why I was so confused how a less advanced hardware on a PS2 was loading and unloading map regions better than my PC with better hardware. For now, map regions loading and unloading is working better."
 
 
