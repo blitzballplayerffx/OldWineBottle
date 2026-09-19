@@ -1,6 +1,6 @@
 # About
 Open-source Prototype Fantasy RPG Game.<br><br>
-Currently working on: `models and animations in the editor`.<br><br>
+Currently working on: `scene loading/unloading by player movement`<br><br>
 
 Read todo list here -> [TODO LIST](todo.md)<br>
 Read updates here -> [UPDATES](updates.md)<br><br>
