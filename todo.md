@@ -123,3 +123,9 @@
 | Crafting | 📁 |
 | Character | 📁 |
 | Target Indicator | 📁 |
+
+## Technical
+
+| Feature | Progress |
+|:---|:---:|
+| Map Sections Loading / Unloading | 🌱 |
