@@ -8,10 +8,6 @@ If you have any feature requests or suggestions, please go to [Discussions](http
 
 ### Webpage
 https://blitzballplayerffx.github.io/OldWineBottle/
-### Prototype UI
-https://blitzballplayerffx.github.io/OldWineBottle/ui.html
-### Wiki
-https://blitzballplayerffx.github.io/OldWineBottle/wiki.html
 
 # Interested in Contributing?
 You can post in [Discussions](https://github.com/blitzballplayerffx/OldWineBottle/discussions). Just share a little about your ambitions and your experience. Looking for 3D Modelers / Animators but others are also welcome.
