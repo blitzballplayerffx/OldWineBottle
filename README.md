@@ -1,6 +1,6 @@
 # About
 Prototype Fantasy RPG Game.<br><br>
-Currently working on: `adding UI features`<br>
+Currently working on: `adding UI features`<br><br>
 Read todo list here -> [TODO LIST](todo.md)<br>
 Read updates here -> [UPDATES](updates.md)<br><br>
 If you have any feature requests or suggestions, please go to [Discussions](https://github.com/blitzballplayerffx/OldWineBottle/discussions)
