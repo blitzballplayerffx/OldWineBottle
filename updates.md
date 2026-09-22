@@ -29,7 +29,9 @@
 
 "What was very needed at this phase of development was a custom 3D mannequin model with a few essential animations such as walking, running, attacking, etc. 3D modeling and animation, which I probably should have assumed, is a very technical science so it was challenging to find free assets or make my own. Fortunately, I found some tools that make it easier to make animations so now we have a working mannequin 3D model with a few animations. It's enough to start working on other components of the game like the UI and gameplay features."
 
-Dev Update 9/22/2026
-UI update
+
+<br><br><br>
+# Dev Update 9/22/2026
+# UI update
 
 "Still getting familiar with the game engine's UI editor. Today was able to make some decent progress. The game engine UI editor is quite good once you get the hang of it. Now there is character info, messages, skill bar, and compass as some default UI components on screen."
