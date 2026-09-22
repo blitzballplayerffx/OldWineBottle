@@ -111,15 +111,14 @@
 | Feature | Progress |
 |:---|:---:|
 | Prototype UI | ✅ |
-| Main menu | 📁 |
-| UI Settings | 📁 |
-| Minimap | 📁 |
-| Chat | 📁 |
+| Main menu | 🔧 |
+| UI Settings | 🔧 |
+| Messages | 🔧 |
 | Inventory | 📁 |
-| Skills | 📁 |
-| Spells | 📁 |
+| Compass | 🔧 |
+| Skill bar | 🔧 |
 | Crafting | 📁 |
-| Character | 📁 |
+| Character | 🔧 |
 | Target Indicator | 📁 |
 
 ## Technical
