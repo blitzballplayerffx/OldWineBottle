@@ -1,6 +1,6 @@
 # About
 Open-source Prototype Fantasy RPG Game.<br><br>
-Currently working on: `start models and movement animations`<br><br>
+Currently working on: `adding UI features`<br><br>
 
 Read todo list here -> [TODO LIST](todo.md)<br>
 Read updates here -> [UPDATES](updates.md)<br><br>
