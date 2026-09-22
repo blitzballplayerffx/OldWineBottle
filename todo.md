@@ -2,9 +2,7 @@
 
 > **Progress legend:**<br>
 > 📁 = planning<br>
-> 🌱 = just started<br>
-> ⏳ = halfway<br>
-> ⚒️ = almost finished<br>
+> 🔧 = working on it<br>
 > ✅ = finished<br>
 
 ## Documentation
