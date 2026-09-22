@@ -27,7 +27,6 @@
 | Dialogues | 📁 |
 | Questing | 📁 |
 | Inventory | 📁 |
-| Playable Demo | 📁 |
 
 ## Controls
 
@@ -55,6 +54,7 @@
 
 | Character | Model | Animation | Texture |
 |:---|:---:|:---:|:---:|
+| Mannequin | ✅ | ✅ | ✅ |
 | Human | 📁 | 📁 | 📁 |
 | Elf | 📁 | 📁 | 📁 |
 | Dwarf | 📁 | 📁 | 📁 |
@@ -128,4 +128,4 @@
 
 | Feature | Progress |
 |:---|:---:|
-| Map Sections Loading / Unloading | 🌱 |
+| Map Sections Loading / Unloading | ✅ |
