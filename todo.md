@@ -25,6 +25,7 @@
 | Dialogues | 📁 |
 | Questing | 📁 |
 | Inventory | 📁 |
+| Merchant / Trade | 📁 |
 
 ## Controls
 
